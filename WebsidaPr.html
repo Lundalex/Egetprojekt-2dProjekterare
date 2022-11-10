@@ -7,15 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="Program.JS"></script>
+    <script src="ProgramPr.JS"></script>
 
     <canvas id="Canvas" width="800" height="800"
     style="border:10px solid #00ff80;">
     </canvas>
  
-<button onclick="Load()">Load</button>
+<button onclick="Compile()">Compile</button>
 <button onclick="InputCoords()">InputCords</button>
-
+<select id="CompileModeinput">
+    <option value="0">Projectstyle(Input setting)</option>
+    <option value="1">Center All-Avg</option>
+    <option value="2">Center MinMax-Avg</option>
+</select>
 <script>
     var canvas = document.getElementById("Canvas");
     var ctx = canvas.getContext("2d")

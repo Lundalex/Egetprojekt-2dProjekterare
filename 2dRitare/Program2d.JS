@@ -9,7 +9,7 @@ function InputCoords(){
         Inputdata.push(prompt("Y:"))
     }
     Procdata = Inputdata.map(function Procfunc(num) {
-        return num * 10;
+        return num * 1;
       })}
 
 function Load() {
