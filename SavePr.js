@@ -11,8 +11,6 @@ const F = 10
 var Procdata = []
 var TimeadjX = []
 var TimeadjZ = []
-var C = []
-var V = []
 let ProcX = (TimeadjX, TimeadjZ) => F/TimeadjZ*TimeadjX
 let ProcY = (Y, TimeadjZ) => F/TimeadjZ*Y
 
@@ -41,47 +39,28 @@ function Compile() {
     TotalX=TotalX.map(function Procfunc(num){return num-MX})
     TotalY=TotalY.map(function Procfunc(num){return num-MY})
     TotalZ=TotalZ.map(function Procfunc(num){return num-MZ})
-    C = []
-    V = []
-
-// fungerar upp
+    var C = []
+    var V = []
     for (let i = 0; i < TotalX.length; i++) {
         C.push(Math.sqrt(Math.pow(TotalX[i], 2) + Math.pow(TotalZ[i], 2)))
         V.push(180/Math.PI*(Math.atan(TotalX[i]/TotalZ[i])))
     }
-// fungerar upp
-
-
-    for (let o = 0; o < 3; o++) {
+    for (let o = 0; o < 10; o++) {
         Procdata = []
         TimeadjX = Number(0)
         TimeadjZ = Number(0)
-        
         V=V.map(function Vtime(num){return((num+5)%360)})
-// fungerar upp(map)
-
-
         for (let p = 0; p < C.length; p++) {
-            // nästa att kolla denna for-lopp
-            alert(V[p])
-            alert(C[p])
             TimeadjX=(Math.cos(V[p]/180/Math.PI)*C[p])
             TimeadjZ=(Math.sin(V[p]/180/Math.PI)*C[p])
-            alert(TimeadjX)
-            alert(TimeadjZ)
             Procdata.push(ProcX(TimeadjX, TimeadjZ))
             Procdata.push(ProcY(Y, TimeadjZ))
         }
-
-
-
         for (let l = 0; l < Procdata.length; l+=2) {
             ctx.moveTo(400+Number(Procdata[l]),400+Number(Procdata[l+1]));
             ctx.lineTo(400+Number(Procdata[l+2]),400+Number(Procdata[l+3]));
             ctx.stroke();
         }
-
-
         
         // Wait Time (function)
 
