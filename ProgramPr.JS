@@ -8,6 +8,11 @@ const F = 100
 var Procdata = []
 let ProcX = (X, Z) => F/Z*X
 let ProcY = (Y, Z) => F/Z*Y
+
+// function sinDegrees(angleDegrees) {
+//     return Math.sin(angleDegrees*Math.PI/180);
+// };
+
 function InputCoords(){
     Procdata = []
     let Coordamount = +prompt("insert amount of coordinates")
@@ -34,6 +39,8 @@ function Compile() {
     TotalX=TotalX.map(function Procfunc(num){return num-MX})
     TotalY=TotalY.map(function Procfunc(num){return num-MY})
     TotalZ=TotalZ.map(function Procfunc(num){return num-MZ})
+    // Beräkna alla "V" samt alla "C"
+    
 
     }
 
