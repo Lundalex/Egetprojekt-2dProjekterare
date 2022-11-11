@@ -20,6 +20,6 @@ function Load() {
     alert(Procdata.length)
     for (let i = 0; i < Procdata.length; i+=2) {
         ctx.moveTo(400+Number(Procdata[i]),400+Number(Procdata[i+1]));
-        ctx.lineTo(400+Number(Procdata[i+2]),Number(Procdata[i+3]));
+        ctx.lineTo(400+Number(Procdata[i+2]),400+Number(Procdata[i+3]));
         ctx.stroke();
     }}

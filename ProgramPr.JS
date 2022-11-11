@@ -4,7 +4,10 @@ var InputdataZ = []
 var TotalX = []
 var TotalY = []
 var TotalZ = []
-const F = 100
+var X
+var Y
+var Z
+const F = 10
 var Procdata = []
 var TimeadjX = []
 var TimeadjZ = []
@@ -14,9 +17,9 @@ let ProcY = (Y, TimeadjZ) => F/TimeadjZ*Y
 function InputCoords(){
     let Coordamount = +prompt("insert amount of coordinates")
     for (let i = 0; i < Coordamount; i++) {
-        const X=prompt("X:")
-        const Y=prompt("Y:")
-        const Z=prompt("Z:")
+        X=prompt("X:")
+        Y=prompt("Y:")
+        Z=prompt("Z:")
         TotalX.push(X)
         TotalY.push(Y)
         TotalZ.push(Z)
@@ -26,7 +29,7 @@ function InputCoords(){
 function Compile() {
     const Avgstyle=document.getElementById("CompileModeinput").value
     // if Avgstyle = (Center All-Avg)
-    if(Avgstyle=1){
+    if(Avgstyle==1){
     const TX=TotalX.length
     const TY=TotalY.length
     const TZ=TotalZ.length
@@ -42,7 +45,7 @@ function Compile() {
         C.push(Math.sqrt(Math.pow(TotalX[i], 2) + Math.pow(TotalZ[i], 2)))
         V.push(180/Math.PI*(Math.atan(TotalX[i]/TotalZ[i])))
     }
-    for (let o = 0; o < 100; o++) {
+    for (let o = 0; o < 10; o++) {
         Procdata = []
         TimeadjX = Number(0)
         TimeadjZ = Number(0)
