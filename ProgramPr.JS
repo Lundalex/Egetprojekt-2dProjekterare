@@ -8,11 +8,11 @@ var C = []
 var XPosNeg = []
 var ZPosNeg = []
 
-var ProjectedX
-var ProjectedY
+var ProjectedX = []
+var ProjectedY = []
 
-var Subcoordvalue1
-var Subcoordvalue2
+var Subcoordvalue1X
+var Subcoordvalue2Z
 
 var FocalLength = 0
 
@@ -73,13 +73,16 @@ function Compile() {
                 V[p] = V[p] % 90
                 }
 
-                Subcoordvalue1=(Math.cos(V[p]/180/Math.PI)*C[p])
-                Subcoordvalue2=(Math.sin(V[p]/180/Math.PI)*C[p])
+                Subcoordvalue1X=(Math.cos(V[p]/180/Math.PI)*C[p])
+                Subcoordvalue2Z=(Math.sin(V[p]/180/Math.PI)*C[p])
 
-                if((XPosNeg[p] = true) & (ZPosNeg[p] = true)){}
+                if((XPosNeg[p] = true) & (ZPosNeg[p] = true)){ProjectedX[p] = Subcoordvalue1X/(Subcoordvalue2Z + FocalLength) * FocalLength}
                 else if((XPosNeg[p] = false) & (ZPosNeg[p] = true)){}
                 else if((XPosNeg[p] = false) & (ZPosNeg[p] = false)){}
                 else if((XPosNeg[p] = true) & (ZPosNeg[p] = false)){}
+
+
+
             }
         }
 
