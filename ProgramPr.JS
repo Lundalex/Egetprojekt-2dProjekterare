@@ -1,94 +1,95 @@
-var InputdataX = []
-var InputdataY = []
-var InputdataZ = []
-var TotalX = []
-var TotalY = []
-var TotalZ = []
-var X
-var Y
-var Z
-const F = 10
-var Procdata = []
-var TimeadjX = []
-var TimeadjZ = []
-var C = []
+var InputX = []
+var InputY = []
+var InputZ = []
+
 var V = []
-let ProcX = (TimeadjX, TimeadjZ) => F/TimeadjZ*TimeadjX
-let ProcY = (Y, TimeadjZ) => F/TimeadjZ*Y
+var C = []
+
+var XPosNeg = []
+var ZPosNeg = []
+
+var ProjectedX
+var ProjectedY
+
+var Subcoordvalue1
+var Subcoordvalue2
+
+var FocalLength = 0
+
+var FrameAmount = 0
 
 function InputCoords(){
+InputX = []
+InputY = []
+InputZ = []
+alert(InputX.length)
     let Coordamount = +prompt("insert amount of coordinates")
     for (let i = 0; i < Coordamount; i++) {
-        X=prompt("X:")
-        Y=prompt("Y:")
-        Z=prompt("Z:")
-        TotalX.push(X)
-        TotalY.push(Y)
-        TotalZ.push(Z)
+        InputX.push(+prompt("Coord " + (i+1) + " - X"))
+        InputY.push(+prompt("Coord " + (i+1) + " - Y:"))
+        InputZ.push(+prompt("Coord " + (i+1) + " - Z:"))
     }
 }
 
 function Compile() {
+    FrameAmount = +prompt("Animation length(FrameAmount):")
+    FocalLength = +prompt("Focal length:")
+
     const Avgstyle=document.getElementById("CompileModeinput").value
     // if Avgstyle = (Center All-Avg)
     if(Avgstyle==1){
-    const TX=TotalX.length
-    const TY=TotalY.length
-    const TZ=TotalZ.length
-    const MX=TotalX.reduce(function RedX(total,value){return Number(total)+Number(value)})/TX
-    const MY=TotalY.reduce(function RedY(total,value){return Number(total)+Number(value)})/TY
-    const MZ=TotalZ.reduce(function RedZ(total,value){return Number(total)+Number(value)})/TZ
-    TotalX=TotalX.map(function Procfunc(num){return num-MX})
-    TotalY=TotalY.map(function Procfunc(num){return num-MY})
-    TotalZ=TotalZ.map(function Procfunc(num){return num-MZ})
-    C = []
-    V = []
 
-// fungerar upp
-    for (let i = 0; i < TotalX.length; i++) {
-        C.push(Math.sqrt(Math.pow(TotalX[i], 2) + Math.pow(TotalZ[i], 2)))
-        V.push(180/Math.PI*(Math.atan(TotalX[i]/TotalZ[i])))
+        const TX=InputX.length
+        const TY=InputY.length
+        const TZ=InputZ.length
+        const MX=InputX.reduce(function RedX(total,value){return Number(total)+Number(value)})/TX
+        const MY=InputY.reduce(function RedY(total,value){return Number(total)+Number(value)})/TY
+        const MZ=InputZ.reduce(function RedZ(total,value){return Number(total)+Number(value)})/TZ
+        InputX=InputX.map(function Procfunc(num){return num-MX})
+        InputY=InputY.map(function Procfunc(num){return num-MY})
+        InputZ=InputZ.map(function Procfunc(num){return num-MZ})
+
+        C = []
+        V = []
+        for (let i = 0; i < TotalX.length; i++) {
+            // V = arctan (Z/X)
+            V[i] = (180/Math.PI*(Math.atan(Math.abs(InputX[i])/Math.abs(InputZ[i]))))
+            // Är X + eller - ? Är X + eller - ?
+            if(InputX[i] > 0){XPosNeg[i] = true}else{XPosNeg[i] = false}
+            if(InputZ[i] > 0){ZPosNeg[i] = true}else{ZPosNeg[i] = false}
+            // Beräkna hypotenusans längd mellan X och Z
+            C[i] = (Math.sqrt(Math.pow(InputX[i], 2) + Math.pow(InputZ[i], 2)))
+        }
+        
+        for (let i = 0; i < FrameAmount; i++) {
+
+            for (let p = 0; p <= C.length; p++) {
+                V[p] = V[p] + 5
+                if(V[p] >= 90){
+                if((XPosNeg[p] = true) & (ZPosNeg[p] = true)){XPosNeg[p] = false}
+                else if((XPosNeg[p] = false) & (ZPosNeg[p] = true)){ZPosNeg[p] = false}
+                else if((XPosNeg[p] = false) & (ZPosNeg[p] = false)){XPosNeg[p] = true}
+                else if((XPosNeg[p] = true) & (ZPosNeg[p] = false)){ZPosNeg[p] = true}
+                V[p] = V[p] % 90
+                }
+
+                Subcoordvalue1=(Math.cos(V[p]/180/Math.PI)*C[p])
+                Subcoordvalue2=(Math.sin(V[p]/180/Math.PI)*C[p])
+
+                if((XPosNeg[p] = true) & (ZPosNeg[p] = true)){}
+                else if((XPosNeg[p] = false) & (ZPosNeg[p] = true)){}
+                else if((XPosNeg[p] = false) & (ZPosNeg[p] = false)){}
+                else if((XPosNeg[p] = true) & (ZPosNeg[p] = false)){}
+            }
+        }
+
     }
-// fungerar upp
 
 
-    for (let o = 0; o < 3; o++) {
-        Procdata = []
-        TimeadjX = Number(0)
-        TimeadjZ = Number(0)
-        
-        V=V.map(function Vtime(num){return((num+5)%360)})
-// fungerar upp(map)
-
-
-        for (let p = 0; p < C.length; p++) {
-            // nästa att kolla denna for-lopp
-            alert(V[p])
-            alert(C[p])
-            TimeadjX=(Math.cos(V[p]/180/Math.PI)*C[p])
-            TimeadjZ=(Math.sin(V[p]/180/Math.PI)*C[p])
-            alert(TimeadjX)
-            alert(TimeadjZ)
-            Procdata.push(ProcX(TimeadjX, TimeadjZ))
-            Procdata.push(ProcY(Y, TimeadjZ))
-        }
-
-
-
-        for (let l = 0; l < Procdata.length; l+=2) {
-            ctx.moveTo(400+Number(Procdata[l]),400+Number(Procdata[l+1]));
-            ctx.lineTo(400+Number(Procdata[l+2]),400+Number(Procdata[l+3]));
-            ctx.stroke();
-        }
-
-
-        
-        // Wait Time (function)
-
-        // Clear Canvas (function)
-        
-        }
- 
+    alert(Procdata.length)
+    for (let i = 0; i < Procdata.length; i+=2) {
+        ctx.moveTo(400+Number(Procdata[i]),400+Number(Procdata[i+1]));
+        ctx.lineTo(400+Number(Procdata[i+2]),400+Number(Procdata[i+3]));
+        ctx.stroke();
     }
-// if Avgstyle = (Center MinMax-Avg)
 }
