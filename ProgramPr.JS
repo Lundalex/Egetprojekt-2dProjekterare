@@ -23,12 +23,53 @@ InputX = []
 InputY = []
 InputZ = []
 alert(InputX.length)
+    // Accept inputvalue X/Y/Z
     let Coordamount = +prompt("insert amount of coordinates")
     for (let i = 0; i < Coordamount; i++) {
-        InputX.push(+prompt("Coord " + (i+1) + " - X"))
-        InputY.push(+prompt("Coord " + (i+1) + " - Y:"))
-        InputZ.push(+prompt("Coord " + (i+1) + " - Z:"))
+        // InputX.push(+prompt("Coord " + (i+1) + " - X"))
+        // InputY.push(+prompt("Coord " + (i+1) + " - Y:"))
+        // InputZ.push(+prompt("Coord " + (i+1) + " - Z:"))
     }
+    // Cube test
+    InputX.push(100)
+    InputY.push(100)
+    InputZ.push(100)
+    InputX.push(200)
+    InputY.push(100)
+    InputZ.push(100)
+    InputX.push(200)
+    InputY.push(200)
+    InputZ.push(100)
+    InputX.push(100)
+    InputY.push(200)
+    InputZ.push(100)
+    InputX.push(100)
+    InputY.push(200)
+    InputZ.push(200)
+    InputX.push(200)
+    InputY.push(200)
+    InputZ.push(200)
+    InputX.push(200)
+    InputY.push(100)
+    InputZ.push(200)
+    InputX.push(100)
+    InputY.push(100)
+    InputZ.push(200)
+    InputX.push(100)
+    InputY.push(100)
+    InputZ.push(100)
+    InputX.push(200)
+    InputY.push(100)
+    InputZ.push(100)
+    InputX.push(200)
+    InputY.push(100)
+    InputZ.push(200)
+    InputX.push(200)
+    InputY.push(200)
+    InputZ.push(200)
+    InputX.push(200)
+    InputY.push(200)
+    InputZ.push(100)
 }
 
 function Compile() {
@@ -42,16 +83,11 @@ function Compile() {
         // Beräkna medelvärden. Anpassa sedan insatta X/Y/Z-värden efter medelvärden.
         const TX=InputX.length
         const TY=InputY.length
-        const TZ=InputZ.length
         const MX=InputX.reduce(function RedX(total,value){return Number(total)+Number(value)})/TX
         const MY=InputY.reduce(function RedY(total,value){return Number(total)+Number(value)})/TY
-        const MZ=InputZ.reduce(function RedZ(total,value){return Number(total)+Number(value)})/TZ
         InputX=InputX.map(function Procfunc(num){return num-MX})
         InputY=InputY.map(function Procfunc(num){return num-MY})
-        InputZ=InputZ.map(function Procfunc(num){return num-MZ})
 
-        C = []
-        V = []
         for (let i = 0; i < InputX.length; i++) {
             // V = arctan (Z/X)
             V[i] = (180/Math.PI*(Math.atan(Math.abs(InputX[i])/Math.abs(InputZ[i]))))
@@ -64,7 +100,7 @@ function Compile() {
         
         for (let i = 0; i <= FrameAmount; i++) {
 
-            for (let p = 0; p <= C.length; p++) {
+            for (let p = 0; p < C.length; p++) {
                 // Alla V+=5, med X/Z Pos/Neg-ändringar
                 V[p] = V[p] + 5
                 if(V[p] >= 90){
@@ -86,12 +122,30 @@ function Compile() {
                 ProjectedY[p] = InputY[p]
             }
             // Rita linjer med PX och PY
-            for (let l = 0; l <= ProjectedX.length; l++) {
+            for (let l = 0; l < ProjectedX.length; l++) {
                 ctx.moveTo(400+Number(ProjectedX[l]),400+Number(ProjectedY[l]));
                 ctx.lineTo(400+Number(ProjectedX[l+1]),400+Number(ProjectedY[l+1]));
                 ctx.stroke();
             }
-
+            // Logging(Development)
+            console.log("InputX")
+            console.log(InputX)
+            console.log("InputY")
+            console.log(InputY)
+            console.log("InputZ")
+            console.log(InputZ)
+            console.log("V")
+            console.log(V)
+            console.log("C")
+            console.log(C)
+            console.log("XPosNeg")
+            console.log(XPosNeg)
+            console.log("ZPosNeg")
+            console.log(ZPosNeg)
+            console.log("ProjectedX")
+            console.log(ProjectedX)
+            console.log("ProjectedY")
+            console.log(ProjectedY)
         }
 
     }
