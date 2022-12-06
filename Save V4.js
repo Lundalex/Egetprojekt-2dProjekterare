@@ -1,30 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script src="ProgramPr.JS"></script>
-
-    <canvas id="Canvas" width="800" height="800"
-    style="border:10px solid #00ff80;">
-    </canvas>
- 
-<button onclick="InputCoords()">InputCords</button>
-<button onclick="Compile()">Compile</button>
-<select id="CompileModeinput">
-    <option value="0">Lines/Dots</option>
-    <option value="1">Lines</option>
-    <option value="2">Dots</option>
-</select>
-<script>
-    var canvas = document.getElementById("Canvas");
-    var ctx = canvas.getContext("2d")
-    let context = canvas.getContext('2d');
-
 var InputX = []
 var InputY = []
 var InputZ = []
@@ -50,7 +23,6 @@ var FocalLength = 0
 
 var FrameAmount = 0
 
-var Increment = 0
 
 function InputCoords(){
 InputX = []
@@ -65,7 +37,7 @@ alert(InputX.length)
         // InputZ.push(+prompt("Coord " + (i+1) + " - Z:"))
     }
     // Cube test
-   
+
     InputX.push(100)
     InputY.push(100)
     InputZ.push(100)
@@ -133,7 +105,6 @@ alert(InputX.length)
     InputX.push(100)
     InputY.push(200)
     InputZ.push(200)
-    
 }
 
 function Compile() {
@@ -141,11 +112,10 @@ function Compile() {
     Degreeturn = +prompt("Degreeturn")
     FrameAmount = +prompt("Animation length(FrameAmount):")
     FocalLength = +prompt("Focal length:")
-    Increment = +prompt("Increment speed:")
 
     const Avgstyle=document.getElementById("CompileModeinput").value
     // if Avgstyle = (Center All-Avg)
-    
+    if(Avgstyle==1){
         // Beräkna medelvärden. Anpassa sedan insatta X/Y/Z-värden efter medelvärden.
         const TX=InputX.length
         const TY=InputY.length
@@ -173,8 +143,8 @@ function Compile() {
             for (let p = 0; p < CXZ.length; p++) {
                 
                 // Alla V+=5, med X/Z Pos/Neg-ändringar
-                VXZ[p] = VXZ[p] + Increment
-                VYZ[p] = VYZ[p] + Increment
+                VXZ[p] = VXZ[p] + 5
+                VYZ[p] = VYZ[p] + 5
                 
                 if(VXZ[p] >= 90){
                 if((XPosNeg[p] == true) & (ZPosNeg[p] == true)){XPosNeg[p] = false}
@@ -199,33 +169,25 @@ function Compile() {
 
                 // PX = X/(Z+F)*F. Ändrar även variabelvärde med X/Z-Pos/Neg 
                 if((XPosNeg[p] == true) & (ZPosNeg[p] == true)){ProjectedX[p] = Subcoordvalue1/(Subcoordvalue2 + FocalLength) * FocalLength}
-                else if((XPosNeg[p] == false) & (ZPosNeg[p] == true)){ProjectedX[p] = -1*( Subcoordvalue2)/(Subcoordvalue1 + FocalLength) * FocalLength}
-                else if((XPosNeg[p] == false) & (ZPosNeg[p] == false)){ProjectedX[p] =  (Subcoordvalue1)/((Subcoordvalue2) + FocalLength) * FocalLength}
-                else if((XPosNeg[p] == true) & (ZPosNeg[p] == false)){ProjectedX[p] =  -1* Subcoordvalue2/((Subcoordvalue1) + FocalLength) * FocalLength}
+                else if((XPosNeg[p] == false) & (ZPosNeg[p] == true)){ProjectedX[p] = -1* ( Subcoordvalue2)/(Subcoordvalue1 + FocalLength) * FocalLength}
+                else if((XPosNeg[p] == false) & (ZPosNeg[p] == false)){ProjectedX[p] = (Subcoordvalue1)/((Subcoordvalue2) + FocalLength) * FocalLength}
+                else if((XPosNeg[p] == true) & (ZPosNeg[p] == false)){ProjectedX[p] =  -1*Subcoordvalue2/((Subcoordvalue1) + FocalLength) * FocalLength}
                 
                 if((YPosNeg[p] == true) & (ZPosNeg[p] == true)){ProjectedY[p] = Subcoordvalue3/(Subcoordvalue4 + FocalLength) * FocalLength}
-                else if((YPosNeg[p] == false) & (ZPosNeg[p] == true)){ProjectedY[p] = -1*(Subcoordvalue4)/(Subcoordvalue3 +  FocalLength) * FocalLength}
-                else if((YPosNeg[p] == false) & (ZPosNeg[p] == false)){ProjectedY[p] =  (Subcoordvalue3)/((Subcoordvalue4) + FocalLength) * FocalLength}
-                else if((YPosNeg[p] == true) & (ZPosNeg[p] == false)){ProjectedY[p] = -1* Subcoordvalue4/((Subcoordvalue3)  + FocalLength) * FocalLength}
+                else if((YPosNeg[p] == false) & (ZPosNeg[p] == true)){ProjectedY[p] =  -1*(Subcoordvalue4)/(Subcoordvalue3 + FocalLength) * FocalLength}
+                else if((YPosNeg[p] == false) & (ZPosNeg[p] == false)){ProjectedY[p] = (Subcoordvalue3)/((Subcoordvalue4) + FocalLength) * FocalLength}
+                else if((YPosNeg[p] == true) & (ZPosNeg[p] == false)){ProjectedY[p] = -1* Subcoordvalue4/(( Subcoordvalue3) + FocalLength) * FocalLength}
             }
             ctx.beginPath();
 ctx.rect(00, 00, 800, 800);
 ctx.fillStyle = "white";
 ctx.fill();
             // Rita linjer med PX och PY
-            if(Avgstyle==1){
             for (let l = 0; l < ProjectedX.length; l++) {
                 ctx.moveTo(400+Number(ProjectedX[l]),400+Number(ProjectedY[l]));
                 ctx.lineTo(400+Number(ProjectedX[l+1]),400+Number(ProjectedY[l+1]));
                 ctx.stroke();
-                console.log(l)
-            }}else{for (let l = 0; l < ProjectedX.length; l++) {
-                ctx.moveTo(400+Number(ProjectedX[l]),400+Number(ProjectedY[l]));
-                ctx.lineTo(400+Number(ProjectedX[l]+1),400+Number(ProjectedY[l]+1));
-                ctx.stroke();
-                console.log(l)
-            }}
-
+            }
             // Logging(Development)
             console.log("InputX")
             console.log(InputX)
@@ -256,10 +218,5 @@ debugger
 
     }
     
-
-// [V] = [V] tillfälligt
-</script>
-
-
-</body>
-</html>
+}
+// V[i] = V[i] % 90 ISTÄLLET FÖR (-90) VILKET KAN INNEBÄRA BUGGAR
