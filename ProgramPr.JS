@@ -23,6 +23,7 @@ var FocalLength = 0
 
 var FrameAmount = 0
 
+
 function InputCoords(){
 InputX = []
 InputY = []
@@ -108,6 +109,7 @@ alert(InputX.length)
 
 function Compile() {
     // Import options
+    Degreeturn = +prompt("Degreeturn")
     FrameAmount = +prompt("Animation length(FrameAmount):")
     FocalLength = +prompt("Focal length:")
 
@@ -133,15 +135,17 @@ function Compile() {
             // Beräkna hypotenusans längd mellan X och Z
             CXZ[i] = (Math.sqrt(Math.pow(InputX[i], 2) + Math.pow(InputZ[i], 2)))
             CYZ[i] = (Math.sqrt(Math.pow(InputY[i], 2) + Math.pow(InputZ[i], 2)))
+            VXZ[i] = VXZ[i] + Degreeturn
+            VYZ[i] = VYZ[i] + Degreeturn
         }
-
+        canvas.style.height = 2000
         for (let i = 0; i <= FrameAmount; i++) {
 
             for (let p = 0; p < CXZ.length; p++) {
                 // Alla V+=5, med X/Z Pos/Neg-ändringar
-
-                VXZ[p] = VXZ[p] + 5
-                VYZ[p] = VYZ[p] + 5
+                VXZ[i] = VXZ[i] + 5
+                VYZ[i] = VYZ[i] + 5
+                
                 if(VXZ[p] >= 90){
                 if((XPosNeg[p] == true) & (ZPosNeg[p] == true)){XPosNeg[p] = false}
                 else if((XPosNeg[p] == false) & (ZPosNeg[p] == true)){ZPosNeg[p] = false}
@@ -163,7 +167,7 @@ function Compile() {
                 Subcoordvalue3=(Math.cos(VYZ[p]/(180/Math.PI))*CYZ[p])
                 Subcoordvalue4=(Math.sin(VYZ[p]/(180/Math.PI))*CYZ[p])
 
-                // PX = X/(Z+F)*F. Ändrar även variabelvärde med X/Z-Pos/Neg
+                // PX = X/(Z+F)*F. Ändrar även variabelvärde med X/Z-Pos/Neg 
                 if((XPosNeg[p] == true) & (ZPosNeg[p] == true)){ProjectedX[p] = Subcoordvalue1/(Subcoordvalue2 + FocalLength) * FocalLength}
                 else if((XPosNeg[p] == false) & (ZPosNeg[p] == true)){ProjectedX[p] = (-1 * Subcoordvalue2)/(Subcoordvalue1 + FocalLength) * FocalLength}
                 else if((XPosNeg[p] == false) & (ZPosNeg[p] == false)){ProjectedX[p] = (-1 * Subcoordvalue1)/((-1 * Subcoordvalue2) + FocalLength) * FocalLength}
@@ -205,6 +209,8 @@ function Compile() {
             console.log(ProjectedX)
             console.log("ProjectedY")
             console.log(ProjectedY)
+
+            
         }
 
     }
