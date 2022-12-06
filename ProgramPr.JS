@@ -31,51 +31,79 @@ alert(InputX.length)
     // Accept inputvalue X/Y/Z
     let Coordamount = +prompt("insert amount of coordinates")
     for (let i = 0; i < Coordamount; i++) {
-        InputX.push(+prompt("Coord " + (i+1) + " - X"))
-        InputY.push(+prompt("Coord " + (i+1) + " - Y:"))
-        InputZ.push(+prompt("Coord " + (i+1) + " - Z:"))
+        // InputX.push(+prompt("Coord " + (i+1) + " - X"))
+        // InputY.push(+prompt("Coord " + (i+1) + " - Y:"))
+        // InputZ.push(+prompt("Coord " + (i+1) + " - Z:"))
     }
     // Cube test
 
-    // InputX.push(100)!!!!!!!!!!!!
-    // InputY.push(100)
-    // InputZ.push(100)
-    // InputX.push(200)
-    // InputY.push(100)
-    // InputZ.push(100)
-    // InputX.push(200)
-    // InputY.push(200)
-    // InputZ.push(100)
-    // InputX.push(100)
-    // InputY.push(200)
-    // InputZ.push(100)
-    // InputX.push(100)
-    // InputY.push(200)
-    // InputZ.push(200)
-    // InputX.push(200)
-    // InputY.push(200)
-    // InputZ.push(200)
-    // InputX.push(200)
-    // InputY.push(100)
-    // InputZ.push(200)
-    // InputX.push(100)
-    // InputY.push(100)
-    // InputZ.push(200)
-    // InputX.push(100)
-    // InputY.push(100)
-    // InputZ.push(100)
-    // InputX.push(200)
-    // InputY.push(100)
-    // InputZ.push(100)
-    // InputX.push(200)
-    // InputY.push(100)
-    // InputZ.push(200)
-    // InputX.push(200)
-    // InputY.push(200)
-    // InputZ.push(200)
-    // InputX.push(200)
-    // InputY.push(200)
-    // InputZ.push(100)
+    InputX.push(100)
+    InputY.push(100)
+    InputZ.push(100)
+
+    InputX.push(200)
+    InputY.push(100)
+    InputZ.push(100)
+
+    InputX.push(200)
+    InputY.push(200)
+    InputZ.push(100)
+
+    InputX.push(100)
+    InputY.push(200)
+    InputZ.push(100)
+
+    InputX.push(100)
+    InputY.push(100)
+    InputZ.push(100)
+
+    InputX.push(100)
+    InputY.push(100)
+    InputZ.push(200)
+
+    InputX.push(200)
+    InputY.push(100)
+    InputZ.push(200)
+    
+    InputX.push(200)
+    InputY.push(200)
+    InputZ.push(200)
+
+    InputX.push(100)
+    InputY.push(200)
+    InputZ.push(200)
+
+    InputX.push(100)
+    InputY.push(100)
+    InputZ.push(200)
+
+    InputX.push(100)
+    InputY.push(100)
+    InputZ.push(100)
+
+    InputX.push(200)
+    InputY.push(100)
+    InputZ.push(100)
+    
+    InputX.push(200)
+    InputY.push(100)
+    InputZ.push(200)
+
+    InputX.push(200)
+    InputY.push(200)
+    InputZ.push(200)
+
+    InputX.push(200)
+    InputY.push(200)
+    InputZ.push(100)
+
+    InputX.push(100)
+    InputY.push(200)
+    InputZ.push(100)
+
+    InputX.push(100)
+    InputY.push(200)
+    InputZ.push(200)
 }
 
 function Compile() {
