@@ -16,56 +16,56 @@
 <button onclick="InputCoords()">InputCords</button>
 <button onclick="Compile()">Compile</button>
 <select id="CompileModeinput">
-    <option value="0">Lines/Dots</option>
-    <option value="1">Lines</option>
-    <option value="2">Dots</option>
+    <option value="0">Dots(W.o. Canvas Clear)</option>
+    <option value="1">Dots</option>
+    <option value="2">Lines</option>
 </select>
 <script>
-    var canvas = document.getElementById("Canvas");
-    var ctx = canvas.getContext("2d")
-    let context = canvas.getContext('2d');
+let canvas = document.getElementById("Canvas");
+let ctx = canvas.getContext("2d")
+let context = canvas.getContext('2d');
 
-var InputX = []
-var InputY = []
-var InputZ = []
+let InputX = []
+let InputY = []
+let InputZ = []
 
-var VXZ = []
-var CXZ = []
-var VYZ = []
-var CYZ = []
+let VXZ = []
+let CXZ = []
+let VYZ = []
+let CYZ = []
 
-var XPosNeg = []
-var ZPosNeg = []
-var YPosNeg = []
+let XPosNeg = []
+let ZPosNeg = []
+let YPosNeg = []
+let ZYPosNeg = []
 
-var ProjectedX = []
-var ProjectedY = []
+let ProjectedX = []
+let ProjectedY = []
 
-var Subcoordvalue1
-var Subcoordvalue2
-var Subcoordvalue3
-var Subcoordvalue4
+let Subcoordvalue1
+let Subcoordvalue2
+let Subcoordvalue3
+let Subcoordvalue4
 
-var FocalLength = 0
+let FocalLength = 0
 
-var FrameAmount = 0
+let FrameAmount = 0
 
-var Increment = 0
+let Increment = 0
 
 function InputCoords(){
 InputX = []
 InputY = []
 InputZ = []
 alert(InputX.length)
-    // Accept inputvalue X/Y/Z
-    let Coordamount = +prompt("insert amount of coordinates")
+    // Accept input value X/Y/Z
+    let Coordamount= +prompt("insert amount of coordinates")
     for (let i = 0; i < Coordamount; i++) {
         // InputX.push(+prompt("Coord " + (i+1) + " - X"))
         // InputY.push(+prompt("Coord " + (i+1) + " - Y:"))
         // InputZ.push(+prompt("Coord " + (i+1) + " - Z:"))
     }
     // Cube test
-   
     InputX.push(100)
     InputY.push(100)
     InputZ.push(100)
@@ -135,14 +135,12 @@ alert(InputX.length)
     InputZ.push(200)
     
 }
-
 function Compile() {
     // Import options
     Degreeturn = +prompt("Degreeturn")
     FrameAmount = +prompt("Animation length(FrameAmount):")
     FocalLength = +prompt("Focal length:")
     Increment = +prompt("Increment speed:")
-
     const Avgstyle=document.getElementById("CompileModeinput").value
     // if Avgstyle = (Center All-Avg)
     
@@ -156,64 +154,73 @@ function Compile() {
 
         for (let i = 0; i < InputX.length; i++) {
             // V = arctan (Z/X)
-            VXZ[i] = (180/Math.PI*(Math.atan(Math.abs(InputX[i])/Math.abs(InputZ[i]))))
-            VYZ[i] = (180/Math.PI*(Math.atan(Math.abs(InputY[i])/Math.abs(InputZ[i]))))
+            VXZ[i]=(180/Math.PI*(Math.atan(Math.abs(InputX[i])/Math.abs(InputZ[i]))))
+            VYZ[i]=(180/Math.PI*(Math.atan(Math.abs(InputY[i])/Math.abs(InputZ[i]))))
             // Är X + eller - ? Är X + eller - ?
-            if(InputX[i] > 0){XPosNeg[i] = true}else{XPosNeg[i] = false}
-            if(InputZ[i] > 0){ZPosNeg[i] = true}else{ZPosNeg[i] = false}
-            if(InputY[i] > 0){YPosNeg[i] = true}else{YPosNeg[i] = false}
+            if(InputX[i]>0){XPosNeg[i]=true}else{XPosNeg[i]=false}
+            if(InputZ[i]>0){ZPosNeg[i]=true}else{ZPosNeg[i]=false}
+            if(InputY[i]>0){YPosNeg[i]=true}else{YPosNeg[i]=false}
+            if(InputZ[i]>0){ZYPosNeg[i]=true}else{ZYPosNeg[i]=false}
+            ////////////////////////////////////////
             // Beräkna hypotenusans längd mellan X och Z
-            CXZ[i] = (Math.sqrt(Math.pow(InputX[i], 2) + Math.pow(InputZ[i], 2)))
-            CYZ[i] = (Math.sqrt(Math.pow(InputY[i], 2) + Math.pow(InputZ[i], 2)))
-            VXZ[i] = VXZ[i] + Degreeturn
-            VYZ[i] = VYZ[i] + Degreeturn
+            CXZ[i]=(Math.sqrt(Math.pow(InputX[i],2) + Math.pow(InputZ[i],2)))
+            CYZ[i]=(Math.sqrt(Math.pow(InputY[i],2) + Math.pow(InputZ[i],2)))
+            VXZ[i]=VXZ[i]+Degreeturn
+            VYZ[i]=VYZ[i]+Degreeturn
         }
-        for (let i = 0; i <= FrameAmount; i++) {
-           
-            for (let p = 0; p < CXZ.length; p++) {
-                
+        for (let i=0; i <= FrameAmount; i++) {
+            for (let p=0; p < CXZ.length; p++) {
                 // Alla V+=5, med X/Z Pos/Neg-ändringar
-                VXZ[p] = VXZ[p] + Increment
-                VYZ[p] = VYZ[p] + Increment
+                VXZ[p]+=Increment
+                VYZ[p]+=Increment
                 
                 if(VXZ[p] >= 90){
-                if((XPosNeg[p] == true) & (ZPosNeg[p] == true)){XPosNeg[p] = false}
-                else if((XPosNeg[p] == false) & (ZPosNeg[p] == true)){ZPosNeg[p] = false}
-                else if((XPosNeg[p] == false) & (ZPosNeg[p] == false)){XPosNeg[p] = true}
-                else if((XPosNeg[p] == true) & (ZPosNeg[p] == false)){ZPosNeg[p] = true}
-                VXZ[p] = VXZ[p]
-                }
+                if((XPosNeg[p]==true)&(ZPosNeg[p]==true)){XPosNeg[p]= false}
+                else if((XPosNeg[p]==false)&(ZPosNeg[p]==true)){ZPosNeg[p]=false}
+                else if((XPosNeg[p]==false)&(ZPosNeg[p]==false)){XPosNeg[p]=true}
+                else if((XPosNeg[p]==true)&(ZPosNeg[p]==false)){ZPosNeg[p]=true}
+                VXZ[p] -= 90}
+
                 if(VYZ[p] >= 90){
-                    if((YPosNeg[p] == true) & (ZPosNeg[p] == true)){YPosNeg[p] = false}
-                    else if((YPosNeg[p] == false) & (ZPosNeg[p] == true)){ZPosNeg[p] = false}
-                    else if((YPosNeg[p] == false) & (ZPosNeg[p] == false)){YPosNeg[p] = true}
-                    else if((YPosNeg[p] == true) & (ZPosNeg[p] == false)){ZPosNeg[p] = true}
-                    VYZ[p] = VYZ[p]
-                    }
+                if((YPosNeg[p]==true)&(ZYPosNeg[p]==true)){YPosNeg[p]=false}
+                else if((YPosNeg[p]==false)&(ZYPosNeg[p]==true)){ZYPosNeg[p]=false}
+                else if((YPosNeg[p]==false)&(ZYPosNeg[p]==false)){YPosNeg[p]=true}
+                else if((YPosNeg[p]==true)&(ZYPosNeg[p]==false)){ZYPosNeg[p]=true}
+                VYZ[p] -= 90}
                 // Extrahera (X) & (Z) från hypotenusan(C) och vinkeln(V)
                 Subcoordvalue1=(Math.cos(VXZ[p]/(180/Math.PI))*CXZ[p])
                 Subcoordvalue2=(Math.sin(VXZ[p]/(180/Math.PI))*CXZ[p])
                 
                 Subcoordvalue3=(Math.cos(VYZ[p]/(180/Math.PI))*CYZ[p])
                 Subcoordvalue4=(Math.sin(VYZ[p]/(180/Math.PI))*CYZ[p])
-
                 // PX = X/(Z+F)*F. Ändrar även variabelvärde med X/Z-Pos/Neg 
-                if((XPosNeg[p] == true) & (ZPosNeg[p] == true)){ProjectedX[p] = Subcoordvalue1/(Subcoordvalue2 + FocalLength) * FocalLength}
-                else if((XPosNeg[p] == false) & (ZPosNeg[p] == true)){ProjectedX[p] = -1*( Subcoordvalue2)/(Subcoordvalue1 + FocalLength) * FocalLength}
-                else if((XPosNeg[p] == false) & (ZPosNeg[p] == false)){ProjectedX[p] =  (Subcoordvalue1)/((Subcoordvalue2) + FocalLength) * FocalLength}
-                else if((XPosNeg[p] == true) & (ZPosNeg[p] == false)){ProjectedX[p] =  -1* Subcoordvalue2/((Subcoordvalue1) + FocalLength) * FocalLength}
+                // PX = (X * F) / (Z + F)
+                // (-Z * F) / (X + F)
+                // (-X * F) / (-Z + F)
+                // (Z * F) / (-X + F)
+                // Subcoord 1&3 = X(/Y)
+                // Subcoord 2&4 = Z
+                if((XPosNeg[p]==true)&(ZPosNeg[p]==true)){ProjectedX[p] = Subcoordvalue1 * FocalLength/(Subcoordvalue2 + FocalLength)}
+                else if((XPosNeg[p]==false)&(ZPosNeg[p]==true)){ProjectedX[p] = (-1 * Subcoordvalue2) * FocalLength/(Subcoordvalue1 + FocalLength)}
+                else if((XPosNeg[p]==false)&(ZPosNeg[p]==false)){ProjectedX[p] = (-1 * Subcoordvalue1) * FocalLength/((-1 * Subcoordvalue2) + FocalLength)}
+                else if((XPosNeg[p]==true)&(ZPosNeg[p]==false)){ProjectedX[p] = Subcoordvalue2 * FocalLength/((-1 * Subcoordvalue1) + FocalLength)}
                 
-                if((YPosNeg[p] == true) & (ZPosNeg[p] == true)){ProjectedY[p] = Subcoordvalue3/(Subcoordvalue4 + FocalLength) * FocalLength}
-                else if((YPosNeg[p] == false) & (ZPosNeg[p] == true)){ProjectedY[p] = -1*(Subcoordvalue4)/(Subcoordvalue3 +  FocalLength) * FocalLength}
-                else if((YPosNeg[p] == false) & (ZPosNeg[p] == false)){ProjectedY[p] =  (Subcoordvalue3)/((Subcoordvalue4) + FocalLength) * FocalLength}
-                else if((YPosNeg[p] == true) & (ZPosNeg[p] == false)){ProjectedY[p] = -1* Subcoordvalue4/((Subcoordvalue3)  + FocalLength) * FocalLength}
+                if((YPosNeg[p]==true)&(ZYPosNeg[p]==true)){ProjectedY[p] = Subcoordvalue3 * FocalLength/(Subcoordvalue4 + FocalLength)}
+                else if((YPosNeg[p]==false)&(ZYPosNeg[p]==true)){ProjectedY[p] = (-1 * Subcoordvalue4) * FocalLength/(Subcoordvalue3 + FocalLength)}
+                else if((YPosNeg[p]==false)&(ZYPosNeg[p]==false)){ProjectedY[p] = (-1 * Subcoordvalue3) * FocalLength/((-1 * Subcoordvalue4) + FocalLength)}
+                else if((YPosNeg[p]==true)&(ZYPosNeg[p]==false)){ProjectedY[p] = Subcoordvalue4 * FocalLength/((-1 * Subcoordvalue3) + FocalLength)}
             }
-            ctx.beginPath();
-ctx.rect(00, 00, 800, 800);
-ctx.fillStyle = "white";
-ctx.fill();
-            // Rita linjer med PX och PY
-            if(Avgstyle==1){
+            // debugger
+            debugger
+            // Clear canvas(fill)
+            if(Avgstyle != 0){
+                ctx.beginPath();
+                ctx.rect(00, 00, 800, 800);
+                ctx.fillStyle = "white";
+                ctx.fill();
+            }
+            // Projection style(Lines/Dots)
+            if(Avgstyle==2){
             for (let l = 0; l < ProjectedX.length; l++) {
                 ctx.moveTo(400+Number(ProjectedX[l]),400+Number(ProjectedY[l]));
                 ctx.lineTo(400+Number(ProjectedX[l+1]),400+Number(ProjectedY[l+1]));
@@ -225,8 +232,7 @@ ctx.fill();
                 ctx.stroke();
                 console.log(l)
             }}
-
-            // Logging(Development)
+            // Logging(Dev)
             console.log("InputX")
             console.log(InputX)
             console.log("InputY")
@@ -251,13 +257,8 @@ ctx.fill();
             console.log(ProjectedX)
             console.log("ProjectedY")
             console.log(ProjectedY)
-debugger
         }
-
     }
-    
-
-// [V] = [V] tillfälligt
 </script>
 
 
