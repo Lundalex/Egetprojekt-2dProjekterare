@@ -60,22 +60,22 @@ let FrameAmount = 0
 let Increment = 0
 
 function InputCoords(){
-let Preset = prompt("Insert preset: (0 for Manual Input) (1 for Cube Preset)")
+let Preset = +prompt("Insert: Preset (0 for Manual Input), (1 for Cube Preset)")
 
 InputX = []
 InputY = []
 InputZ = []
-    // Accept input value X/Y/Z
+    // Accept Manual Inputs (X/Y/Z)
     if(Preset == 0){
-    let Coordamount= +prompt("insert amount of coordinates")
+    let Coordamount= +prompt("Insert: Amount of Coordinates")
         for (let i = 0; i < Coordamount; i++) {
-            InputX.push(+prompt("Coord " + (i+1) + " - X"))
-            InputY.push(+prompt("Coord " + (i+1) + " - Y:"))
-            InputZ.push(+prompt("Coord " + (i+1) + " - Z:"))
+            InputX.push(+prompt("Insert: Coord " + (i+1) + " - X"))
+            InputY.push(+prompt("Insert: Coord " + (i+1) + " - Y"))
+            InputZ.push(+prompt("Insert: Coord " + (i+1) + " - Z"))
         }
     }
     else if(Preset == 1){
-    // Cube test
+    // Cube Preset
     InputX.push(100)
     InputY.push(100)
     InputZ.push(100)
@@ -152,10 +152,10 @@ function Compile() {
     ctx.fillStyle = "white";
     ctx.fill();
     // Import options
-    Degreeturn = +prompt("Degreeturn")
-    FrameAmount = +prompt("Animation length(FrameAmount):")
-    FocalLength = +prompt("Focal length:")
-    Increment = +prompt("Increment speed:")
+    Degreeturn = +prompt("Insert: Degreeturn")
+    FrameAmount = +prompt("Insert: Animation length(FrameAmount):")
+    FocalLength = +prompt("Insert: Focal length:")
+    Increment = +prompt("Insert: Increment Speed:")
     Avgstyle=document.getElementById("CompileModeinput").value
     // If Avgstyle = (Center All-Avg)
     
@@ -240,7 +240,7 @@ function Compile() {
                 ctx.fillStyle = "white";
                 ctx.fill();
             }
-            // Projection style(Lines/Dots)
+            // Projection Style(Lines/Dots)
             if(Avgstyle==2){
             for (let l = 0; l < ProjectedX.length; l++) {
                 ctx.moveTo(400+Number(ProjectedX[l]),400+Number(ProjectedY[l]));
