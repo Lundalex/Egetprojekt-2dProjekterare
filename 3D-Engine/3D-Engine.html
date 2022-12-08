@@ -34,6 +34,12 @@ let CXZ = []
 let VYZ = []
 let CYZ = []
 
+
+let TX = 0
+let TY = 0
+let MX = 0
+let MY = 0
+
 let XPosNeg = []
 let ZPosNeg = []
 let YPosNeg = []
@@ -138,19 +144,24 @@ alert(InputX.length)
     
 }
 function Compile() {
+    // Clear graph(fill)
+    ctx.beginPath();
+    ctx.rect(00, 00, 800, 800);
+    ctx.fillStyle = "white";
+    ctx.fill();
     // Import options
     Degreeturn = +prompt("Degreeturn")
     FrameAmount = +prompt("Animation length(FrameAmount):")
     FocalLength = +prompt("Focal length:")
     Increment = +prompt("Increment speed:")
     Avgstyle=document.getElementById("CompileModeinput").value
-    // if Avgstyle = (Center All-Avg)
+    // If Avgstyle = (Center All-Avg)
     
         // Beräkna medelvärden. Anpassa sedan insatta X/Y/Z-värden efter medelvärden.
-        const TX=InputX.length
-        const TY=InputY.length
-        const MX=InputX.reduce(function RedX(total,value){return Number(total)+Number(value)})/TX
-        const MY=InputY.reduce(function RedY(total,value){return Number(total)+Number(value)})/TY
+        TX=InputX.length
+        TY=InputY.length
+        MX=InputX.reduce(function RedX(total,value){return Number(total)+Number(value)})/TX
+        MY=InputY.reduce(function RedY(total,value){return Number(total)+Number(value)})/TY
         InputX=InputX.map(function Procfunc(num){return num-MX})
         InputY=InputY.map(function Procfunc(num){return num-MY})
 
@@ -169,7 +180,16 @@ function Compile() {
             VXZ[i]=VXZ[i]+Degreeturn
             VYZ[i]=VYZ[i]+Degreeturn
         }
-        for (let i=0; i <= FrameAmount; i++) {
+        for (let g = 0; g < FrameAmount; g++) {
+            if(Avgstyle != 0){
+                setTimeout(CompileLoop, 20*g)   
+            }
+            else{
+                CompileLoop()
+            } 
+        }}
+    function CompileLoop(){
+
             for (let p=0; p < CXZ.length; p++) {
                 // Alla V+=5, med X/Z Pos/Neg-ändringar
                 VXZ[p]+=Increment
@@ -211,8 +231,6 @@ function Compile() {
                 else if((YPosNeg[p]==false)&(ZYPosNeg[p]==false)){ProjectedY[p] = (-1 * Subcoordvalue3) * FocalLength/((-1 * Subcoordvalue4) + FocalLength)}
                 else if((YPosNeg[p]==true)&(ZYPosNeg[p]==false)){ProjectedY[p] = Subcoordvalue4 * FocalLength/((-1 * Subcoordvalue3) + FocalLength)}
             }
-            // debugger
-            debugger
             // Clear canvas(fill)
             if(Avgstyle != 0){
                 ctx.beginPath();
@@ -225,12 +243,12 @@ function Compile() {
             for (let l = 0; l < ProjectedX.length; l++) {
                 ctx.moveTo(400+Number(ProjectedX[l]),400+Number(ProjectedY[l]));
                 ctx.lineTo(400+Number(ProjectedX[l+1]),400+Number(ProjectedY[l+1]));
-                ctx.stroke();
+                ctx.stroke()
                 console.log(l)
             }}else{for (let l = 0; l < ProjectedX.length; l++) {
                 ctx.moveTo(400+Number(ProjectedX[l]),400+Number(ProjectedY[l]));
                 ctx.lineTo(400+Number(ProjectedX[l]+1),400+Number(ProjectedY[l]+1));
-                ctx.stroke();
+                ctx.stroke()
                 console.log(l)
             }}
             // Logging(Dev)
@@ -258,16 +276,7 @@ function Compile() {
             console.log(ProjectedX)
             console.log("ProjectedY")
             console.log(ProjectedY)
-            // sleep(1000)
-        }
     }
-//     function sleep(milliseconds) {
-//   const date = Date.now();
-//   let currentDate = null;
-//   do {
-//     currentDate = Date.now();
-//   } while (currentDate - date < milliseconds);
-// }
 </script>
 
 
