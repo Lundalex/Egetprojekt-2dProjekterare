@@ -23,3 +23,4 @@ function Load() {
         ctx.lineTo(400+Number(Procdata[i+2]),400+Number(Procdata[i+3]));
         ctx.stroke();
     }}
+// Använder äldre och sämre metoder än 3D-Engine
