@@ -3,8 +3,8 @@ var InputdataY = []
 var InputdataZ = []
 const F = 100
 var Procdata = new Array
-let ProcX = (X, Z) => F/Z*X
-let ProcY = (Y, Z) => F/Z*Y
+let ProcX = (X, Z) => X*F/Z+Z
+let ProcY = (Y, Z) => Y*F/Y+Z
 function InputCoords(){
     Procdata = []
     let Coordamount = +prompt("insert amount of coordinates")
