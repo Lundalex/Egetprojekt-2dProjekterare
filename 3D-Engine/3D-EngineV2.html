@@ -79,7 +79,13 @@ while((Preset != 0) && (Groupcount > 0)){
     Preset = +prompt("Insert: Preset (0 for No Presets), (1 for Cube Preset)")
     // Cube Preset
     if((Preset == 1) && (Groupcount > 0)){
-        LeaderStyle.push(+prompt("Insert: Animation Style of Cube (0 for Manual Input), (1 for Weighted Average)"))
+        let ChangeThisName = +prompt("Insert: Animation Style of Cube (0 for Manual Input), (1 for Weighted Average)")
+        LeaderStyle.push(ChangeThisName)
+        if(ChangeThisName == 0){
+        LeaderX.push(+prompt("Insert: Lead X for Cube"))
+        LeaderY.push(+prompt("Insert: Lead Y for Cube"))
+        LeaderZ.push(+prompt("Insert: Lead Z for Cube"))
+    }
         let CDX = +prompt("Insert: Cube Deviation - Axis X")
         let CDY = +prompt("Insert: Cube Deviation - Axis Y")
         let CDZ = +prompt("Insert: Cube Deviation - Axis Z")
