@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
+<h1>OP Blender 3D-Engine (TM)</h1>
+
     <div style="display: flex; flex-direction: row">
 
         <canvas id="Canvas" width="800" height="800" style="border:10px solid #00ff80;"></canvas>
@@ -15,7 +17,7 @@
 
         <div style="display: flex; flex-direction: column;">
 
-            <h1 style="font-weight: bolder;">Controls:</h1>
+            <h1 style="font-weight: bolder;">Camera:</h1>
 
         <div style="display: flex; flex-direction: column;">
         <div style="width: 180; height: 50; display: flex; flex-direction: row">
@@ -39,9 +41,12 @@
             <div style="height: 50px; width: 50px; background-color: rgb(203, 32, 218)"onclick="MoveDown()">Down</div>
             </div>
         </div>
-        <br>
+
+        <h1 style="font-weight: bolder;">Settings:</h1>
+
+        <button style="width: 150px; font-weight: 1000;" onclick="Compile()">Compile</button>
         <button style="width: 150px;" onclick="InputCoords()">InputCords</button>
-        <button style="width: 150px;" onclick="Compile()">Compile</button>
+        
         
         <br>
 
@@ -50,8 +55,7 @@
             <option value="1">Dots</option>
             <option value="2">Lines</option>
         </select>
-
-        <h1 style="font-weight: bolder;">Settings:</h1>
+        <br>
 
             <label>Starting Angle:</label>
             <div style="display: flex; flex-direction: row"><input style="width: 150px;" type="text" id="1"><div id="5"></div></div>
