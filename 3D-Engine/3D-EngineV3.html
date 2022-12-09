@@ -45,10 +45,10 @@
         <h1 style="font-weight: bolder;">Settings:</h1>
 
         <button style="width: 150px; font-weight: 1000;" onclick="Compile()">Compile</button>
-        <button style="width: 150px;" onclick="InputCoords()">InputCords</button>
-        
-        
+        <button style="width: 150px; font-weight: 1000;" onclick="QuickStart()">Quick Start</button>
         <br>
+        <button style="width: 150px;" onclick="InputCoords()">InputCords</button>
+        <br><br>
 
         <select style="width: 150px;" id="CompileModeinput">
             <option value="0">Dots(W.o. Canvas Clear)</option>
@@ -69,6 +69,7 @@
             <div style="display: flex; flex-direction: row"><input style="width: 150px;" type="text" id="9"><div id="10"></div></div>
             <br>
             <button style="width: 150px;" onclick="SubmitSettings()">Submit Settings</button>
+            
 
     </div>
 
@@ -180,7 +181,6 @@ function Compile() {
     ctx.fill();
 
     // Import options
-    Avgstyle=document.getElementById("CompileModeinput").value
     // If Avgstyle = (Center All-Avg)
     
     // Beräkna medelvärden. Anpassa sedan insatta X/Y/Z-värden efter medelvärden (görs individuellt för varje Grupp)
@@ -371,6 +371,26 @@ document.getElementById("6").innerHTML = " Animation Length Set To: " + FrameAmo
 document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
 document.getElementById("8").innerHTML = " X Increment Speed Set To: " + IncrementX + " °/Frame"
 document.getElementById("10").innerHTML = " Y Increment Speed Set To: " + IncrementY + " °/Frame"
+Avgstyle=document.getElementById("CompileModeinput").value
+}
+
+function QuickStart(){
+LeaderStyle[0]=1
+Avgstyle=2
+Degreeturn = 0
+FrameAmount = 10000
+FocalLength = 1000
+IncrementX = 1
+IncrementY = 1
+document.getElementById("5").innerHTML = " Starting Angle Set To: " + Degreeturn + " °"
+document.getElementById("6").innerHTML = " Animation Length Set To: " + FrameAmount + " Frames"
+document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
+document.getElementById("8").innerHTML = " X Increment Speed Set To: " + IncrementX + " °/Frame"
+document.getElementById("10").innerHTML = " Y Increment Speed Set To: " + IncrementY + " °/Frame"
+InputX[0]=([100,200,200,100,100,100,200,200,100,100,100,200,200,200,200,100,100])
+InputY[0]=([100,100,200,200,100,100,100,200,200,100,100,100,100,200,200,200,200])
+InputZ[0]=([100,100,100,100,100,200,200,200,200,200,100,100,200,200,100,100,200])
+Compile()
 }
 
 function MoveRight(){
