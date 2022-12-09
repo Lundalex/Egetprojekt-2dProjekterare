@@ -7,17 +7,65 @@
     <title>Document</title>
 </head>
 <body>
-    <canvas id="Canvas" width="800" height="800"
-    style="border:10px solid #00ff80;">
-    </canvas>
- 
-<button onclick="InputCoords()">InputCords</button>
-<button onclick="Compile()">Compile</button>
-<select id="CompileModeinput">
-    <option value="0">Dots(W.o. Canvas Clear)</option>
-    <option value="1">Dots</option>
-    <option value="2">Lines</option>
-</select>
+    <div style="display: flex; flex-direction: row">
+
+        <canvas id="Canvas" width="800" height="800" style="border:10px solid #00ff80;"></canvas>
+
+        <div style="width: 10px;"></div>
+
+        <div style="display: flex; flex-direction: column;">
+
+            <h1 style="font-weight: bolder;">Controls:</h1>
+
+        <div style="display: flex; flex-direction: column;">
+        <div style="width: 180; height: 50; display: flex; flex-direction: row">
+            <div style="height: 50px; width: 50px ;background-color: rgb(69, 218, 32)"onclick="MoveLeft()">Left</div>
+            <div style="height: 50px; width: 50px; background-color: #0004ff;"onclick="MoveAhead()">Ahead</div>
+            <div style="height: 50px; width: 50px; background-color: rgb(69, 218, 32)"onclick="MoveRight()">Right</div>
+            </div>
+            <div style="width: 120; height: 50; display: flex; flex-direction: row">
+            <div style="height: 50px; width: 50px; background-color: white"></div>
+            <div style="height: 50px; width: 50px; background-color: rgb(69, 218, 32)"onclick="MoveBack()">Back</div>
+            </div>
+        </div>
+        <br>
+        <div style="display: flex; flex-direction: column;">
+            <div style="width: 150; height: 50; display: flex; flex-direction: row">
+            <div style="height: 50px; width: 50px; background-color: white"></div>
+            <div style="height: 50px; width: 50px; background-color: rgb(255, 251, 0)"onclick="MoveUp()">Up</div>
+            </div>
+            <div style="width: 150; height: 50; display: flex; flex-direction: row">
+            <div style="height: 50px; width: 50px; background-color: white"></div>
+            <div style="height: 50px; width: 50px; background-color: rgb(203, 32, 218)"onclick="MoveDown()">Down</div>
+            </div>
+        </div>
+        <br>
+        <button style="width: 150px;" onclick="InputCoords()">InputCords</button>
+        <button style="width: 150px;" onclick="Compile()">Compile</button>
+        
+        <br>
+
+        <select style="width: 150px;" id="CompileModeinput">
+            <option value="0">Dots(W.o. Canvas Clear)</option>
+            <option value="1">Dots</option>
+            <option value="2">Lines</option>
+        </select>
+
+        <h1 style="font-weight: bolder;">Settings:</h1>
+
+            <label>Starting Angle:</label>
+            <div style="display: flex; flex-direction: row"><input style="width: 150px;" type="text" id="1"><div id="5"></div></div>
+            <label>Animation Length:</label>
+            <div style="display: flex; flex-direction: row"><input style="width: 150px;" type="text" id="2"><div id="6"></div></div>
+            <label>Focal Length:</label>
+            <div style="display: flex; flex-direction: row"><input style="width: 150px;" type="text" id="3"><div id="7"></div></div>
+            <label>Increment Speed:</label>
+            <div style="display: flex; flex-direction: row"><input style="width: 150px;" type="text" id="4"><div id="8"></div></div>
+            <br>
+            <button style="width: 150px;" onclick="SubmitSettings()">Submit Settings</button>
+
+    </div>
+
 <script>
 let canvas = document.getElementById("Canvas")
 let ctx = canvas.getContext("2d")
@@ -126,10 +174,6 @@ function Compile() {
     ctx.fill();
 
     // Import options
-    Degreeturn = +prompt("Insert: Degreeturn")
-    FrameAmount = +prompt("Insert: Animation Length (FrameAmount):")
-    FocalLength = +prompt("Insert: Focal Length:")
-    Increment = +prompt("Insert: Increment Speed:")
     Avgstyle=document.getElementById("CompileModeinput").value
     // If Avgstyle = (Center All-Avg)
     
@@ -172,10 +216,12 @@ for (let g = 0; g < FrameAmount; g++) {
     }
     else{
     CompileLoop()
-    } 
-}
+    }}
 }
     function CompileLoop(){
+
+
+
         // Clear canvas(fill)
             if(Avgstyle != 0){
                 ctx.beginPath();
@@ -306,6 +352,49 @@ for (let g = 0; g < FrameAmount; g++) {
             console.log(LeaderZ)
             }
         }
+
+// All Functions for The Control Panel
+function SubmitSettings(){
+Degreeturn = +document.getElementById("1").value
+FrameAmount = +document.getElementById("2").value
+FocalLength = +document.getElementById("3").value
+Increment = +document.getElementById("4").value
+document.getElementById("5").innerHTML = " Starting Angle Set To: " + Degreeturn + " °"
+document.getElementById("6").innerHTML = " Animation Length Set To: " + FrameAmount + " Frames"
+document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
+document.getElementById("8").innerHTML = " Increment Speed Set To: " + Increment + " °/Frame"
+}
+
+function MoveRight(){
+    for (let i = 0; i < InputX.length; i++) {
+        for (let o = 0; o < InputX[i].length; o++) {
+            InputX[i][o]-= 200
+        }}}
+function MoveLeft(){
+    for (let i = 0; i < InputX.length; i++) {
+        for (let o = 0; o < InputX[i].length; o++) {
+            InputX[i][o]+= 200
+        }}}
+function MoveAhead(){
+    for (let i = 0; i < InputZ.length; i++) {
+        for (let o = 0; o < InputZ[i].length; o++) {
+            InputZ[i][o]-= 200
+        }}}
+function MoveBack(){
+    for (let i = 0; i < InputX.length; i++) {
+        for (let o = 0; o < InputX[i].length; o++) {
+            InputZ[i][o]+= 200
+        }}}
+function MoveDown(){
+    for (let i = 0; i < InputY.length; i++) {
+        for (let o = 0; o < InputY[i].length; o++) {
+            InputY[i][o]-= 200
+        }}}
+function MoveUp(){
+    for (let i = 0; i < InputY.length; i++) {
+        for (let o = 0; o < InputY[i].length; o++) {
+            InputY[i][o]+= 200
+        }}}
 </script>
 
 
