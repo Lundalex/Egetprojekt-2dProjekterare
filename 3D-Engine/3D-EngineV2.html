@@ -80,9 +80,12 @@ while((Preset != 0) && (Groupcount > 0)){
     // Cube Preset
     if((Preset == 1) && (Groupcount > 0)){
         LeaderStyle.push(+prompt("Insert: Animation Style of Cube (0 for Manual Input), (1 for Weighted Average)"))
-        InputX.push([100,200,200,100,100,100,200,200,100,100,100,200,200,200,200,100,100])
-        InputY.push([100,100,200,200,100,100,100,200,200,100,100,100,100,200,200,200,200])
-        InputZ.push([100,100,100,100,100,200,200,200,200,200,100,100,200,200,100,100,200])
+        let CDX = +prompt("Insert: Cube Deviation - Axis X")
+        let CDY = +prompt("Insert: Cube Deviation - Axis Y")
+        let CDZ = +prompt("Insert: Cube Deviation - Axis Z")
+        InputX.push([100+CDX,200+CDX,200+CDX,100+CDX,100+CDX,100+CDX,200+CDX,200+CDX,100+CDX,100+CDX,100+CDX,200+CDX,200+CDX,200+CDX,200+CDX,100+CDX,100+CDX])
+        InputY.push([100+CDY,100+CDY,200+CDY,200+CDY,100+CDY,100+CDY,100+CDY,200+CDY,200+CDY,100+CDY,100+CDY,100+CDY,100+CDY,200+CDY,200+CDY,200+CDY,200+CDY])
+        InputZ.push([100+CDZ,100+CDZ,100+CDZ,100+CDZ,100+CDZ,200+CDZ,200+CDZ,200+CDZ,200+CDZ,200+CDZ,100+CDZ,100+CDZ,200+CDZ,200+CDZ,100+CDZ,100+CDZ,200+CDZ])
         Groupcount--
     }
     // (Add more Presets)
