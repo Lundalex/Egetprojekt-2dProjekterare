@@ -233,7 +233,7 @@ for (let i = 0; i < InputX.length; i++) {
             VYZ[i]=(180/Math.PI*(Math.atan(Math.abs(LeaderY[i])/Math.abs(LeaderZ[i]))))
             // Är X + eller - ? Är X + eller - ?
             if(LeaderX[i]>0){XPosNeg[i]=true}else{XPosNeg[i]=false}
-            if(LeaderZ[i]>0){ZPosNeg[i]=true}else{XPosNeg[i]=false}
+            if(LeaderZ[i]>0){ZPosNeg[i]=true}else{ZPosNeg[i]=false}
             if(LeaderY[i]>0){YPosNeg[i]=true}else{YPosNeg[i]=false}
             if(LeaderZ[i]>0){ZYPosNeg[i]=true}else{ZYPosNeg[i]=false}
             // Beräkna hypotenusans längd mellan X och Z
@@ -309,29 +309,29 @@ for (let g = 0; g < FrameAmount; g++) {
                     // Subcoord 1&3 = X(/Y)
                     // Subcoord 2&4 = Z
                     if((XPosNeg[p]==true)&(ZPosNeg[p]==true)){
-                        X = Subcoordvalue1 + InputX[p][n] + FocalLength
-                        ZX = Subcoordvalue2 + InputZ[p][n]}
+                        X = Subcoordvalue1 + InputX[p][n] 
+                        ZX = Subcoordvalue2 + InputZ[p][n] }
                     else if((XPosNeg[p]==false)&(ZPosNeg[p]==true)){
-                        X = (-1 * Subcoordvalue2) + InputX[p][n] + FocalLength
-                        ZX = Subcoordvalue1 + InputZ[p][n]}
+                        X = (-1 * Subcoordvalue2) + InputX[p][n]
+                        ZX = Subcoordvalue1 + InputZ[p][n] }
                     else if((XPosNeg[p]==false)&(ZPosNeg[p]==false)){
-                        X = (-1 * Subcoordvalue1) + InputX[p][n] + FocalLength
-                        ZX = (-1 * Subcoordvalue2) + InputZ[p][n]}
+                        X = (-1 * Subcoordvalue1) + InputX[p][n]
+                        ZX = (-1 * Subcoordvalue2) + InputZ[p][n] }
                     else if((XPosNeg[p]==true)&(ZPosNeg[p]==false)){
-                        X = Subcoordvalue2 + InputX[p][n] + FocalLength
-                        ZX = (-1 * Subcoordvalue1) + InputZ[p][n]}
+                        X = Subcoordvalue2 + InputX[p][n] 
+                        ZX = (-1 * Subcoordvalue1) + InputZ[p][n] }
     
                     if((YPosNeg[p]==true)&(ZYPosNeg[p]==true)){
-                        Y = Subcoordvalue3 + InputY[p][n] + FocalLength
-                        ZY = Subcoordvalue4 + InputZ[p][n]}
+                        Y = Subcoordvalue3 + InputY[p][n]
+                        ZY = Subcoordvalue4 + InputZ[p][n] }
                     else if((YPosNeg[p]==false)&(ZYPosNeg[p]==true)){
-                        Y = (-1 * Subcoordvalue4) + InputY[p][n] + FocalLength
+                        Y = (-1 * Subcoordvalue4) + InputY[p][n]
                         ZY = Subcoordvalue3 + InputZ[p][n]}
                     else if((YPosNeg[p]==false)&(ZYPosNeg[p]==false)){
-                        Y = (-1 * Subcoordvalue3) + InputY[p][n] + FocalLength
+                        Y = (-1 * Subcoordvalue3) + InputY[p][n] 
                         ZY = (-1 * Subcoordvalue4) + InputZ[p][n]}
                     else if((YPosNeg[p]==true)&(ZYPosNeg[p]==false)){
-                        Y = Subcoordvalue4 + InputY[p][n] + FocalLength
+                        Y = Subcoordvalue4 + InputY[p][n] 
                         ZY = (-1 * Subcoordvalue3) + InputZ[p][n]}
 
 console.log(X + Y + ZX + ZY + "X,Y,ZX,ZY")
@@ -348,7 +348,7 @@ console.log(X + Y + ZX + ZY + "X,Y,ZX,ZY")
             console.log(X)
             console.log(Y)
             if(X>0){PRIMEXPosNeg[n]=true}else{PRIMEXPosNeg[n]=false}
-            if(ZX>0){PRIMEZPosNeg[n]=true}else{PRIMEXPosNeg[n]=false}
+            if(ZX>0){PRIMEZPosNeg[n]=true}else{PRIMEZPosNeg[n]=false}
             if(Y>0){PRIMEYPosNeg[n]=true}else{PRIMEYPosNeg[n]=false}
             if(ZY>0){PRIMEZYPosNeg[n]=true}else{PRIMEZYPosNeg[n]=false}
             // Beräkna hypotenusans längd mellan X och Z
@@ -431,8 +431,8 @@ if(PRIMEOUTPUTVXZ[n] > 90){
 // alert(PRIMEZY)
 // alert(PRIMEZX)
 
-                    ProjectedX[n] = ((PRIMEZX*FocalLength)/(PRIMEX))
-                    ProjectedY[n] = ((PRIMEZY*FocalLength)/(PRIMEY))
+                    ProjectedX[n] = ((PRIMEX*FocalLength)/(PRIMEZX + FocalLength))
+                    ProjectedY[n] = ((PRIMEY*FocalLength)/(PRIMEZY + FocalLength))
                 }
                 if(Avgstyle==2){
             for (let l = 0; l < ProjectedX.length; l++) {
