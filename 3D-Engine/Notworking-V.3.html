@@ -93,13 +93,13 @@ let CXZ = []
 let VYZ = []
 let CYZ = []
 // Prime
-let PRIMEVXZ =0
-let PRIMECXZ = 0
-let PRIMEVYZ = 0
-let PRIMECYZ = 0
+let PRIMEVXZ =[]
+let PRIMECXZ = []
+let PRIMEVYZ = []
+let PRIMECYZ = []
 
-let PRIMEOUTPUTVXZ = 0
-let PRIMEOUTPUTVYZ = 0
+let PRIMEOUTPUTVXZ = []
+let PRIMEOUTPUTVYZ = []
 //
 let TX = 0
 let TY = 0
@@ -113,10 +113,10 @@ let ZPosNeg = []
 let YPosNeg = []
 let ZYPosNeg = []
 // Prime
-let PRIMEXPosNeg = 0
-let PRIMEZPosNeg = 0
-let PRIMEYPosNeg = 0
-let PRIMEZYPosNeg = 0
+let PRIMEXPosNeg = []
+let PRIMEZPosNeg = []
+let PRIMEYPosNeg = []
+let PRIMEZYPosNeg = []
 //
 let LeaderX = []
 let LeaderY = []
@@ -130,14 +130,14 @@ let Subcoordvalue2
 let Subcoordvalue3
 let Subcoordvalue4
 
-let PRIMESubcoordvalue1
-let PRIMESubcoordvalue2
-let PRIMESubcoordvalue3
-let PRIMESubcoordvalue4
+let PRIMESubcoordvalue1 = []
+let PRIMESubcoordvalue2 = []
+let PRIMESubcoordvalue3 = []
+let PRIMESubcoordvalue4 = []
 
 let LeaderStyle = []
 
-let Avgstyle
+let Avgstyle = 0
 
 let FocalLength = 0
 
@@ -309,119 +309,119 @@ for (let g = 0; g < FrameAmount; g++) {
                     // Subcoord 1&3 = X(/Y)
                     // Subcoord 2&4 = Z
                     if((XPosNeg[p]==true)&(ZPosNeg[p]==true)){
-                        X = Subcoordvalue1 + InputX[p][n]
+                        X = Subcoordvalue1 + InputX[p][n] + FocalLength
                         ZX = Subcoordvalue2 + InputZ[p][n]}
                     else if((XPosNeg[p]==false)&(ZPosNeg[p]==true)){
-                        X = (-1 * Subcoordvalue2) + InputX[p][n]
+                        X = (-1 * Subcoordvalue2) + InputX[p][n] + FocalLength
                         ZX = Subcoordvalue1 + InputZ[p][n]}
                     else if((XPosNeg[p]==false)&(ZPosNeg[p]==false)){
-                        X = (-1 * Subcoordvalue1) + InputX[p][n]
+                        X = (-1 * Subcoordvalue1) + InputX[p][n] + FocalLength
                         ZX = (-1 * Subcoordvalue2) + InputZ[p][n]}
                     else if((XPosNeg[p]==true)&(ZPosNeg[p]==false)){
-                        X = Subcoordvalue2 + InputX[p][n]
+                        X = Subcoordvalue2 + InputX[p][n] + FocalLength
                         ZX = (-1 * Subcoordvalue1) + InputZ[p][n]}
     
                     if((YPosNeg[p]==true)&(ZYPosNeg[p]==true)){
-                        Y = Subcoordvalue3 + InputY[p][n]
+                        Y = Subcoordvalue3 + InputY[p][n] + FocalLength
                         ZY = Subcoordvalue4 + InputZ[p][n]}
                     else if((YPosNeg[p]==false)&(ZYPosNeg[p]==true)){
-                        Y = (-1 * Subcoordvalue4) + InputY[p][n]
+                        Y = (-1 * Subcoordvalue4) + InputY[p][n] + FocalLength
                         ZY = Subcoordvalue3 + InputZ[p][n]}
                     else if((YPosNeg[p]==false)&(ZYPosNeg[p]==false)){
-                        Y = (-1 * Subcoordvalue3) + InputY[p][n]
+                        Y = (-1 * Subcoordvalue3) + InputY[p][n] + FocalLength
                         ZY = (-1 * Subcoordvalue4) + InputZ[p][n]}
                     else if((YPosNeg[p]==true)&(ZYPosNeg[p]==false)){
-                        Y = Subcoordvalue4 + InputY[p][n]
+                        Y = Subcoordvalue4 + InputY[p][n] + FocalLength
                         ZY = (-1 * Subcoordvalue3) + InputZ[p][n]}
 
 console.log(X + Y + ZX + ZY + "X,Y,ZX,ZY")
 
         
     
-    
 
 
 
 // CAMERA ABGLE ADJUSTMENTS START
-                        PRIMEVXZ=(180/Math.PI*(Math.atan(Math.abs(X)/Math.abs(ZX))))
-                        PRIMEVYZ=(180/Math.PI*(Math.atan(Math.abs(Y)/Math.abs(ZY))))
+                        PRIMEVXZ[n]=(180/Math.PI*(Math.atan(Math.abs(X)/Math.abs(ZX))))
+                        PRIMEVYZ[n]=(180/Math.PI*(Math.atan(Math.abs(Y)/Math.abs(ZY))))
             // Är X + eller - ? Är X + eller - ?
             console.log(X)
             console.log(Y)
-            if(X>0){PRIMEXPosNeg=true}else{PRIMEXPosNeg=false}
-            if(ZX>0){PRIMEZPosNeg=true}else{PRIMEXPosNeg=false}
-            if(Y>0){PRIMEYPosNeg=true}else{PRIMEYPosNeg=false}
-            if(ZY>0){PRIMEZYPosNeg=true}else{PRIMEZYPosNeg=false}
+            if(X>0){PRIMEXPosNeg[n]=true}else{PRIMEXPosNeg[n]=false}
+            if(ZX>0){PRIMEZPosNeg[n]=true}else{PRIMEXPosNeg[n]=false}
+            if(Y>0){PRIMEYPosNeg[n]=true}else{PRIMEYPosNeg[n]=false}
+            if(ZY>0){PRIMEZYPosNeg[n]=true}else{PRIMEZYPosNeg[n]=false}
             // Beräkna hypotenusans längd mellan X och Z
-            PRIMECXZ=(Math.sqrt(Math.pow(X,2) + Math.pow(ZX,2)))
-            PRIMECYZ=(Math.sqrt(Math.pow(Y,2) + Math.pow(ZY,2)))
-            PRIMEOUTPUTVXZ = PRIMEVXZ + CameraAngle
-            PRIMEOUTPUTVYZ = PRIMEVYZ + CameraAngle
+            PRIMECXZ[n]=(Math.sqrt(Math.pow(X,2) + Math.pow(ZX,2)))
+            PRIMECYZ[n]=(Math.sqrt(Math.pow(Y,2) + Math.pow(ZY,2)))
+            PRIMEOUTPUTVXZ[n] = PRIMEVXZ[n] + CameraAngle
+            PRIMEOUTPUTVYZ[n] = PRIMEVYZ[n] + CameraAngle
 
-if(PRIMEOUTPUTVXZ > 90){
-                if((PRIMEXPosNeg==true)&(PRIMEZPosNeg==true)){PRIMEXPosNeg= false}
-                else if((PRIMEXPosNeg==false)&(PRIMEZPosNeg==true)){PRIMEZPosNeg=false}
-                else if((PRIMEXPosNeg==false)&(PRIMEZPosNeg==false)){PRIMEXPosNeg=true}
-                else if((PRIMEXPosNeg==true)&(PRIMEZPosNeg==false)){PRIMEZPosNeg=true}
-                PRIMEOUTPUTVXZ -= 90}
-                if(PRIMEOUTPUTVXZ <= 0){
-                if((PRIMEXPosNeg==true)&(PRIMEZPosNeg==true)){PRIMEZPosNeg= false}
-                else if((PRIMEXPosNeg==false)&(PRIMEZPosNeg==true)){PRIMEXPosNeg=true}
-                else if((PRIMEXPosNeg==false)&(PRIMEZPosNeg==false)){PRIMEZPosNeg=true}
-                else if((PRIMEXPosNeg==true)&(PRIMEZPosNeg==false)){PRIMEXPosNeg=false}
-                PRIMEOUTPUTVXZ += 90}
+if(PRIMEOUTPUTVXZ[n] > 90){
+                if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==true)){PRIMEXPosNeg[n]= false}
+                else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==true)){PRIMEZPosNeg[n]=true}
+                else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==false)){PRIMEXPosNeg[n]=true}
+                else if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==false)){PRIMEZPosNeg[n]=false}
+                PRIMEOUTPUTVXZ[n] -= 90}
+                if(PRIMEOUTPUTVXZ[n] < 0){
+                if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==true)){PRIMEZPosNeg[n]= false}
+                else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==true)){PRIMEXPosNeg[n]=false}
+                else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==false)){PRIMEZPosNeg[n]=true}
+                else if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==false)){PRIMEXPosNeg[n]=true}
+                PRIMEOUTPUTVXZ[n] += 90}
 
-                if(PRIMEOUTPUTVYZ >= 90){
-                if((PRIMEYPosNeg==true)&(PRIMEZYPosNeg==true)){PRIMEYPosNeg=false}
-                else if((PRIMEYPosNeg==false)&(PRIMEZYPosNeg==true)){PRIMEZYPosNeg=false}
-                else if((PRIMEYPosNeg==false)&(PRIMEZYPosNeg==false)){PRIMEYPosNeg=true}
-                else if((PRIMEYPosNeg==true)&(PRIMEZYPosNeg==false)){PRIMEZYPosNeg=true}
-                PRIMEOUTPUTVYZ -= 90}
-                if(PRIMEOUTPUTVYZ <= 0){
-                if((PRIMEYPosNeg==true)&(PRIMEZYPosNeg==true)){PRIMEZYPosNeg=false}
-                else if((PRIMEYPosNeg==false)&(PRIMEZYPosNeg==true)){PRIMEYPosNeg=true}
-                else if((PRIMEYPosNeg==false)&(PRIMEZYPosNeg==false)){PRIMEZYPosNeg=true}
-                else if((PRIMEYPosNeg==true)&(PRIMEZYPosNeg==false)){PRIMEYPosNeg=false}
-                PRIMEOUTPUTVYZ += 90}
+                if(PRIMEOUTPUTVYZ[n] > 90){
+                if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==true)){PRIMEYPosNeg[n]=false}
+                else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==true)){PRIMEZYPosNeg[n]=true}
+                else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==false)){PRIMEYPosNeg[n]=true}
+                else if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==false)){PRIMEZYPosNeg[n]=false}
+                PRIMEOUTPUTVYZ[n] -= 90}
+                if(PRIMEOUTPUTVYZ[n] < 0){
+                if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==true)){PRIMEZYPosNeg[n]=false}
+                else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==true)){PRIMEYPosNeg[n]=false}
+                else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==false)){PRIMEZYPosNeg[n]=true}
+                else if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==false)){PRIMEYPosNeg[n]=true}
+                PRIMEOUTPUTVYZ[n] += 90}
                 // Extrahera (X) & (Z) från hypotenusan(C) och vinkeln(V)
-                PRIMESubcoordvalue1=(Math.cos(PRIMEOUTPUTVXZ/(180/Math.PI))*PRIMECXZ) // X
-                PRIMESubcoordvalue2=(Math.sin(PRIMEOUTPUTVXZ/(180/Math.PI))*PRIMECXZ) // ZX
+                PRIMESubcoordvalue1[n]=(Math.cos(PRIMEOUTPUTVXZ[n]/(180/Math.PI))*PRIMECXZ[n]) // X
+                PRIMESubcoordvalue2[n]=(Math.sin(PRIMEOUTPUTVXZ[n]/(180/Math.PI))*PRIMECXZ[n]) // ZX
                 
-                PRIMESubcoordvalue3=(Math.cos(PRIMEOUTPUTVYZ/(180/Math.PI))*PRIMECYZ) // Y
-                PRIMESubcoordvalue4=(Math.sin(PRIMEOUTPUTVYZ/(180/Math.PI))*PRIMECYZ) // ZY
-
+                PRIMESubcoordvalue3[n]=(Math.cos(PRIMEOUTPUTVYZ[n]/(180/Math.PI))*PRIMECYZ[n]) // Y
+                PRIMESubcoordvalue4[n]=(Math.sin(PRIMEOUTPUTVYZ[n]/(180/Math.PI))*PRIMECYZ[n]) // ZY
+                
                 console.log(PRIMESubcoordvalue1 + "Primesubcoord1")
                 let PRIMEX
                 let PRIMEY
                 let PRIMEZY
                 let PRIMEZX
 
-                    if((PRIMEXPosNeg==true)&(PRIMEZPosNeg==true)){
-                        PRIMEX = PRIMESubcoordvalue1
-                        PRIMEZX = PRIMESubcoordvalue2 }
-                    else if((PRIMEXPosNeg==false)&(PRIMEZPosNeg==true)){
-                        PRIMEX = (-1 * PRIMESubcoordvalue2) 
-                        PRIMEZX = PRIMESubcoordvalue1 }
-                    else if((PRIMEXPosNeg==false)&(PRIMEZPosNeg==false)){
-                        PRIMEX = (-1 * PRIMESubcoordvalue1) 
-                        PRIMEZX = (-1 * PRIMESubcoordvalue2) }
-                    else if((PRIMEXPosNeg==true)&(PRIMEZPosNeg==false)){
-                        PRIMEX = PRIMESubcoordvalue2 
-                        PRIMEZX = (-1 * PRIMESubcoordvalue1) }
+                    if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==true)){
+                        PRIMEX = PRIMESubcoordvalue1[n]
+                        PRIMEZX = PRIMESubcoordvalue2[n] }
+                    else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==true)){
+                        PRIMEX = (-1 * PRIMESubcoordvalue2[n]) 
+                        PRIMEZX = PRIMESubcoordvalue1[n] }
+                       
+                    else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==false)){
+                        PRIMEX = (-1 * PRIMESubcoordvalue1[n]) 
+                        PRIMEZX = (-1 * PRIMESubcoordvalue2[n]) }
+                    else if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==false)){
+                        PRIMEX = PRIMESubcoordvalue2[n] 
+                        PRIMEZX = (-1 * PRIMESubcoordvalue1[n]) }
     
-                    if((PRIMEYPosNeg==true)&(PRIMEZYPosNeg==true)){
-                        PRIMEY = PRIMESubcoordvalue3 
-                        PRIMEZY = PRIMESubcoordvalue4 }
-                    else if((PRIMEYPosNeg==false)&(PRIMEZYPosNeg==true)){
-                        PRIMEY = (-1 * PRIMESubcoordvalue4) 
-                        PRIMEZY = PRIMESubcoordvalue3 }
-                    else if((PRIMEYPosNeg==false)&(PRIMEZYPosNeg==false)){
-                        PRIMEY = (-1 * PRIMESubcoordvalue3) 
-                        PRIMEZY = (-1 * PRIMESubcoordvalue4) }
-                    else if((PRIMEYPosNeg==true)&(PRIMEZYPosNeg==false)){
-                        PRIMEY = PRIMESubcoordvalue4 
-                        PRIMEZY = (-1 * PRIMESubcoordvalue3) }
-
+                    if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==true)){
+                        PRIMEY = PRIMESubcoordvalue3[n] 
+                        PRIMEZY = PRIMESubcoordvalue4[n] }
+                    else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==true)){
+                        PRIMEY = (-1 * PRIMESubcoordvalue4[n]) 
+                        PRIMEZY = PRIMESubcoordvalue3[n] }
+                    else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==false)){
+                        PRIMEY = (-1 * PRIMESubcoordvalue3[n]) 
+                        PRIMEZY = (-1 * PRIMESubcoordvalue4[n]) }
+                    else if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==false)){
+                        PRIMEY = PRIMESubcoordvalue4[n] 
+                        PRIMEZY = (-1 * PRIMESubcoordvalue3[n]) }
+                        
                         console.log(PRIMEX + PRIMEY + PRIMEZX + PRIMEZY + "PRIMEX,PRIMEY,PRIMEZX,PRIMEZY")
 // CAMERA ABGLE ADJUSTMENTS END
 
@@ -431,8 +431,8 @@ if(PRIMEOUTPUTVXZ > 90){
 // alert(PRIMEZY)
 // alert(PRIMEZX)
 
-                    ProjectedX[n] = (PRIMEX*FocalLength/(PRIMEZX+FocalLength))
-                    ProjectedY[n] = (PRIMEY*FocalLength/(PRIMEZY+FocalLength))
+                    ProjectedX[n] = ((PRIMEZX*FocalLength)/(PRIMEX))
+                    ProjectedY[n] = ((PRIMEZY*FocalLength)/(PRIMEY))
                 }
                 if(Avgstyle==2){
             for (let l = 0; l < ProjectedX.length; l++) {
@@ -445,55 +445,55 @@ if(PRIMEOUTPUTVXZ > 90){
                 ctx.stroke()
             }}
             // Logging(Dev)
-            console.log("InputX")
-            console.log(InputX)
-            console.log("InputY")
-            console.log(InputY)
-            console.log("InputZ")
-            console.log(InputZ)
-            console.log("VXZ")
-            console.log(VXZ)
-            console.log("CXZ")
-            console.log(CXZ)
-            console.log("VYZ")
-            console.log(VYZ)
-            console.log("CYZ")
-            console.log(CYZ)
-            console.log("XPosNeg")
-            console.log(XPosNeg)
-            console.log("ZPosNeg")
-            console.log(ZPosNeg)
-            console.log("YPosNeg")
-            console.log(YPosNeg)
+            // console.log("InputX")
+            // console.log(InputX)
+            // console.log("InputY")
+            // console.log(InputY)
+            // console.log("InputZ")
+            // console.log(InputZ)
+            // console.log("VXZ")
+            // console.log(VXZ)
+            // console.log("CXZ")
+            // console.log(CXZ)
+            // console.log("VYZ")
+            // console.log(VYZ)
+            // console.log("CYZ")
+            // console.log(CYZ)
+            // console.log("XPosNeg")
+            // console.log(XPosNeg)
+            // console.log("ZPosNeg")
+            // console.log(ZPosNeg)
+            // console.log("YPosNeg")
+            // console.log(YPosNeg)
             console.log("ProjectedX")
             console.log(ProjectedX)
             console.log("ProjectedY")
             console.log(ProjectedY)
-            console.log("LeaderX")
-            console.log(LeaderX)
-            console.log("LeaderY")
-            console.log(LeaderY)
-            console.log("LeaderZ")
-            console.log(LeaderZ)
+            // console.log("LeaderX")
+            // console.log(LeaderX)
+            // console.log("LeaderY")
+            // console.log(LeaderY)
+            // console.log("LeaderZ")
+            // console.log(LeaderZ)
 
-            console.log("PRIMECXZ")
-            console.log(PRIMECXZ)
-            console.log("PRIMECYZ")
-            console.log(PRIMECYZ)
-            console.log("PRIMEOUTPUTVXZ")
-            console.log(PRIMEOUTPUTVXZ)
-            console.log("PRIMEOUTPUTVYZ")
-            console.log(PRIMEOUTPUTVYZ)
+            // console.log("PRIMECXZ")
+            // console.log(PRIMECXZ)
+            // console.log("PRIMECYZ")
+            // console.log(PRIMECYZ)
+            // console.log("PRIMEOUTPUTVXZ")
+            // console.log(PRIMEOUTPUTVXZ)
+            // console.log("PRIMEOUTPUTVYZ")
+            // console.log(PRIMEOUTPUTVYZ)
             
-            console.log("PRIMEOUTPUTVXZ")
-            console.log(PRIMEOUTPUTVXZ)
-            console.log("PRIMEOUTPUTVYZ")
-            console.log(PRIMEOUTPUTVYZ)
+            // console.log("PRIMEOUTPUTVXZ")
+            // console.log(PRIMEOUTPUTVXZ)
+            // console.log("PRIMEOUTPUTVYZ")
+            // console.log(PRIMEOUTPUTVYZ)
 
-            console.log("PRIMEXPosNeg")
-            console.log(PRIMEXPosNeg)
-            console.log("PRIMEYPosNeg")
-            console.log(PRIMEYPosNeg)
+            // console.log("PRIMEXPosNeg")
+            // console.log(PRIMEXPosNeg)
+            // console.log("PRIMEYPosNeg")
+            // console.log(PRIMEYPosNeg)
             }
         }
 
