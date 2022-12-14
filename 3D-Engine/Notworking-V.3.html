@@ -310,29 +310,29 @@ for (let g = 0; g < FrameAmount; g++) {
                     // Subcoord 2&4 = Z
                     if((XPosNeg[p]==true)&(ZPosNeg[p]==true)){
                         X = Subcoordvalue1 + InputX[p][n] 
-                        ZX = Subcoordvalue2 + InputZ[p][n] }
+                        ZX = Subcoordvalue2 + InputZ[p][n] + FocalLength}
                     else if((XPosNeg[p]==false)&(ZPosNeg[p]==true)){
                         X = (-1 * Subcoordvalue2) + InputX[p][n]
-                        ZX = Subcoordvalue1 + InputZ[p][n] }
+                        ZX = Subcoordvalue1 + InputZ[p][n] + FocalLength}
                     else if((XPosNeg[p]==false)&(ZPosNeg[p]==false)){
                         X = (-1 * Subcoordvalue1) + InputX[p][n]
-                        ZX = (-1 * Subcoordvalue2) + InputZ[p][n] }
+                        ZX = (-1 * Subcoordvalue2) + InputZ[p][n] + FocalLength}
                     else if((XPosNeg[p]==true)&(ZPosNeg[p]==false)){
                         X = Subcoordvalue2 + InputX[p][n] 
-                        ZX = (-1 * Subcoordvalue1) + InputZ[p][n] }
-    
+                        ZX = (-1 * Subcoordvalue1) + InputZ[p][n] + FocalLength}
+                        
                     if((YPosNeg[p]==true)&(ZYPosNeg[p]==true)){
                         Y = Subcoordvalue3 + InputY[p][n]
-                        ZY = Subcoordvalue4 + InputZ[p][n] }
+                        ZY = Subcoordvalue4 + InputZ[p][n] + FocalLength}
                     else if((YPosNeg[p]==false)&(ZYPosNeg[p]==true)){
-                        Y = (-1 * Subcoordvalue4) + InputY[p][n]
-                        ZY = Subcoordvalue3 + InputZ[p][n]}
+                        Y = (-Subcoordvalue4) + InputY[p][n]
+                        ZY = Subcoordvalue3 + InputZ[p][n] + FocalLength}
                     else if((YPosNeg[p]==false)&(ZYPosNeg[p]==false)){
                         Y = (-1 * Subcoordvalue3) + InputY[p][n] 
-                        ZY = (-1 * Subcoordvalue4) + InputZ[p][n]}
+                        ZY = (-1 * Subcoordvalue4) + InputZ[p][n] + FocalLength}
                     else if((YPosNeg[p]==true)&(ZYPosNeg[p]==false)){
                         Y = Subcoordvalue4 + InputY[p][n] 
-                        ZY = (-1 * Subcoordvalue3) + InputZ[p][n]}
+                        ZY = (-1 * Subcoordvalue3) + InputZ[p][n] + FocalLength}
 
 console.log(X + Y + ZX + ZY + "X,Y,ZX,ZY")
 
@@ -357,30 +357,30 @@ console.log(X + Y + ZX + ZY + "X,Y,ZX,ZY")
             PRIMEOUTPUTVXZ[n] = PRIMEVXZ[n] + CameraAngle
             PRIMEOUTPUTVYZ[n] = PRIMEVYZ[n] + CameraAngle
 
-if(PRIMEOUTPUTVXZ[n] > 90){
+if(PRIMEOUTPUTVXZ[n] < 0){
                 if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==true)){PRIMEXPosNeg[n]= false}
                 else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==true)){PRIMEZPosNeg[n]=true}
                 else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==false)){PRIMEXPosNeg[n]=true}
-                else if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==false)){PRIMEZPosNeg[n]=false}
-                PRIMEOUTPUTVXZ[n] -= 90}
-                if(PRIMEOUTPUTVXZ[n] < 0){
-                if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==true)){PRIMEZPosNeg[n]= false}
-                else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==true)){PRIMEXPosNeg[n]=false}
-                else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==false)){PRIMEZPosNeg[n]=true}
-                else if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==false)){PRIMEXPosNeg[n]=true}
+                else if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==false)){PRIMEZPosNeg[n]=true}
                 PRIMEOUTPUTVXZ[n] += 90}
+                if(PRIMEOUTPUTVXZ[n] > 90){
+                if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==true)){PRIMEXPosNeg[n]= false}
+                else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==true)){PRIMEXPosNeg[n]=true}
+                else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==false)){PRIMEZPosNeg[n]=true}
+                else if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==false)){PRIMEXPosNeg[n]=false}
+                PRIMEOUTPUTVXZ[n] -= 90}
 
                 if(PRIMEOUTPUTVYZ[n] > 90){
                 if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==true)){PRIMEYPosNeg[n]=false}
                 else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==true)){PRIMEZYPosNeg[n]=true}
                 else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==false)){PRIMEYPosNeg[n]=true}
-                else if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==false)){PRIMEZYPosNeg[n]=false}
+                else if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==false)){PRIMEZYPosNeg[n]=true}
                 PRIMEOUTPUTVYZ[n] -= 90}
                 if(PRIMEOUTPUTVYZ[n] < 0){
                 if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==true)){PRIMEZYPosNeg[n]=false}
-                else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==true)){PRIMEYPosNeg[n]=false}
+                else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==true)){PRIMEYPosNeg[n]=true}
                 else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==false)){PRIMEZYPosNeg[n]=true}
-                else if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==false)){PRIMEYPosNeg[n]=true}
+                else if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==false)){PRIMEYPosNeg[n]=false}
                 PRIMEOUTPUTVYZ[n] += 90}
                 // Extrahera (X) & (Z) från hypotenusan(C) och vinkeln(V)
                 PRIMESubcoordvalue1[n]=(Math.cos(PRIMEOUTPUTVXZ[n]/(180/Math.PI))*PRIMECXZ[n]) // X
@@ -396,33 +396,20 @@ if(PRIMEOUTPUTVXZ[n] > 90){
                 let PRIMEZX
 
                     if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==true)){
-                        PRIMEX = PRIMESubcoordvalue1[n]
-                        PRIMEZX = PRIMESubcoordvalue2[n] }
+                        PRIMEX = 1 * PRIMESubcoordvalue2[n]
+                        PRIMEZX = 1 * PRIMESubcoordvalue1[n] }
                     else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==true)){
-                        PRIMEX = (-1 * PRIMESubcoordvalue2[n]) 
-                        PRIMEZX = PRIMESubcoordvalue1[n] }
-                       
-                    else if((PRIMEXPosNeg[n]==false)&(PRIMEZPosNeg[n]==false)){
-                        PRIMEX = (-1 * PRIMESubcoordvalue1[n]) 
-                        PRIMEZX = (-1 * PRIMESubcoordvalue2[n]) }
-                    else if((PRIMEXPosNeg[n]==true)&(PRIMEZPosNeg[n]==false)){
-                        PRIMEX = PRIMESubcoordvalue2[n] 
-                        PRIMEZX = (-1 * PRIMESubcoordvalue1[n]) }
-    
-                    if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==true)){
-                        PRIMEY = PRIMESubcoordvalue3[n] 
-                        PRIMEZY = PRIMESubcoordvalue4[n] }
-                    else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==true)){
-                        PRIMEY = (-1 * PRIMESubcoordvalue4[n]) 
-                        PRIMEZY = PRIMESubcoordvalue3[n] }
-                    else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==false)){
-                        PRIMEY = (-1 * PRIMESubcoordvalue3[n]) 
-                        PRIMEZY = (-1 * PRIMESubcoordvalue4[n]) }
-                    else if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==false)){
-                        PRIMEY = PRIMESubcoordvalue4[n] 
-                        PRIMEZY = (-1 * PRIMESubcoordvalue3[n]) }
+                        PRIMEX = -1 * PRIMESubcoordvalue2[n]
+                        PRIMEZX = 1 * PRIMESubcoordvalue1[n] 
+                    alert(X + "U" + PRIMESubcoordvalue2[n])}
                         
-                        console.log(PRIMEX + PRIMEY + PRIMEZX + PRIMEZY + "PRIMEX,PRIMEY,PRIMEZX,PRIMEZY")
+                    if((PRIMEYPosNeg[n]==true)&(PRIMEZYPosNeg[n]==true)){
+                        PRIMEY = 1 * PRIMESubcoordvalue4[n]
+                        PRIMEZY = 1 * PRIMESubcoordvalue3[n] }
+                    else if((PRIMEYPosNeg[n]==false)&(PRIMEZYPosNeg[n]==true)){
+                        PRIMEY = -1 * PRIMESubcoordvalue4[n]
+                        PRIMEZY = 1 * PRIMESubcoordvalue3[n] }
+                        
 // CAMERA ABGLE ADJUSTMENTS END
 
 // 3D->2D PROJECTION
@@ -430,9 +417,8 @@ if(PRIMEOUTPUTVXZ[n] > 90){
 // alert(PRIMEY)
 // alert(PRIMEZY)
 // alert(PRIMEZX)
-
-                    ProjectedX[n] = ((PRIMEX*FocalLength)/(PRIMEZX))
-                    ProjectedY[n] = ((PRIMEY*FocalLength)/(PRIMEZY))
+                    ProjectedX[n] = (PRIMEX*FocalLength/PRIMEZX)
+                    ProjectedY[n] = (PRIMEY*FocalLength/PRIMEZY)
                 }
                 if(Avgstyle==2){
             for (let l = 0; l < ProjectedX.length; l++) {
@@ -444,6 +430,7 @@ if(PRIMEOUTPUTVXZ[n] > 90){
                 ctx.lineTo(400+Number(ProjectedX[l]+1),400+Number(ProjectedY[l]+1));
                 ctx.stroke()
             }}
+            debugger
             // Logging(Dev)
             // console.log("InputX")
             // console.log(InputX)
