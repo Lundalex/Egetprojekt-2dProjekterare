@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onclick="SelectFunction(event)">
+    
+<h1>-</h1>
+
+    <div style="display: flex; flex-direction: row">
+
+        <canvas id="Canvas" width="800" height="800" style="border:10px solid #00ff80;"></canvas>
+
+        <div style="width: 10px;"></div>
+
+        <div style="display: flex; flex-direction: column;">
+
+            <h1 style="font-weight: bolder;">Camera:</h1>
+
+        <div style="display: flex; flex-direction: column;">
+        <div style="width: 180; height: 50; display: flex; flex-direction: row">
+            <div style="height: 50px; width: 50px ;background-color: rgb(69, 218, 32)"onclick="MoveLeft()">Left</div>
+            <div style="height: 50px; width: 50px; background-color: #0004ff;"onclick="MoveAhead()">Ahead</div>
+            <div style="height: 50px; width: 50px; background-color: rgb(69, 218, 32)"onclick="MoveRight()">Right</div>
+            </div>
+            <div style="width: 120; height: 50; display: flex; flex-direction: row">
+            <div style="height: 50px; width: 50px; background-color: white"></div>
+            <div style="height: 50px; width: 50px; background-color: rgb(69, 218, 32)"onclick="MoveBack()">Back</div>
+            </div>
+        </div>
+        <br>
+        <div style="display: flex; flex-direction: column;">
+            <div style="width: 150; height: 50; display: flex; flex-direction: row">
+            <div style="height: 50px; width: 50px; background-color: white"></div>
+            <div style="height: 50px; width: 50px; background-color: rgb(255, 251, 0)"onclick="MoveUp()">Up</div>
+            </div>
+            <div style="width: 150; height: 50; display: flex; flex-direction: row">
+            <div style="height: 50px; width: 50px; background-color: white"></div>
+            <div style="height: 50px; width: 50px; background-color: rgb(203, 32, 218)"onclick="MoveDown()">Down</div>
+            </div>
+        </div>
+
+        <h1 style="font-weight: bolder;">Settings:</h1>
+
+        <button style="width: 150px; font-weight: 1000;" onclick="Start()">Start Program</button>
+        <button style="width: 150px; font-weight: 1000;" onclick="QuickStart()">Quick Start</button>
+        <br>
+        <br><br>
+
+        <br>
+
+            <label>Focal Length:</label>
+            <div style="display: flex; flex-direction: row"><input style="width: 150px;" type="text" id="3"><div id="7"></div></div>
+            <button style="width: 150px;" onclick="SubmitSettings()">Submit Settings</button>
+            
+
+    </div>
+
+    <div style="width: 50px;"></div>
+
+
+    <div style="display: flex; flex-direction: column;">
+    <h1>Add Object:</h1>
+    <button style="width: 150px;" onclick="AddCubeObject()">AddCubeObject</button>
+    <div>
+    <input type="radio" name="1" value="Manipulate Path" onchange="ChangeManipulatePath()"><label>Manipulate Path</label><br>
+    <input type="radio" name="1" value="Manipulate Point" onchange="ChangeManipulatePoint()"><label>Manipulate Point</label><br>
+    <input type="radio" name="1" value="Manipulate Object" onchange="ChangeManipulateObject()"><label>Manipulate Object</label><br>
+</div>
+
+
+    </div>
+
+<script>
+
+let canvas = document.getElementById("Canvas")
+let ctx = canvas.getContext("2d")
+let context = canvas.getContext('2d')
+
+let ShellX = []
+let ShellY = []
+let ShellZ = []
+
+let KeyPress = ""
+
+let Manipulate = ""
+
+let TX = 0
+let TY = 0
+let TZ = 0
+let MX = 0
+let MY = 0
+let MZ = 0
+
+let XPosNeg = []
+let ZPosNeg = []
+let YPosNeg = []
+let ZYPosNeg = []
+
+let ShellLeaderX = []
+let ShellLeaderY = []
+let ShellLeaderZ = []
+
+let ShellXProjected = [[]]
+let ShellYProjected = [[]]
+
+let LeaderStyle = []
+
+let Avgstyle = 0
+
+let FocalLength = 0
+
+let FrameAmount = 0
+
+let MarkedPoints = [[]]
+let MarkedObject = []
+
+let FoundObjectNumber = 100
+
+let ObjectAnimationInstructionsX = [[[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0]]]
+let ObjectAnimationInstructionsY = [[[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0]]]
+let ObjectAnimationInstructionsZ = [[[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0]],[[0],[0],[0],[0],[0],[0],[0],[0],[0]]]
+
+let AnimationX = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+let AnimationY = [0,0,0,0,0,0,0,0,0,0,0,0]
+let AnimationZ = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+let ChosenPathStage = 1
+
+// Stage 1(0-100), 2(101-200)... , 9(801-900)
+let AnimateFrame = 0
+
+function AddCubeObject(){
+
+    let CDX = Math.random() * 500 - 250
+    let CDY = Math.random() * 500 - 250
+    let CDZ = Math.random() * 500 - 250 + 250
+
+    ShellX.push([100-100+CDX,200-100+CDX,200-100+CDX,100-100+CDX,100-100+CDX,100-100+CDX,200-100+CDX,200-100+CDX,100-100+CDX,100-100+CDX,100-100+CDX,200-100+CDX,200-100+CDX,200-100+CDX,200-100+CDX,100-100+CDX,100-100+CDX])
+    ShellY.push([100-100+CDY,100-100+CDY,200-100+CDY,200-100+CDY,100-100+CDY,100-100+CDY,100-100+CDY,200-100+CDY,200-100+CDY,100-100+CDY,100-100+CDY,100-100+CDY,100-100+CDY,200-100+CDY,200-100+CDY,200-100+CDY,200-100+CDY])
+    ShellZ.push([100-100+CDZ,100-100+CDZ,100-100+CDZ,100-100+CDZ,100-100+CDZ,200-100+CDZ,200-100+CDZ,200-100+CDZ,200-100+CDZ,200-100+CDZ,100-100+CDZ,100-100+CDZ,200-100+CDZ,200-100+CDZ,100-100+CDZ,100-100+CDZ,200-100+CDZ])
+
+    let ObjectNumber = ShellX.length -1
+
+    TX=ShellX[ObjectNumber].length
+    TY=ShellY[ObjectNumber].length
+    TZ=ShellZ[ObjectNumber].length
+
+    const MX=ShellX[ObjectNumber].reduce(function RedX(total,value){return Number(total)+Number(value)})/TX
+    const MY=ShellY[ObjectNumber].reduce(function RedY(total,value){return Number(total)+Number(value)})/TY
+    const MZ=ShellZ[ObjectNumber].reduce(function RedZ(total,value){return Number(total)+Number(value)})/TZ
+
+    ShellX[ObjectNumber]=ShellX[ObjectNumber].map(function Procfunc(num){return num-MX})
+    ShellY[ObjectNumber]=ShellY[ObjectNumber].map(function Procfunc(num){return num-MY})
+    ShellZ[ObjectNumber]=ShellZ[ObjectNumber].map(function Procfunc(num){return num-MZ})
+
+    ShellLeaderX[ObjectNumber] = MX
+    ShellLeaderY[ObjectNumber] = MY
+    ShellLeaderZ[ObjectNumber] = MZ
+
+
+}
+
+
+function Start() {
+    // Clear graph(fill)
+    ctx.beginPath();
+    ctx.rect(00, 00, 800, 800);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    
+    // let FrameAmount = +prompt("Insert FrameAmount")
+
+for (let g = 0; g < FrameAmount; g++) {
+
+        setTimeout(MainLoop, 20*g)
+    }}
+
+
+
+function MainLoop(){
+    // Reset Canvas
+    ctx.beginPath();
+    ctx.rect(00, 00, 800, 800);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    // Reset Canvas
+
+
+
+
+
+
+    // INCREMENT COMMANDS
+if(Manipulate == "Path"){
+switch (KeyPress) {
+    case "ArrowDown":
+    ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) - 10
+
+    break;
+    case "ArrowUp":
+    ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) + 10
+    
+    break;
+    case "ArrowLeft":
+    ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) - 10
+    
+    break;
+    case "ArrowRight":
+    ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) + 10
+    
+    break;
+    case "SpaceBar":
+    ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) - 10
+    break;
+
+    case "Shift":
+    ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) + 10
+    
+    break;
+
+    default:
+        break;
+}
+
+}
+if(Manipulate == "Point"){}
+
+
+if(Manipulate == "Object"){}
+
+
+    // INCREMENT COMMANDS
+
+
+
+
+
+
+
+
+
+    // Add Animation Frame Value
+if(AnimateFrame > 400){
+    AnimateFrame = 1
+}
+else{
+    AnimateFrame ++
+}
+
+
+
+for (let i = 0; i < ShellX.length; i++) {
+    
+if(0 <= AnimateFrame && AnimateFrame <= 100){
+
+    AnimationX[i] = (AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsX[i][0])
+    AnimationY[i] = (AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsY[i][0])
+    AnimationZ[i] = (AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsZ[i][0])
+}
+else if(101 <= AnimateFrame && AnimateFrame <= 200){
+
+    AnimationX[i] = Number(ObjectAnimationInstructionsX[i][0]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsX[i][1]))
+    AnimationY[i] = Number(ObjectAnimationInstructionsY[i][0]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsY[i][1]))
+    AnimationZ[i] = Number(ObjectAnimationInstructionsZ[i][0]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsZ[i][1]))
+}
+else if(201 <= AnimateFrame && AnimateFrame <= 300){
+
+    AnimationX[i] = Number(ObjectAnimationInstructionsX[i][0]) + Number(ObjectAnimationInstructionsX[i][1]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsX[i][2]))
+    AnimationY[i] = Number(ObjectAnimationInstructionsY[i][0]) + Number(ObjectAnimationInstructionsY[i][1]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsY[i][2]))
+    AnimationZ[i] = Number(ObjectAnimationInstructionsZ[i][0]) + Number(ObjectAnimationInstructionsZ[i][1]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsZ[i][2]))
+}
+else if(301 <= AnimateFrame && AnimateFrame <= 400){
+
+AnimationX[i] = Number(ObjectAnimationInstructionsX[i][0]) + Number(ObjectAnimationInstructionsX[i][1]) + Number(ObjectAnimationInstructionsX[i][2]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsX[i][3]))
+AnimationY[i] = Number(ObjectAnimationInstructionsY[i][0]) + Number(ObjectAnimationInstructionsY[i][1]) + Number(ObjectAnimationInstructionsY[i][2])  + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsY[i][3]))
+AnimationZ[i] = Number(ObjectAnimationInstructionsZ[i][0]) + Number(ObjectAnimationInstructionsZ[i][1]) + Number(ObjectAnimationInstructionsZ[i][2])  + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsZ[i][3]))
+}
+
+
+}
+    // Add Animation Frame Value
+
+
+
+
+    // Shell X/Y Projected
+    for (let i = 0; i < ShellX.length; i++) {
+        ShellXProjected[i] = []
+        ShellYProjected[i] = []
+
+        for (let o = 0; o < ShellX[i].length; o++) {
+            let X = ShellX[i][o] + ShellLeaderX[i] + Number(AnimationX[i])
+            let Y = ShellY[i][o] + ShellLeaderY[i] + Number(AnimationY[i])
+            let Z = ShellZ[i][o] + ShellLeaderZ[i] + Number(AnimationZ[i])
+
+            ShellXProjected[i][o] = ((X * FocalLength) / (Z + FocalLength))
+            ShellYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
+        }
+    }
+    // Shell X/Y Projected
+
+
+
+
+
+
+
+
+    // Add Animation Frame Value
+
+
+
+
+
+    // Projection - Object Shells
+    for (let i = 0; i < ShellXProjected.length; i++) {
+        // Object Marked
+        if(MarkedObject[i] == true){
+            for (let o = 0; o < ShellXProjected[i].length; o++) {
+            
+            ctx.moveTo(400+Number(ShellXProjected[i][o]),400+Number(ShellYProjected[i][o]));
+            ctx.lineTo(400+Number(ShellXProjected[i][o+1]),400+Number(ShellYProjected[i][o+1]));
+            ctx.strokeStyle = "orange"
+            ctx.lineWidth = 2
+            ctx.stroke()
+            ctx.closePath()
+        }
+        // Point Marked (in Marked Object)
+        for (let o = 0; o < ShellXProjected[i].length; o++) {
+            
+            if(MarkedPoints[i][o] == true){
+
+                ctx.moveTo(400+Number(ShellXProjected[i][o]-10),400+Number(ShellYProjected[i][o]-10));
+                ctx.lineTo(400+Number(ShellXProjected[i][o]+10),400+Number(ShellYProjected[i][o]+10));
+                ctx.strokeStyle = "red"
+                ctx.lineWidth = 2
+                ctx.stroke()
+                ctx.moveTo(400+Number(ShellXProjected[i][o]+10),400+Number(ShellYProjected[i][o]-10));
+                ctx.lineTo(400+Number(ShellXProjected[i][o]-10),400+Number(ShellYProjected[i][o]+10))
+                ctx.stroke()
+                ctx.closePath()
+            }
+        }
+
+        }
+        // Object Not Marked
+        else{
+        for (let o = 0; o < ShellXProjected[i].length; o++) {
+            
+            ctx.moveTo(400+Number(ShellXProjected[i][o]),400+Number(ShellYProjected[i][o]));
+            ctx.lineTo(400+Number(ShellXProjected[i][o+1]),400+Number(ShellYProjected[i][o+1]))
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2
+            ctx.stroke()
+            ctx.closePath()
+        }}
+        
+    }
+    // Projection - Object Shells
+
+
+
+// Reset KeyPress
+    KeyPress = "NoKey"
+}
+
+
+
+
+
+    // SelectFunction 
+function SelectFunction(event) {
+    // Mouse X/Y coords
+    const X = event.clientX - 17 - 400
+    const Y = event.clientY - 91 - 400
+
+    let FoundCollision = false
+
+    let FoundXcoord 
+    let FoundYcoord 
+    let FoundZcoord 
+
+    MarkedObject = []
+    // Locate Collision
+for (let i = 0; i < ShellXProjected.length; i++) {
+
+    MarkedPoints[i] = []
+
+    for (let o = 0; o < ShellXProjected[i].length; o++) {
+
+        if((((Math.abs(X - ShellXProjected[i][o])) < 5) && ((Math.abs(Y - ShellYProjected[i][o])) < 5)) && FoundCollision == false){
+        
+            FoundXcoord = ShellX[i][o] + ShellLeaderX[i]
+            FoundYcoord = ShellY[i][o] + ShellLeaderY[i]
+            FoundZcoord = ShellZ[i][o] + ShellLeaderZ[i]
+
+            FoundObjectNumber = i
+
+            FoundCollision = true
+        }
+    }
+}
+    // Locate Collision
+
+    // Locate Points Nearby
+if(FoundCollision == true){
+
+    for (let o = 0; o < ShellX[FoundObjectNumber].length; o++) {
+
+        MarkedObject[FoundObjectNumber] = true
+
+        if((Math.abs(FoundXcoord - (ShellX[FoundObjectNumber][o] + ShellLeaderX[FoundObjectNumber])) < 1) && (Math.abs(FoundYcoord - (ShellY[FoundObjectNumber][o] + ShellLeaderY[FoundObjectNumber])) < 1) && (Math.abs(FoundZcoord - (ShellZ[FoundObjectNumber][o] + ShellLeaderZ[FoundObjectNumber])) < 1)){
+            
+            MarkedPoints[FoundObjectNumber][o] = true
+        }
+        else{
+            MarkedPoints[FoundObjectNumber][o] = false
+        } 
+    }
+}
+    // Locate Points Nearby
+
+}
+    // SelectFunction 
+
+
+
+
+// All Functions for The Control Panel:
+function SubmitSettings(){
+FocalLength = +document.getElementById("3").value
+document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
+Avgstyle=document.getElementById("CompileModeinput").value
+FrameAmount = 10000
+}
+
+function QuickStart(){
+FocalLength = 1000
+FrameAmount = 10000
+document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
+AddCubeObject()
+Start()
+}
+
+function MoveRight(){
+    for (let i = 0; i < ShellX.length; i++) {
+        for (let o = 0; o < ShellX[i].length; o++) {
+            ShellX[i][o]-= 100
+        }}}
+function MoveLeft(){
+    for (let i = 0; i < ShellX.length; i++) {
+        for (let o = 0; o < ShellX[i].length; o++) {
+            ShellX[i][o]+= 100
+        }}}
+function MoveAhead(){
+    for (let i = 0; i < ShellZ.length; i++) {
+        for (let o = 0; o < ShellZ[i].length; o++) {
+            ShellZ[i][o]-= 100
+        }}}
+function MoveBack(){
+    for (let i = 0; i < ShellX.length; i++) {
+        for (let o = 0; o < ShellX[i].length; o++) {
+            ShellZ[i][o]+= 100
+        }}}
+function MoveDown(){
+    for (let i = 0; i < ShellY.length; i++) {
+        for (let o = 0; o < ShellY[i].length; o++) {
+            ShellY[i][o]-= 100
+        }}}
+function MoveUp(){
+    for (let i = 0; i < ShellY.length; i++) {
+        for (let o = 0; o < ShellY[i].length; o++) {
+            ShellY[i][o]+= 100
+        }}}
+
+
+        window.addEventListener("keydown", function (event) {
+  if (event.defaultPrevented) {
+    return; // Do nothing if the event was already processed
+  }
+  switch (event.key) {
+    case "ArrowDown":
+    KeyPress = "ArrowDown"
+      break;
+    case "ArrowUp":
+    KeyPress = "ArrowUp"
+      break;
+    case "ArrowLeft":
+    KeyPress = "ArrowLeft"
+      break;
+    case "ArrowRight":
+    KeyPress = "ArrowRight"
+      break;
+      case "Shift":
+    KeyPress = "Shift"
+      break;
+      case " ":
+    KeyPress = "SpaceBar"
+      break;
+
+      case "k":
+    ChosenPathStage = 0
+      break;
+      case "l":
+      ChosenPathStage = 1
+      break;
+      case "m":
+      ChosenPathStage = 2
+      break;
+      case "n":
+      ChosenPathStage = 3
+      break;
+    //   case "4":
+    //   ChosenPathStage = 3
+    //   break;
+    //   case "5":
+    //   ChosenPathStage = 4
+    //   break;
+    //   case "6":
+    //   ChosenPathStage = 5
+    //   break;
+    //   case "7":
+    //   ChosenPathStage = 6
+    //   break;
+    //   case "8":
+    //   ChosenPathStage = 7
+    //   break;
+    //   case "9":
+    //   ChosenPathStage = 8
+      break;
+
+    default:
+      return; // Quit when this doesn't handle the key event.
+  }
+
+  // Cancel the default action to avoid it being handled twice
+  event.preventDefault();
+}, true);
+
+
+
+function ChangeManipulatePath(){
+Manipulate = "Path"
+}
+function ChangeManipulatePoint(){
+Manipulate = "Point"
+}
+function ChangeManipulateObject(){
+Manipulate = "Object"
+}
+
+
+
+</script>
+
+
+</body>
+</html>
