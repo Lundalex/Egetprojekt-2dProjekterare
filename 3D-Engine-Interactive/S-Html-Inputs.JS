@@ -2,7 +2,6 @@
 function SubmitSettings(){
     FocalLength = +document.getElementById("3").value
     document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
-    FrameAmount = 10000
 }
     // Submit Settings Function
 
@@ -12,8 +11,6 @@ function SubmitSettings(){
 
     // Quick Start Function
 function QuickStart(){
-    FocalLength = 700
-    FrameAmount = 10000
     document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
 
     // Calls Functions (2)

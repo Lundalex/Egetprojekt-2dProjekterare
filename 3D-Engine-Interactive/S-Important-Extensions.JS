@@ -75,3 +75,19 @@ function CameraPerpectiveHandling(DownX, DownY, UpX, UpY){
     }
 }
     // Camera Perspective Function
+
+
+
+function GenerateInfArrForObjectAnimationInstructions(){
+
+    for (let i = 0; i < 99; i++) {
+        ObjectAnimationInstructionsX[i] = []
+        ObjectAnimationInstructionsY[i] = []
+        ObjectAnimationInstructionsZ[i] = []
+        for (let o = 0; o < 99; o++) {
+            ObjectAnimationInstructionsX[i][o] = [0]
+            ObjectAnimationInstructionsY[i][o] = [0]
+            ObjectAnimationInstructionsZ[i][o] = [0]
+        }
+    }
+}
