@@ -19,13 +19,6 @@ function Start() {
 
 
 
-
-
-
-
-
-
-
     // Add New Cube Object Function
 function AddCubeObject(){
 
@@ -78,6 +71,9 @@ function CameraPerpectiveHandling(DownX, DownY, UpX, UpY){
 
 
 
+
+    
+    // Inf Array Function
 function GenerateInfArrForObjectAnimationInstructions(){
 
     for (let i = 0; i < 99; i++) {
@@ -91,3 +87,4 @@ function GenerateInfArrForObjectAnimationInstructions(){
         }
     }
 }
+    // Inf Array Function

@@ -10,7 +10,7 @@ function ResetCanvas(){
 
 
 
-
+    
     // Manipulate Path/Object/Point Function
 function DoManipulation(){
     if(Manipulate == "Path"){
@@ -123,6 +123,7 @@ function DoManipulation(){
 
 
 
+
     // Apply Scaling Function
 function DoScaling(){
     if(ScrollY != "None"){
@@ -146,6 +147,8 @@ function DoScaling(){
     }
 }
     // Apply Scaling Function
+
+
 
 
 
@@ -263,6 +266,8 @@ if(ShowAnimationPathing == true){
 }
 }
     // Project per Object Animation Path X/Y/Z -> 2D(X, Y) Function
+
+
 
 
 
