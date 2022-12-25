@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body onclick="SelectFunction(event)">
+<body onclick="SelectFunction(event)" onmousedown="MouseDownFunction(event)" onmouseup="MouseUpFunction(event)" onwheel="ScrollFunction(event)">
     
 <h1>-</h1>
 
@@ -70,7 +70,11 @@
     <input type="radio" name="1" value="Manipulate Point" onchange="ChangeManipulatePoint()"><label>Manipulate Point</label><br>
     <input type="radio" name="1" value="Manipulate Object" onchange="ChangeManipulateObject()"><label>Manipulate Object</label><br>
 </div>
-
+<p>(Arrowkeys, Shift, Spacebar) for movement (selected)</p>
+<p>Onscreen buttons for camera movement</p>
+<p>Onscreen buttons for camera movement</p>
+<p>(Manipulate Object + Scroll) for Scaling object</p>
+<p>(Key "b") to show Animation Pathing</p>
 
     </div>
 
@@ -87,6 +91,8 @@ let ShellZ = []
 let KeyPress = ""
 
 let Manipulate = ""
+
+let ScrollY = "None"
 
 let TX = 0
 let TY = 0
@@ -106,6 +112,9 @@ let ShellLeaderZ = []
 
 let ShellXProjected = [[]]
 let ShellYProjected = [[]]
+
+let AnimationPathXProjected = [[]]
+let AnimationPathYProjected = [[]]
 
 let LeaderStyle = []
 
@@ -128,10 +137,23 @@ let AnimationX = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 let AnimationY = [0,0,0,0,0,0,0,0,0,0,0,0]
 let AnimationZ = [0,0,0,0,0,0,0,0,0,0,0,0]
 
-let ChosenPathStage = 1
+let ChosenPathStage = 0
+
+let LastMouseDownX = 0
+let LastMouseDownY = 0
+
+let LastMouseUpX = 0
+let LastMouseUpY = 0
+
+let TotalAnimationX = []
+let TotalAnimationY = []
+let TotalAnimationZ = []
+
+let ShowAnimationPathing = false
 
 // Stage 1(0-100), 2(101-200)... , 9(801-900)
 let AnimateFrame = 0
+
 
 function AddCubeObject(){
 
@@ -198,27 +220,27 @@ function MainLoop(){
 if(Manipulate == "Path"){
 switch (KeyPress) {
     case "ArrowDown":
-    ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) - 10
+    ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) - 20
 
     break;
     case "ArrowUp":
-    ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) + 10
+    ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) + 20
     
     break;
     case "ArrowLeft":
-    ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) - 10
+    ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) - 20
     
     break;
     case "ArrowRight":
-    ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) + 10
+    ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) + 20
     
     break;
     case "SpaceBar":
-    ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) - 10
+    ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) - 20
     break;
 
     case "Shift":
-    ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) + 10
+    ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) + 20
     
     break;
 
@@ -227,10 +249,106 @@ switch (KeyPress) {
 }
 
 }
-if(Manipulate == "Point"){}
+else if(Manipulate == "Point"){
+
+for (let i = 0; i < MarkedPoints.length; i++) {
+
+    for (let o = 0; o < MarkedPoints[i].length; o++) {
+
+        if(MarkedPoints[i][o] == true){
+
+            switch (KeyPress) {
+                case "ArrowDown":
+                ShellZ[i][o] -= 20
+
+                break;
+                case "ArrowUp":
+                ShellZ[i][o] += 20
+
+                break;
+                case "ArrowLeft":
+                ShellX[i][o] -= 20
+
+                break;
+                case "ArrowRight":
+                ShellX[i][o] += 20
+
+                break;
+                case "SpaceBar":
+                ShellY[i][o] -= 20
+
+                break;
+                case "Shift":
+                ShellY[i][o] += 20
+
+                break;
+
+                default:
+                break;
+            }
+        }
+    }
+}
 
 
-if(Manipulate == "Object"){}
+}
+
+
+else if(Manipulate == "Object"){
+    switch (KeyPress) {
+    case "ArrowDown":
+    ShellLeaderZ[FoundObjectNumber] -= 20
+
+    break;
+    case "ArrowUp":
+    ShellLeaderZ[FoundObjectNumber] += 20
+    
+    break;
+    case "ArrowLeft":
+    ShellLeaderX[FoundObjectNumber] -= 20
+    
+    break;
+    case "ArrowRight":
+    ShellLeaderX[FoundObjectNumber] += 20
+    
+    break;
+    case "SpaceBar":
+    ShellLeaderY[FoundObjectNumber] -= 20
+
+    break;
+    case "Shift":
+    ShellLeaderY[FoundObjectNumber] += 20
+    
+    break;
+
+    default:
+        break;
+}
+}
+
+
+// Scaling
+if(ScrollY != "None"){
+
+    let Scalefactor = 0
+
+if(ScrollY == "Up"){
+    Scalefactor = 1.05
+}
+
+else{
+    Scalefactor = 0.95    
+}
+
+    for (let i = 0; i < ShellX[FoundObjectNumber].length; i++) {
+        ShellX[FoundObjectNumber][i] *= Scalefactor
+        ShellY[FoundObjectNumber][i] *= Scalefactor
+        ShellZ[FoundObjectNumber][i] *= Scalefactor
+        
+    }
+}
+// Scaling
+
 
 
     // INCREMENT COMMANDS
@@ -243,7 +361,7 @@ if(Manipulate == "Object"){}
 
 
 
-    // Add Animation Frame Value
+    // Add Animation Frame Value !!!
 if(AnimateFrame > 400){
     AnimateFrame = 1
 }
@@ -251,42 +369,67 @@ else{
     AnimateFrame ++
 }
 
-
-
 for (let i = 0; i < ShellX.length; i++) {
     
-if(0 <= AnimateFrame && AnimateFrame <= 100){
+let CurrentAnimationStage = Math.floor(AnimateFrame/100)
+let FrameInAnimationStage = AnimateFrame % 100
 
-    AnimationX[i] = (AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsX[i][0])
-    AnimationY[i] = (AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsY[i][0])
-    AnimationZ[i] = (AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsZ[i][0])
+AnimationX[i] = 0
+AnimationY[i] = 0
+AnimationZ[i] = 0
+
+for (let o = 0; o < CurrentAnimationStage; o++) {
+
+    AnimationX[i] += Number(ObjectAnimationInstructionsX[i][o])
+    AnimationY[i] += Number(ObjectAnimationInstructionsY[i][o])
+    AnimationZ[i] += Number(ObjectAnimationInstructionsZ[i][o])
+
 }
-else if(101 <= AnimateFrame && AnimateFrame <= 200){
 
-    AnimationX[i] = Number(ObjectAnimationInstructionsX[i][0]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsX[i][1]))
-    AnimationY[i] = Number(ObjectAnimationInstructionsY[i][0]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsY[i][1]))
-    AnimationZ[i] = Number(ObjectAnimationInstructionsZ[i][0]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsZ[i][1]))
-}
-else if(201 <= AnimateFrame && AnimateFrame <= 300){
+AnimationX[i] += Number(ObjectAnimationInstructionsX[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+AnimationY[i] += Number(ObjectAnimationInstructionsY[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+AnimationZ[i] += Number(ObjectAnimationInstructionsZ[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
 
-    AnimationX[i] = Number(ObjectAnimationInstructionsX[i][0]) + Number(ObjectAnimationInstructionsX[i][1]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsX[i][2]))
-    AnimationY[i] = Number(ObjectAnimationInstructionsY[i][0]) + Number(ObjectAnimationInstructionsY[i][1]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsY[i][2]))
-    AnimationZ[i] = Number(ObjectAnimationInstructionsZ[i][0]) + Number(ObjectAnimationInstructionsZ[i][1]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsZ[i][2]))
-}
-else if(301 <= AnimateFrame && AnimateFrame <= 400){
-
-AnimationX[i] = Number(ObjectAnimationInstructionsX[i][0]) + Number(ObjectAnimationInstructionsX[i][1]) + Number(ObjectAnimationInstructionsX[i][2]) + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsX[i][3]))
-AnimationY[i] = Number(ObjectAnimationInstructionsY[i][0]) + Number(ObjectAnimationInstructionsY[i][1]) + Number(ObjectAnimationInstructionsY[i][2])  + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsY[i][3]))
-AnimationZ[i] = Number(ObjectAnimationInstructionsZ[i][0]) + Number(ObjectAnimationInstructionsZ[i][1]) + Number(ObjectAnimationInstructionsZ[i][2])  + ((AnimateFrame % 100) * 0.01 * Number(ObjectAnimationInstructionsZ[i][3]))
 }
 
 
+
+if(ShowAnimationPathing == true){
+
+for (let i = 0; i < ObjectAnimationInstructionsX.length; i++) {
+
+    TotalAnimationX[i] = []
+    TotalAnimationY[i] = []
+    TotalAnimationZ[i] = []
+
+
+        TotalAnimationX[i][0] = Number(ObjectAnimationInstructionsX[i][0])
+        TotalAnimationY[i][0] = Number(ObjectAnimationInstructionsY[i][0])
+        TotalAnimationZ[i][0] = Number(ObjectAnimationInstructionsZ[i][0])
+
+
+    for (let o = 1; o < ObjectAnimationInstructionsX[i].length; o++) {
+
+        TotalAnimationX[i][o] = Number(TotalAnimationX[i][o-1]) + Number(ObjectAnimationInstructionsX[i][o])
+        TotalAnimationY[i][o] = Number(TotalAnimationY[i][o-1]) + Number(ObjectAnimationInstructionsY[i][o])
+        TotalAnimationZ[i][o] = Number(TotalAnimationZ[i][o-1]) + Number(ObjectAnimationInstructionsZ[i][o])
+
+    }
+
+
+
+
 }
+
+
+}
+
+
+
+
+
+
     // Add Animation Frame Value
-
-
-
-
     // Shell X/Y Projected
     for (let i = 0; i < ShellX.length; i++) {
         ShellXProjected[i] = []
@@ -302,15 +445,39 @@ AnimationZ[i] = Number(ObjectAnimationInstructionsZ[i][0]) + Number(ObjectAnimat
         }
     }
     // Shell X/Y Projected
-
-
-
-
-
-
-
-
     // Add Animation Frame Value
+
+
+
+
+    // Animation Path X/Y Projected
+
+if(ShowAnimationPathing == true){
+
+    for (let i = 0; i < ShellLeaderX.length; i++) {
+
+        AnimationPathXProjected[i] = []
+        AnimationPathYProjected[i] = []
+
+        for (let o = 0; o < TotalAnimationX[i].length; o++) {
+            
+            let X = ShellLeaderX[i] + TotalAnimationX[i][o]
+            let Y = ShellLeaderY[i] + TotalAnimationY[i][o]
+            let Z = ShellLeaderZ[i] + TotalAnimationZ[i][o]
+            
+            AnimationPathXProjected[i][o] = ((X * FocalLength) / (Z + FocalLength))
+            AnimationPathYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
+        }
+
+        AnimationPathXProjected[i].unshift((ShellLeaderX[i] * FocalLength) / (ShellLeaderZ[i] + FocalLength))
+        AnimationPathYProjected[i].unshift((ShellLeaderY[i] * FocalLength) / (ShellLeaderZ[i] + FocalLength))
+    }
+
+}
+
+    // Animation Path X/Y Projected
+
+
 
 
 
@@ -327,7 +494,6 @@ AnimationZ[i] = Number(ObjectAnimationInstructionsZ[i][0]) + Number(ObjectAnimat
             ctx.strokeStyle = "orange"
             ctx.lineWidth = 2
             ctx.stroke()
-            ctx.closePath()
         }
         // Point Marked (in Marked Object)
         for (let o = 0; o < ShellXProjected[i].length; o++) {
@@ -342,7 +508,6 @@ AnimationZ[i] = Number(ObjectAnimationInstructionsZ[i][0]) + Number(ObjectAnimat
                 ctx.moveTo(400+Number(ShellXProjected[i][o]+10),400+Number(ShellYProjected[i][o]-10));
                 ctx.lineTo(400+Number(ShellXProjected[i][o]-10),400+Number(ShellYProjected[i][o]+10))
                 ctx.stroke()
-                ctx.closePath()
             }
         }
 
@@ -356,16 +521,47 @@ AnimationZ[i] = Number(ObjectAnimationInstructionsZ[i][0]) + Number(ObjectAnimat
             ctx.strokeStyle = "black";
             ctx.lineWidth = 2
             ctx.stroke()
-            ctx.closePath()
         }}
         
     }
     // Projection - Object Shells
 
 
+    // Projection - Animation Pathing
+if(ShowAnimationPathing == true){
 
-// Reset KeyPress
+    for (let i = 0; i < AnimationPathXProjected.length; i++) {
+
+        for (let o = 0; o < AnimationPathXProjected[i].length; o++) {
+
+            ctx.moveTo(400+Number(AnimationPathXProjected[i][o]),400+Number(AnimationPathYProjected[i][o]));
+            ctx.lineTo(400+Number(AnimationPathXProjected[i][o+1]),400+Number(AnimationPathYProjected[i][o+1]));
+            ctx.strokeStyle = "purple"
+            ctx.lineWidth = 2
+            ctx.stroke()
+
+
+
+        
+        }
+    }
+}
+
+
+
+    // Projection - Animation Pathing
+
+
+
+
+
+
+
+
+
+// Reset KeyPress, ScrollY
     KeyPress = "NoKey"
+    ScrollY = "None"
 }
 
 
@@ -382,7 +578,7 @@ function SelectFunction(event) {
 
     let FoundXcoord 
     let FoundYcoord 
-    let FoundZcoord 
+    let FoundZcoord
 
     MarkedObject = []
     // Locate Collision
@@ -434,12 +630,11 @@ if(FoundCollision == true){
 function SubmitSettings(){
 FocalLength = +document.getElementById("3").value
 document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
-Avgstyle=document.getElementById("CompileModeinput").value
 FrameAmount = 10000
 }
 
 function QuickStart(){
-FocalLength = 1000
+FocalLength = 700
 FrameAmount = 10000
 document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
 AddCubeObject()
@@ -447,35 +642,29 @@ Start()
 }
 
 function MoveRight(){
-    for (let i = 0; i < ShellX.length; i++) {
-        for (let o = 0; o < ShellX[i].length; o++) {
-            ShellX[i][o]-= 100
-        }}}
+    for (let i = 0; i < ShellLeaderX.length; i++) {
+            ShellLeaderX[i] -= 100
+        }}
 function MoveLeft(){
-    for (let i = 0; i < ShellX.length; i++) {
-        for (let o = 0; o < ShellX[i].length; o++) {
-            ShellX[i][o]+= 100
-        }}}
+    for (let i = 0; i < ShellLeaderX.length; i++) {
+            ShellLeaderX[i] += 100
+        }}
 function MoveAhead(){
-    for (let i = 0; i < ShellZ.length; i++) {
-        for (let o = 0; o < ShellZ[i].length; o++) {
-            ShellZ[i][o]-= 100
-        }}}
+    for (let i = 0; i < ShellLeaderZ.length; i++) {
+            ShellLeaderZ[i] -= 100
+        }}
 function MoveBack(){
-    for (let i = 0; i < ShellX.length; i++) {
-        for (let o = 0; o < ShellX[i].length; o++) {
-            ShellZ[i][o]+= 100
-        }}}
+    for (let i = 0; i < ShellLeaderZ.length; i++) {
+            ShellLeaderZ[i] += 100
+        }}
 function MoveDown(){
-    for (let i = 0; i < ShellY.length; i++) {
-        for (let o = 0; o < ShellY[i].length; o++) {
-            ShellY[i][o]-= 100
-        }}}
+    for (let i = 0; i < ShellLeaderY.length; i++) {
+            ShellLeaderY[i] -= 100
+        }}
 function MoveUp(){
-    for (let i = 0; i < ShellY.length; i++) {
-        for (let o = 0; o < ShellY[i].length; o++) {
-            ShellY[i][o]+= 100
-        }}}
+    for (let i = 0; i < ShellLeaderY.length; i++) {
+            ShellLeaderY[i] += 100
+        }}
 
 
         window.addEventListener("keydown", function (event) {
@@ -502,6 +691,10 @@ function MoveUp(){
     KeyPress = "SpaceBar"
       break;
 
+      case "":
+    ChosenPathStage = 0
+      break;
+
       case "k":
     ChosenPathStage = 0
       break;
@@ -514,25 +707,11 @@ function MoveUp(){
       case "n":
       ChosenPathStage = 3
       break;
-    //   case "4":
-    //   ChosenPathStage = 3
-    //   break;
-    //   case "5":
-    //   ChosenPathStage = 4
-    //   break;
-    //   case "6":
-    //   ChosenPathStage = 5
-    //   break;
-    //   case "7":
-    //   ChosenPathStage = 6
-    //   break;
-    //   case "8":
-    //   ChosenPathStage = 7
-    //   break;
-    //   case "9":
-    //   ChosenPathStage = 8
+////////////
+      case "b":
+      ShowAnimationPathing = true
       break;
-
+////////////
     default:
       return; // Quit when this doesn't handle the key event.
   }
@@ -553,7 +732,51 @@ function ChangeManipulateObject(){
 Manipulate = "Object"
 }
 
+function MouseDownFunction(event){
 
+    LastMouseDownX = event.clientX
+    LastMouseDownY = event.clientY
+
+}
+
+function MouseUpFunction(event){
+
+    LastMouseUpX = event.clientX
+    LastMouseUpY = event.clientY
+
+    CameraPerpectiveHandling(LastMouseDownX, LastMouseDownY, LastMouseUpX, LastMouseUpY)
+}
+
+function CameraPerpectiveHandling(DownX, DownY, UpX, UpY){
+    if( (17 < DownX) && (90 < DownY) && (17 < UpX) && (90 < UpY) && (DownX < 817) && (DownY < 890) && (UpX < 817) && (UpY < 890)){
+
+    const ChangeX = DownX - UpX
+    const ChangeY = DownY - UpY
+
+    // Continue - (6 Camera Perpectives)!!!!
+
+
+    }
+    else{
+        return
+    }
+
+
+}
+
+function ScrollFunction(event){
+if(event.deltaY > 0){
+
+    ScrollY = "Down"
+}
+else if(event.deltaY < 0 ){
+
+    ScrollY = "Up"
+}
+
+
+
+}
 
 </script>
 
