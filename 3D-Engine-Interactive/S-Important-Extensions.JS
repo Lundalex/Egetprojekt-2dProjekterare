@@ -19,9 +19,9 @@
     // Add New Cube Object Function
     function AddCubeObject(){
         
-        let CDX = Math.random() * 500 - 250
-        let CDY = Math.random() * 500 - 250
-        let CDZ = Math.random() * 500 - 250
+        let CDX = Math.random() * 500 - 400
+        let CDY = Math.random() * 500 - 400
+        let CDZ = Math.random() * 500 - 400
         
         ShellX.push([100-100+CDX,200-100+CDX,200-100+CDX,100-100+CDX,100-100+CDX,100-100+CDX,200-100+CDX,200-100+CDX,100-100+CDX,100-100+CDX,100-100+CDX,200-100+CDX,200-100+CDX,200-100+CDX,200-100+CDX,100-100+CDX,100-100+CDX])
         ShellY.push([100-100+CDY,100-100+CDY,200-100+CDY,200-100+CDY,100-100+CDY,100-100+CDY,100-100+CDY,200-100+CDY,200-100+CDY,100-100+CDY,100-100+CDY,100-100+CDY,100-100+CDY,200-100+CDY,200-100+CDY,200-100+CDY,200-100+CDY])

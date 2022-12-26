@@ -1,18 +1,6 @@
-    // Submit Settings Function
-    function SubmitSettings(){
-        FocalLength = +document.getElementById("3").value
-        document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
-    }
-    // Submit Settings Function
-    
-    
-    
-    
-    
     // Quick Start Function
     function QuickStart(){
-        document.getElementById("7").innerHTML = " Focal Length Set To: " + FocalLength + " Length Units"
-        
+
         // Calls Functions (2)
         AddCubeObject()
         Start()
@@ -67,11 +55,15 @@
     // Rendering Engine Settings Update Functions
     function UpdateHertz(){
         ProgramHertz = +document.getElementById("Hertz").value
-        document.getElementById("HertzLabel").innerHTML = ProgramHertz + " Hertz (/ Max 50)"
+        document.getElementById("HertzLabel").innerHTML = ProgramHertz + " Hertz (Min. 1H) (/ Max 50)"
     }
     
     function UpdateIncrementHertz(){
         ProgramIncrementHertz = +document.getElementById("Increment/Hertz").value
-        document.getElementById("IncrementHertzLabel").innerHTML = ProgramIncrementHertz*100 + "% Change per H(/ Max 200%)"
+        document.getElementById("IncrementHertzLabel").innerHTML = ProgramIncrementHertz*100 + "% Change per H (Min. 20%/H) (/ Max 200%)"
+    }
+    function UpdateFocalLength(){
+        FocalLength = +document.getElementById("FocalLength").value
+        document.getElementById("FocalLengthLabel").innerHTML = "(Min. 500F) Focal Length: (" +  FocalLength + ") (Max. 15000F)"
     }
     // Rendering Engine Settings Update Functions
