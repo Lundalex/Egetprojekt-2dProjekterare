@@ -82,8 +82,8 @@ if(FoundCollision == true){
     KeyPress = "SpaceBar"
       break;
 
-      case "":
-    ChosenPathStage = 0
+      case "Backspace":
+    DeleteObject(FoundObjectNumber)
       break;
 
       case "k":

@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="S-Html-Inputs.JS"></script>
-    <script src="S-MainLoop-Extensions.JS"></script>
     <script src="S-Important-Extensions.JS"></script>
     <script src="S-User-Events.JS"></script>
     
@@ -58,7 +57,21 @@
         <button style="width: 150px; font-weight: 1000;" onclick="Start()">Start Program</button>
         <button style="width: 150px; font-weight: 1000;" onclick="QuickStart()">Quick Start</button>
         <br>
-        <br><br>
+        
+
+        <p>Engine Settings</p>
+
+<div>
+  <input type="range" id="Hertz" name="Hertz"
+         min="0" max="50" onchange="UpdateHertz()" value="50">
+  <label for="Hertz">(1h) Hertz (50h)</label>
+</div>
+
+<div>
+  <input type="range" id="Increment/Hertz" name="Increment/Hertz" 
+         min="0.1" max="1" value="0.5" step="0.01" onchange="UpdateIncrementHertz()">
+  <label for="cowbell">(10%/h) Increment/Hertz (100%/h)</label>
+</div>
 
         <br>
 
@@ -80,6 +93,7 @@
 <p>Onscreen buttons for camera movement</p>
 <p>(Manipulate Object + Scroll) for Scaling object</p>
 <p>(Key: "b") to show Animation Pathing</p>
+<p>(Key: "Backspace(Delete)") to Stop Program</p>
 <p>(Keys: "k", "l", "m", "n") to change Focus Animation Stage</p>
 <p>(Key: "v") to Stop Program</p>
 
@@ -153,6 +167,9 @@ let LastMouseDownY = 0
 let LastMouseUpX = 0
 let LastMouseUpY = 0
 
+let ProgramHertz = 50
+let ProgramIncrementHertz = 0.5
+
 let TotalAnimationX = []
 let TotalAnimationY = []
 let TotalAnimationZ = []
@@ -164,6 +181,7 @@ let AnimateFrame = 0
 let RunProgram = false
     // All Global Variables
 
+let DeletedObjects = []
 
 
 
@@ -200,7 +218,7 @@ function MainLoop(){
 
 
 if(RunProgram == true){
-    setTimeout(MainLoop, 20)
+    setTimeout(MainLoop, 10)
 }
 else{
     ResetCanvas()
@@ -377,7 +395,7 @@ function DoCalculateAnimation(){
     }
     
     for (let i = 0; i < ShellX.length; i++) {
-        
+        if(DeletedObjects[i] != true){
     let CurrentAnimationStage = Math.floor(AnimateFrame/100)
     let FrameInAnimationStage = AnimateFrame % 100
     
@@ -396,7 +414,7 @@ function DoCalculateAnimation(){
     AnimationX[i] += Number(ObjectAnimationInstructionsX[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
     AnimationY[i] += Number(ObjectAnimationInstructionsY[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
     AnimationZ[i] += Number(ObjectAnimationInstructionsZ[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
-    
+    }
     }
     
     
@@ -404,6 +422,7 @@ function DoCalculateAnimation(){
     if(ShowAnimationPathing == true){
     
     for (let i = 0; i < ObjectAnimationInstructionsX.length; i++) {
+        if(DeletedObjects[i] != true){
     
         TotalAnimationX[i] = []
         TotalAnimationY[i] = []
@@ -424,6 +443,7 @@ function DoCalculateAnimation(){
         }
     }
     }
+    }
 }
     // Calculate Animation Values per Frame Function
 
@@ -434,6 +454,7 @@ function DoCalculateAnimation(){
     // Project Shell X/Y/Z -> 2D(X, Y) Function
 function ProjectShell2D(){
     for (let i = 0; i < ShellX.length; i++) {
+        if(DeletedObjects[i] != true){
         ShellXProjected[i] = []
         ShellYProjected[i] = []
 
@@ -447,6 +468,7 @@ function ProjectShell2D(){
             ShellYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
         }
     }
+    }
 }
     // Project Shell X/Y/Z -> 2D(X, Y) Function
 
@@ -459,6 +481,7 @@ function ProjectAnimationPath2D(){
 if(ShowAnimationPathing == true){
 
     for (let i = 0; i < ShellLeaderX.length; i++) {
+        if(DeletedObjects[i] != true){
 
         AnimationPathXProjected[i] = []
         AnimationPathYProjected[i] = []
@@ -476,6 +499,7 @@ if(ShowAnimationPathing == true){
         AnimationPathXProjected[i].unshift((ShellLeaderX[i] * FocalLength) / (ShellLeaderZ[i] + FocalLength))
         AnimationPathYProjected[i].unshift((ShellLeaderY[i] * FocalLength) / (ShellLeaderZ[i] + FocalLength))
     }
+    }
 
 }
 }
@@ -488,6 +512,7 @@ if(ShowAnimationPathing == true){
     // Canvas Draw Object Shells with Marking Function
 function CanvasDrawObjectShells(){
     for (let i = 0; i < ShellXProjected.length; i++) {
+        if(DeletedObjects[i] != true){
         // Object Marked
         if(MarkedObject[i] == true){
             for (let o = 0; o < ShellXProjected[i].length; o++) {
@@ -524,9 +549,9 @@ function CanvasDrawObjectShells(){
             ctx.strokeStyle = "black";
             ctx.lineWidth = 2
             ctx.stroke()
-        }}
-        
+        }} 
     }
+}
 }
     // Canvas Draw Object Shells with Marking Function
 
@@ -539,7 +564,7 @@ function CanvasDrawAnimationPathing(){
     if(ShowAnimationPathing == true){
 
         for (let i = 0; i < AnimationPathXProjected.length; i++) {
-    
+            if(MarkedPoints[i][o] == true){
             for (let o = 0; o < AnimationPathXProjected[i].length; o++) {
     
                 ctx.moveTo(400+Number(AnimationPathXProjected[i][o]),400+Number(AnimationPathYProjected[i][o]));
@@ -548,6 +573,7 @@ function CanvasDrawAnimationPathing(){
                 ctx.lineWidth = 2
                 ctx.stroke()
             }
+        }
         }
     }
 }

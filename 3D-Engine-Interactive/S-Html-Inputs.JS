@@ -71,3 +71,16 @@ function ChangeManipulateObject(){
 Manipulate = "Object"
 }
     // Manipulate (Radiobuttons) Functions
+
+
+
+
+function UpdateHertz(){
+    ProgramHertz = +document.getElementById("Hertz").value
+// IMPLEMENT TO MAIN LOOP
+}
+
+function UpdateIncrementHertz(){
+    ProgramIncrementHertz = +document.getElementById("Increment/Hertz").value
+// IMPLEMENT TO MAIN LOOP
+}

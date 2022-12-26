@@ -85,3 +85,24 @@ function GenerateInfArrForObjectAnimationInstructions(){
     }
 }
     // Inf Array Function
+
+
+
+
+    // Delete Object Function
+function DeleteObject(FoundObjectNumber){
+
+    DeletedObjects[FoundObjectNumber] = true
+
+    ShellX[FoundObjectNumber] = []
+    ShellY[FoundObjectNumber] = []
+    ShellZ[FoundObjectNumber] = []
+
+    ShellLeaderX[FoundObjectNumber] = 0
+    ShellLeaderY[FoundObjectNumber] = 0
+    ShellLeaderZ[FoundObjectNumber] = 0
+
+    // Potencial Problems
+
+}
+    // Delete Object Function
