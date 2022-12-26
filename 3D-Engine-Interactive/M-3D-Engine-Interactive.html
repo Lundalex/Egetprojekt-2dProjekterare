@@ -12,594 +12,628 @@
 </head>
 <body onclick="OnClickFunction(event)" onmousedown="MouseDownFunction(event)" onmouseup="MouseUpFunction(event)" onwheel="ScrollFunction(event)" style="background-color: #909090">
     
-<h1 style="color:rgb(255, 238, 0)">Unity(TM)</h1>
+    <!-- <h1 style="color:rgb(255, 238, 0)">Unity(TM)</h1> -->
+    <img src="data:image/png;base64,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" 
+    style="height: 100px; width: 300px;">
+    
 
     <div style="display: flex; flex-direction: row">
-
-        <canvas id="Canvas" width="800" height="800" style="border:10px solid #a200ff;"></canvas>
-
-        <div style="width: 10px;"></div>
-
-        <div style="display: flex; flex-direction: column;" style="padding: 20px;" style="background-color: burlywood;">
-
-            <h1 style="font-weight: bolder;">Camera:</h1>
-
-        <div style="display: flex; flex-direction: column;">
-        <div style="width: 180; height: 50; display: flex; flex-direction: row">
-            <div style="height: 50px; width: 50px ;background-color: rgb(69, 218, 32)"onclick="MoveLeft()">Left</div>
-            <div style="height: 50px; width: 50px; background-color: #0004ff;"onclick="MoveAhead()">Ahead</div>
-            <div style="height: 50px; width: 50px; background-color: rgb(69, 218, 32)"onclick="MoveRight()">Right</div>
-            </div>
-            <div style="width: 120; height: 50; display: flex; flex-direction: row">
-            <div style="height: 50px; width: 50px; background-color: #909090"></div>
-            <div style="height: 50px; width: 50px; background-color: rgb(69, 218, 32)"onclick="MoveBack()">Back</div>
-            </div>
-        </div>
-        <br>
-        <div style="display: flex; flex-direction: column;">
-            <div style="width: 150; height: 50; display: flex; flex-direction: row">
-            <div style="height: 50px; width: 50px; background-color: #909090"></div>
-            <div style="height: 50px; width: 50px; background-color: rgb(255, 251, 0)"onclick="MoveUp()">Up</div>
-            </div>
-            <div style="width: 150; height: 50; display: flex; flex-direction: row">
-            <div style="height: 50px; width: 50px; background-color: #909090"></div>
-            <div style="height: 50px; width: 50px; background-color: rgb(203, 32, 218)"onclick="MoveDown()">Down</div>
-            </div>
-        </div>
-
-        <h1 style="font-weight: bolder;">Settings:</h1>
-        <button style="width: 150px;" onclick="AddCubeObject()">AddCubeObject</button>
-        <div>
-        <input type="radio" name="1" value="Manipulate Path" onchange="ChangeManipulatePath()"><label>Manipulate Path</label><br>
-        <input type="radio" name="1" value="Manipulate Point" onchange="ChangeManipulatePoint()"><label>Manipulate Point</label><br>
-        <input type="radio" name="1" value="Manipulate Object" onchange="ChangeManipulateObject()"><label>Manipulate Object</label><br>
-    </div>
-        <button style="width: 150px; font-weight: 1000;" onclick="Start()">Start Program</button>
-        <button style="width: 150px; font-weight: 1000;" onclick="QuickStart()">Quick Start</button>
-        <br>
         
-
-        <p>Engine Settings</p>
-
-<div>
-  <input type="range" id="Hertz" name="Hertz"
-         min="0" max="50" onchange="UpdateHertz()" value="50">
-  <label for="Hertz">(1h) Hertz (50h)</label>
-</div>
-
-<div>
-  <input type="range" id="Increment/Hertz" name="Increment/Hertz" 
-         min="0.1" max="1" value="0.5" step="0.01" onchange="UpdateIncrementHertz()">
-  <label for="cowbell">(10%/h) Increment/Hertz (100%/h)</label>
-</div>
-
-        <br>
-
+        <canvas id="Canvas" width="800" height="800" style="border:10px solid #a200ff;"></canvas>
+        
+        <div style="width: 10px;"></div>
+        
+        <div style="display: flex; flex-direction: column;" style="padding: 20px;" style="background-color: burlywood;">
+            
+            <h1 style="font-weight: bolder;">Camera:</h1>
+            
+            <div style="display: flex; flex-direction: column;">
+                <div style="width: 180; height: 50; display: flex; flex-direction: row">
+                    <div style="height: 50px; width: 50px ;background-color: rgb(69, 218, 32)"onclick="MoveLeft()">Left</div>
+                    <div style="height: 50px; width: 50px; background-color: #0004ff;"onclick="MoveAhead()">Ahead</div>
+                    <div style="height: 50px; width: 50px; background-color: rgb(69, 218, 32)"onclick="MoveRight()">Right</div>
+                </div>
+                <div style="width: 120; height: 50; display: flex; flex-direction: row">
+                    <div style="height: 50px; width: 50px; background-color: #909090"></div>
+                    <div style="height: 50px; width: 50px; background-color: rgb(69, 218, 32)"onclick="MoveBack()">Back</div>
+                </div>
+            </div>
+            <br>
+            <div style="display: flex; flex-direction: column;">
+                <div style="width: 150; height: 50; display: flex; flex-direction: row">
+                    <div style="height: 50px; width: 50px; background-color: #909090"></div>
+                    <div style="height: 50px; width: 50px; background-color: rgb(255, 251, 0)"onclick="MoveUp()">Up</div>
+                </div>
+                <div style="width: 150; height: 50; display: flex; flex-direction: row">
+                    <div style="height: 50px; width: 50px; background-color: #909090"></div>
+                    <div style="height: 50px; width: 50px; background-color: rgb(203, 32, 218)"onclick="MoveDown()">Down</div>
+                </div>
+            </div>
+            
+            <h1 style="font-weight: bolder;">Settings:</h1>
+            <button style="width: 150px;" onclick="AddCubeObject()">AddCubeObject</button>
+            <div>
+                <input type="radio" name="1" value="Manipulate Path" onchange="ChangeManipulatePath()"><label>Manipulate Path</label><br>
+                <input type="radio" name="1" value="Manipulate Point" onchange="ChangeManipulatePoint()"><label>Manipulate Point</label><br>
+                <input type="radio" name="1" value="Manipulate Object" onchange="ChangeManipulateObject()"><label>Manipulate Object</label><br>
+            </div>
+            <button style="width: 150px; font-weight: 1000;" onclick="Start()">Start Program</button>
+            <button style="width: 150px; font-weight: 1000;" onclick="QuickStart()">Quick Start</button>
+            <br>
+            
+            
+            <p>Engine Settings</p>
+            
+            <div>
+                <input type="range" id="Hertz" name="Hertz"
+                min="1" max="50" onchange="UpdateHertz()" value="50">
+                <label for="Hertz" id="HertzLabel">(Min. 1H) Hertz (Max. 50H)</label>
+            </div>
+            
+            <div>
+                <input type="range" id="Increment/Hertz" name="Increment/Hertz" 
+                min="0.2" max="2" value="0.5" step="0.1" onchange="UpdateIncrementHertz()">
+                <label for="Increment/Hertz" id="IncrementHertzLabel">(Max. 20%/H) Change%/Hertz (Max. 200%/H)</label>
+            </div>
+            
+            <br>
+            
             <label>Focal Length:</label>
             <div style="display: flex; flex-direction: row"><input style="width: 150px;" type="text" id="3"><div id="7"></div></div>
             <button style="width: 150px;" onclick="SubmitSettings()">Submit Settings</button>
             
-
-    </div>
-
-    <div style="width: 50px;"></div>
-
-
-    <div style="display: flex; flex-direction: column;">
-
-        <!-- INSTRUCTIONS -->
-<p>(Arrowkeys, Shift, Spacebar) for movement (selected)</p>
-<p>Onscreen buttons for camera movement</p>
-<p>Onscreen buttons for camera movement</p>
-<p>(Manipulate Object + Scroll) for Scaling object</p>
-<p>(Key: "b") to show Animation Pathing</p>
-<p>(Key: "Backspace(Delete)") to Stop Program</p>
-<p>(Keys: "k", "l", "m", "n") to change Focus Animation Stage</p>
-<p>(Key: "v") to Stop Program</p>
-
-    </div>
-
-<script>
-    // All Global Variables
-let canvas = document.getElementById("Canvas")
-let ctx = canvas.getContext("2d")
-let context = canvas.getContext('2d')
-
-let ShellX = []
-let ShellY = []
-let ShellZ = []
-
-let KeyPress = ""
-
-let Manipulate = ""
-
-let ScrollY = "None"
-
-let TX = 0
-let TY = 0
-let TZ = 0
-let MX = 0
-let MY = 0
-let MZ = 0
-
-let XPosNeg = []
-let ZPosNeg = []
-let YPosNeg = []
-let ZYPosNeg = []
-
-let ShellLeaderX = []
-let ShellLeaderY = []
-let ShellLeaderZ = []
-
-let ShellXProjected = [[]]
-let ShellYProjected = [[]]
-
-let AnimationPathXProjected = [[]]
-let AnimationPathYProjected = [[]]
-
-let LeaderStyle = []
-
-let Avgstyle = 0
-
-let FocalLength = 700
-
-let FrameAmount = 10000
-
-let MarkedPoints = [[]]
-let MarkedObject = []
-
-let FoundObjectNumber = 100
-
-let ObjectAnimationInstructionsX = []
-let ObjectAnimationInstructionsY = []
-let ObjectAnimationInstructionsZ = []
-GenerateInfArrForObjectAnimationInstructions()
-
-let AnimationX = []
-let AnimationY = []
-let AnimationZ = []
-
-let ChosenPathStage = 0
-
-let LastMouseDownX = 0
-let LastMouseDownY = 0
-
-let LastMouseUpX = 0
-let LastMouseUpY = 0
-
-let ProgramHertz = 50
-let ProgramIncrementHertz = 0.5
-
-let TotalAnimationX = []
-let TotalAnimationY = []
-let TotalAnimationZ = []
-
-let ShowAnimationPathing = false
-
-let AnimateFrame = 0
-
-let RunProgram = false
-    // All Global Variables
-
-let DeletedObjects = []
-
-
-
-
-
-function MainLoop(){
-
-    ResetCanvas()
-
-    // (Manipulate path, object, point)
-    DoManipulation()
-
-    DoScaling()
-
-    DoCalculateAnimation()
-
-    // Prepare Projection Arrays
-    ProjectShell2D()
-
-    ProjectAnimationPath2D()
-    //
-    
-    // Draw On Canvas
-    CanvasDrawObjectShells()
-
-    CanvasDrawAnimationPathing()
-    //
-
-
-    KeyPress = "NoKey"
-    ScrollY = "None"
-
-
-
-
-if(RunProgram == true){
-    setTimeout(MainLoop, 10)
-}
-else{
-    ResetCanvas()
-}
-}
-   // END OF MAIN LOOP
-
-
-
-
-
-    // Reset Canvas Function
-    function ResetCanvas(){
-    ctx.beginPath();
-    ctx.rect(00, 00, 800, 800);
-    ctx.fillStyle = "white";
-    ctx.fill();
-}
-    // Reset Canvas Function
-
-
-
-
-    
-    // Manipulate Path/Object/Point Function
-function DoManipulation(){
-    if(Manipulate == "Path"){
-        switch (KeyPress) {
-            case "ArrowDown":
-            ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) - 20
-        
-            break;
-            case "ArrowUp":
-            ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) + 20
             
-            break;
-            case "ArrowLeft":
-            ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) - 20
+        </div>
+        
+        <div style="width: 50px;"></div>
+        
+        
+        <div style="display: flex; flex-direction: column;">
             
-            break;
-            case "ArrowRight":
-            ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) + 20
+            <!-- INSTRUCTIONS -->
+            <p>(Arrowkeys, Shift, Spacebar) for movement (selected)</p>
+            <p>Onscreen buttons for camera movement</p>
+            <p>Onscreen buttons for camera movement</p>
+            <p>(Manipulate Object + Scroll) for Scaling object</p>
+            <p>(Key: "b") to show Animation Pathing</p>
+            <p>(Key: "Backspace(Delete)") to Stop Program</p>
+            <p>(Keys: "k", "l", "m", "n") to change Focus Animation Stage</p>
+            <p>(Key: "v") to Stop Program</p>
             
-            break;
-            case "SpaceBar":
-            ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) - 20
-            break;
+        </div>
         
-            case "Shift":
-            ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) + 20
-            break;
-        
-            default:
-                break;
-        }
-        
-        }
-        else if(Manipulate == "Point"){
-        
-        for (let i = 0; i < MarkedPoints.length; i++) {
-        
-            for (let o = 0; o < MarkedPoints[i].length; o++) {
-        
-                if(MarkedPoints[i][o] == true){
-        
+        <script>
+            // All Global Variables
+            let canvas = document.getElementById("Canvas")
+            let ctx = canvas.getContext("2d")
+            let context = canvas.getContext('2d')
+            
+            let ShellX = []
+            let ShellY = []
+            let ShellZ = []
+            
+            let KeyPress = ""
+            
+            let Manipulate = ""
+            
+            let ScrollY = "None"
+            
+            let TX = 0
+            let TY = 0
+            let TZ = 0
+            let MX = 0
+            let MY = 0
+            let MZ = 0
+            
+            let XPosNeg = []
+            let ZPosNeg = []
+            let YPosNeg = []
+            let ZYPosNeg = []
+            
+            let ShellLeaderX = []
+            let ShellLeaderY = []
+            let ShellLeaderZ = []
+            
+            let ShellXProjected = [[]]
+            let ShellYProjected = [[]]
+            
+            let AnimationPathXProjected = [[]]
+            let AnimationPathYProjected = [[]]
+            
+            let LeaderStyle = []
+            
+            let Avgstyle = 0
+            
+            let FocalLength = 700
+            
+            let FrameAmount = 10000
+            
+            let MarkedPoints = [[]]
+            let MarkedObject = []
+            
+            let FoundObjectNumber = 0
+            
+            let ObjectAnimationInstructionsX = []
+            let ObjectAnimationInstructionsY = []
+            let ObjectAnimationInstructionsZ = []
+            GenerateInfArrForObjectAnimationInstructions()
+            
+            let AnimationX = []
+            let AnimationY = []
+            let AnimationZ = []
+            
+            let ChosenPathStage = 0
+            
+            let LastMouseDownX = 0
+            let LastMouseDownY = 0
+            
+            let LastMouseUpX = 0
+            let LastMouseUpY = 0
+            
+            let ProgramHertz = 50
+            let ProgramIncrementHertz = 0.5
+            
+            let TotalAnimationX = []
+            let TotalAnimationY = []
+            let TotalAnimationZ = []
+            
+            let ShowAnimationPathing = false
+            
+            let AnimateFrame = 0
+            
+            let RunProgram = false
+            // All Global Variables
+            
+            let DeletedObjects = []
+            
+            
+            
+            
+            
+            function MainLoop(){
+                
+                ResetCanvas()
+                
+                // (Manipulate path, object, point)
+                DoManipulation()
+                
+                DoScaling()
+                
+                DoCalculateAnimation()
+                
+                // Prepare Projection Arrays
+                ProjectShell2D()
+                
+                ProjectAnimationPath2D()
+                //
+                
+                // Draw On Canvas
+                CanvasDrawObjectShells()
+                
+                CanvasDrawAnimationPathing()
+                //
+                
+                
+                KeyPress = "NoKey"
+                ScrollY = "None"
+                
+                
+                
+                
+                if(RunProgram == true){
+                    setTimeout(MainLoop, 1000/ProgramHertz)
+                }
+                else{
+                    ResetCanvas()
+                }
+            }
+            // END OF MAIN LOOP
+            
+            
+            
+            
+            
+            // Reset Canvas Function
+            function ResetCanvas(){
+                ctx.beginPath();
+                ctx.rect(00, 00, 800, 800);
+                ctx.fillStyle = "white";
+                ctx.fill();
+            }
+            // Reset Canvas Function
+            
+            
+            
+            
+            
+            // Manipulate Path/Object/Point Function
+            function DoManipulation(){
+                if(Manipulate == "Path"){
                     switch (KeyPress) {
                         case "ArrowDown":
-                        ShellZ[i][o] -= 20
-        
+                        ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) - 40
+                        
                         break;
                         case "ArrowUp":
-                        ShellZ[i][o] += 20
-        
+                        ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) + 40
+                        
                         break;
                         case "ArrowLeft":
-                        ShellX[i][o] -= 20
-        
+                        ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) - 40
+                        
                         break;
                         case "ArrowRight":
-                        ShellX[i][o] += 20
-        
+                        ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) + 40
+                        
                         break;
                         case "SpaceBar":
-                        ShellY[i][o] -= 20
-        
+                        ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) - 40
+                        break;
+                        
+                        case "Shift":
+                        ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) + 40
+                        break;
+                        
+                        default:
+                        break;
+                    }
+                    
+                }
+                else if(Manipulate == "Point"){
+                    
+                    for (let i = 0; i < MarkedPoints.length; i++) {
+                        
+                        for (let o = 0; o < MarkedPoints[i].length; o++) {
+                            
+                            if(MarkedPoints[i][o] == true){
+                                
+                                switch (KeyPress) {
+                                    case "ArrowDown":
+                                    ShellZ[i][o] -= 20
+                                    
+                                    break;
+                                    case "ArrowUp":
+                                    ShellZ[i][o] += 20
+                                    
+                                    break;
+                                    case "ArrowLeft":
+                                    ShellX[i][o] -= 20
+                                    
+                                    break;
+                                    case "ArrowRight":
+                                    ShellX[i][o] += 20
+                                    
+                                    break;
+                                    case "SpaceBar":
+                                    ShellY[i][o] -= 20
+                                    
+                                    break;
+                                    case "Shift":
+                                    ShellY[i][o] += 20
+                                    
+                                    break;
+                                    
+                                    default:
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                else if(Manipulate == "Object"){
+                    switch (KeyPress) {
+                        case "ArrowDown":
+                        ShellLeaderZ[FoundObjectNumber] -= 20
+                        
+                        break;
+                        case "ArrowUp":
+                        ShellLeaderZ[FoundObjectNumber] += 20
+                        
+                        break;
+                        case "ArrowLeft":
+                        ShellLeaderX[FoundObjectNumber] -= 20
+                        
+                        break;
+                        case "ArrowRight":
+                        ShellLeaderX[FoundObjectNumber] += 20
+                        
+                        break;
+                        case "SpaceBar":
+                        ShellLeaderY[FoundObjectNumber] -= 20
+                        
                         break;
                         case "Shift":
-                        ShellY[i][o] += 20
-        
+                        ShellLeaderY[FoundObjectNumber] += 20
+                        
                         break;
-        
+                        
                         default:
                         break;
                     }
                 }
             }
-        }
-        }
-        
-        else if(Manipulate == "Object"){
-            switch (KeyPress) {
-            case "ArrowDown":
-            ShellLeaderZ[FoundObjectNumber] -= 20
-        
-            break;
-            case "ArrowUp":
-            ShellLeaderZ[FoundObjectNumber] += 20
+            // Manipulate Path/Object/Point Function
             
-            break;
-            case "ArrowLeft":
-            ShellLeaderX[FoundObjectNumber] -= 20
             
-            break;
-            case "ArrowRight":
-            ShellLeaderX[FoundObjectNumber] += 20
             
-            break;
-            case "SpaceBar":
-            ShellLeaderY[FoundObjectNumber] -= 20
-        
-            break;
-            case "Shift":
-            ShellLeaderY[FoundObjectNumber] += 20
             
-            break;
-        
-            default:
-                break;
-        }
-    }
-}
-    // Manipulate Path/Object/Point Function
-
-
-
-
-
-    // Apply Scaling Function
-function DoScaling(){
-    if(ScrollY != "None"){
-
-        let Scalefactor = 0
-    
-    if(ScrollY == "Up"){
-        Scalefactor = 1.05
-    }
-    
-    else{
-        Scalefactor = 0.95    
-    }
-    
-        for (let i = 0; i < ShellX[FoundObjectNumber].length; i++) {
-            ShellX[FoundObjectNumber][i] *= Scalefactor
-            ShellY[FoundObjectNumber][i] *= Scalefactor
-            ShellZ[FoundObjectNumber][i] *= Scalefactor
             
-        }
-    }
-}
-    // Apply Scaling Function
-
-
-
-
-
-    // Calculate Animation Values per Frame Function
-function DoCalculateAnimation(){
-
-    if(AnimateFrame > 400){
-        AnimateFrame = 1
-    }
-    else{
-        AnimateFrame ++
-    }
-    
-    for (let i = 0; i < ShellX.length; i++) {
-        if(DeletedObjects[i] != true){
-    let CurrentAnimationStage = Math.floor(AnimateFrame/100)
-    let FrameInAnimationStage = AnimateFrame % 100
-    
-    AnimationX[i] = 0
-    AnimationY[i] = 0
-    AnimationZ[i] = 0
-    
-    for (let o = 0; o < CurrentAnimationStage; o++) {
-    
-        AnimationX[i] += Number(ObjectAnimationInstructionsX[i][o])
-        AnimationY[i] += Number(ObjectAnimationInstructionsY[i][o])
-        AnimationZ[i] += Number(ObjectAnimationInstructionsZ[i][o])
-    
-    }
-    
-    AnimationX[i] += Number(ObjectAnimationInstructionsX[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
-    AnimationY[i] += Number(ObjectAnimationInstructionsY[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
-    AnimationZ[i] += Number(ObjectAnimationInstructionsZ[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
-    }
-    }
-    
-    
-    
-    if(ShowAnimationPathing == true){
-    
-    for (let i = 0; i < ObjectAnimationInstructionsX.length; i++) {
-        if(DeletedObjects[i] != true){
-    
-        TotalAnimationX[i] = []
-        TotalAnimationY[i] = []
-        TotalAnimationZ[i] = []
-    
-    
-            TotalAnimationX[i][0] = Number(ObjectAnimationInstructionsX[i][0])
-            TotalAnimationY[i][0] = Number(ObjectAnimationInstructionsY[i][0])
-            TotalAnimationZ[i][0] = Number(ObjectAnimationInstructionsZ[i][0])
-    
-    
-        for (let o = 1; o < ObjectAnimationInstructionsX[i].length; o++) {
-    
-            TotalAnimationX[i][o] = Number(TotalAnimationX[i][o-1]) + Number(ObjectAnimationInstructionsX[i][o])
-            TotalAnimationY[i][o] = Number(TotalAnimationY[i][o-1]) + Number(ObjectAnimationInstructionsY[i][o])
-            TotalAnimationZ[i][o] = Number(TotalAnimationZ[i][o-1]) + Number(ObjectAnimationInstructionsZ[i][o])
-    
-        }
-    }
-    }
-    }
-}
-    // Calculate Animation Values per Frame Function
-
-
-
-
-
-    // Project Shell X/Y/Z -> 2D(X, Y) Function
-function ProjectShell2D(){
-    for (let i = 0; i < ShellX.length; i++) {
-        if(DeletedObjects[i] != true){
-        ShellXProjected[i] = []
-        ShellYProjected[i] = []
-
-        for (let o = 0; o < ShellX[i].length; o++) {
-            // Add Animation Frame Values
-            let X = ShellX[i][o] + ShellLeaderX[i] + Number(AnimationX[i])
-            let Y = ShellY[i][o] + ShellLeaderY[i] + Number(AnimationY[i])
-            let Z = ShellZ[i][o] + ShellLeaderZ[i] + Number(AnimationZ[i])
-
-            ShellXProjected[i][o] = ((X * FocalLength) / (Z + FocalLength))
-            ShellYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
-        }
-    }
-    }
-}
-    // Project Shell X/Y/Z -> 2D(X, Y) Function
-
-
-
-
-
-    // Project per Object Animation Path X/Y/Z -> 2D(X, Y) Function
-function ProjectAnimationPath2D(){
-if(ShowAnimationPathing == true){
-
-    for (let i = 0; i < ShellLeaderX.length; i++) {
-        if(DeletedObjects[i] != true){
-
-        AnimationPathXProjected[i] = []
-        AnimationPathYProjected[i] = []
-
-        for (let o = 0; o < TotalAnimationX[i].length; o++) {
-            
-            let X = ShellLeaderX[i] + TotalAnimationX[i][o]
-            let Y = ShellLeaderY[i] + TotalAnimationY[i][o]
-            let Z = ShellLeaderZ[i] + TotalAnimationZ[i][o]
-            
-            AnimationPathXProjected[i][o] = ((X * FocalLength) / (Z + FocalLength))
-            AnimationPathYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
-        }
-
-        AnimationPathXProjected[i].unshift((ShellLeaderX[i] * FocalLength) / (ShellLeaderZ[i] + FocalLength))
-        AnimationPathYProjected[i].unshift((ShellLeaderY[i] * FocalLength) / (ShellLeaderZ[i] + FocalLength))
-    }
-    }
-
-}
-}
-    // Project per Object Animation Path X/Y/Z -> 2D(X, Y) Function
-
-
-
-
-
-    // Canvas Draw Object Shells with Marking Function
-function CanvasDrawObjectShells(){
-    for (let i = 0; i < ShellXProjected.length; i++) {
-        if(DeletedObjects[i] != true){
-        // Object Marked
-        if(MarkedObject[i] == true){
-            for (let o = 0; o < ShellXProjected[i].length; o++) {
-            
-            ctx.moveTo(400+Number(ShellXProjected[i][o]),400+Number(ShellYProjected[i][o]));
-            ctx.lineTo(400+Number(ShellXProjected[i][o+1]),400+Number(ShellYProjected[i][o+1]));
-            ctx.strokeStyle = "orange"
-            ctx.lineWidth = 2
-            ctx.stroke()
-        }
-        // Point Marked (in Marked Object)
-        for (let o = 0; o < ShellXProjected[i].length; o++) {
-            
-            if(MarkedPoints[i][o] == true){
-
-                ctx.moveTo(400+Number(ShellXProjected[i][o]-10),400+Number(ShellYProjected[i][o]-10));
-                ctx.lineTo(400+Number(ShellXProjected[i][o]+10),400+Number(ShellYProjected[i][o]+10));
-                ctx.strokeStyle = "red"
-                ctx.lineWidth = 2
-                ctx.stroke()
-                ctx.moveTo(400+Number(ShellXProjected[i][o]+10),400+Number(ShellYProjected[i][o]-10));
-                ctx.lineTo(400+Number(ShellXProjected[i][o]-10),400+Number(ShellYProjected[i][o]+10))
-                ctx.stroke()
+            // Apply Scaling Function
+            function DoScaling(){
+                if(ScrollY != "None"){
+                    
+                    let Scalefactor = 0
+                    
+                    if(ScrollY == "Up"){
+                        Scalefactor = 1.1
+                    }
+                    
+                    else{
+                        Scalefactor = 0.9
+                    }
+                    
+                    for (let i = 0; i < ShellX[FoundObjectNumber].length; i++) {
+                        ShellX[FoundObjectNumber][i] *= Scalefactor
+                        ShellY[FoundObjectNumber][i] *= Scalefactor
+                        ShellZ[FoundObjectNumber][i] *= Scalefactor
+                        
+                    }
+                }
             }
-        }
-
-        }
-        // Object Not Marked
-        else{
-        for (let o = 0; o < ShellXProjected[i].length; o++) {
+            // Apply Scaling Function
             
-            ctx.moveTo(400+Number(ShellXProjected[i][o]),400+Number(ShellYProjected[i][o]));
-            ctx.lineTo(400+Number(ShellXProjected[i][o+1]),400+Number(ShellYProjected[i][o+1]))
-            ctx.strokeStyle = "black";
-            ctx.lineWidth = 2
-            ctx.stroke()
-        }} 
-    }
-}
-}
-    // Canvas Draw Object Shells with Marking Function
-
-
-
-
-
-    // Canvas draw Animation Pathing Visualisation Function
-function CanvasDrawAnimationPathing(){
-    if(ShowAnimationPathing == true){
-
-        for (let i = 0; i < AnimationPathXProjected.length; i++) {
-            if(MarkedPoints[i][o] == true){
-            for (let o = 0; o < AnimationPathXProjected[i].length; o++) {
-    
-                ctx.moveTo(400+Number(AnimationPathXProjected[i][o]),400+Number(AnimationPathYProjected[i][o]));
-                ctx.lineTo(400+Number(AnimationPathXProjected[i][o+1]),400+Number(AnimationPathYProjected[i][o+1]));
-                ctx.strokeStyle = "purple"
-                ctx.lineWidth = 2
-                ctx.stroke()
+            
+            
+            
+            
+            // Calculate Animation Values per Frame Function
+            function DoCalculateAnimation(){
+                
+                if(AnimateFrame > 400){
+                    AnimateFrame = 1
+                }
+                else{
+                    AnimateFrame += 2 * ProgramIncrementHertz
+                }
+                
+                for (let i = 0; i < ShellX.length; i++) {
+                    if(DeletedObjects[i] != true){
+                        let CurrentAnimationStage = Math.floor(AnimateFrame/100)
+                        let FrameInAnimationStage = AnimateFrame % 100
+                        
+                        AnimationX[i] = 0
+                        AnimationY[i] = 0
+                        AnimationZ[i] = 0
+                        
+                        for (let o = 0; o < CurrentAnimationStage; o++) {
+                            
+                            AnimationX[i] += Number(ObjectAnimationInstructionsX[i][o])
+                            AnimationY[i] += Number(ObjectAnimationInstructionsY[i][o])
+                            AnimationZ[i] += Number(ObjectAnimationInstructionsZ[i][o])
+                            
+                        }
+                        
+                        AnimationX[i] += Number(ObjectAnimationInstructionsX[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+                        AnimationY[i] += Number(ObjectAnimationInstructionsY[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+                        AnimationZ[i] += Number(ObjectAnimationInstructionsZ[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+                    }
+                }
+                
+                
+                
+                if(ShowAnimationPathing == true){
+                    
+                    for (let i = 0; i < ObjectAnimationInstructionsX.length; i++) {
+                        if(DeletedObjects[i] != true){
+                            
+                            TotalAnimationX[i] = []
+                            TotalAnimationY[i] = []
+                            TotalAnimationZ[i] = []
+                            
+                            
+                            TotalAnimationX[i][0] = Number(ObjectAnimationInstructionsX[i][0])
+                            TotalAnimationY[i][0] = Number(ObjectAnimationInstructionsY[i][0])
+                            TotalAnimationZ[i][0] = Number(ObjectAnimationInstructionsZ[i][0])
+                            
+                            
+                            for (let o = 1; o < ObjectAnimationInstructionsX[i].length; o++) {
+                                
+                                TotalAnimationX[i][o] = Number(TotalAnimationX[i][o-1]) + Number(ObjectAnimationInstructionsX[i][o])
+                                TotalAnimationY[i][o] = Number(TotalAnimationY[i][o-1]) + Number(ObjectAnimationInstructionsY[i][o])
+                                TotalAnimationZ[i][o] = Number(TotalAnimationZ[i][o-1]) + Number(ObjectAnimationInstructionsZ[i][o])
+                                
+                            }
+                        }
+                    }
+                }
             }
-        }
-        }
-    }
-}
-    // Canvas draw Animation Pathing Visualisation Function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</script>
-
-
-</body>
-</html>
+            // Calculate Animation Values per Frame Function
+            
+            
+            
+            
+            
+            // Project Shell X/Y/Z -> 2D(X, Y) Function
+            function ProjectShell2D(){
+                for (let i = 0; i < ShellX.length; i++) {
+                    if(DeletedObjects[i] != true){
+                        ShellXProjected[i] = []
+                        ShellYProjected[i] = []
+                        
+                        for (let o = 0; o < ShellX[i].length; o++) {
+                            // Add Animation Frame Values
+                            let X = ShellX[i][o] + ShellLeaderX[i] + Number(AnimationX[i])
+                            let Y = ShellY[i][o] + ShellLeaderY[i] + Number(AnimationY[i])
+                            let Z = ShellZ[i][o] + ShellLeaderZ[i] + Number(AnimationZ[i])
+                            
+                            ShellXProjected[i][o] = ((X * FocalLength) / (Z + FocalLength))
+                            ShellYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
+                        }
+                    }
+                }
+            }
+            // Project Shell X/Y/Z -> 2D(X, Y) Function
+            
+            
+            
+            
+            
+            // Project per Object Animation Path X/Y/Z -> 2D(X, Y) Function
+            function ProjectAnimationPath2D(){
+                if(ShowAnimationPathing == true){
+                    
+                    for (let i = 0; i < ShellLeaderX.length; i++) {
+                        if(DeletedObjects[i] != true){
+                            
+                            AnimationPathXProjected[i] = []
+                            AnimationPathYProjected[i] = []
+                            
+                            for (let o = 0; o < TotalAnimationX[i].length; o++) {
+                                
+                                let X = ShellLeaderX[i] + TotalAnimationX[i][o]
+                                let Y = ShellLeaderY[i] + TotalAnimationY[i][o]
+                                let Z = ShellLeaderZ[i] + TotalAnimationZ[i][o]
+                                
+                                AnimationPathXProjected[i][o] = ((X * FocalLength) / (Z + FocalLength))
+                                AnimationPathYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
+                            }
+                            
+                            AnimationPathXProjected[i].unshift((ShellLeaderX[i] * FocalLength) / (ShellLeaderZ[i] + FocalLength))
+                            AnimationPathYProjected[i].unshift((ShellLeaderY[i] * FocalLength) / (ShellLeaderZ[i] + FocalLength))
+                        }
+                    }
+                }
+            }
+            // Project per Object Animation Path X/Y/Z -> 2D(X, Y) Function
+            
+            
+            
+            
+            
+            // Canvas Draw Object Shells with Marking Function
+            function CanvasDrawObjectShells(){
+                for (let i = 0; i < ShellXProjected.length; i++) {
+                    if(DeletedObjects[i] != true){
+                        // Object Marked
+                        if(MarkedObject[i] == true){
+                            for (let o = 0; o < ShellXProjected[i].length; o++) {
+                                
+                                ctx.moveTo(400+Number(ShellXProjected[i][o]),400+Number(ShellYProjected[i][o]));
+                                ctx.lineTo(400+Number(ShellXProjected[i][o+1]),400+Number(ShellYProjected[i][o+1]));
+                                ctx.strokeStyle = "orange"
+                                ctx.lineWidth = 2
+                                ctx.stroke()
+                            }
+                            // Point Marked (in Marked Object)
+                            for (let o = 0; o < ShellXProjected[i].length; o++) {
+                                
+                                if(MarkedPoints[i][o] == true){
+                                    
+                                    ctx.moveTo(400+Number(ShellXProjected[i][o]-10),400+Number(ShellYProjected[i][o]-10));
+                                    ctx.lineTo(400+Number(ShellXProjected[i][o]+10),400+Number(ShellYProjected[i][o]+10));
+                                    ctx.strokeStyle = "red"
+                                    ctx.lineWidth = 2
+                                    ctx.stroke()
+                                    ctx.moveTo(400+Number(ShellXProjected[i][o]+10),400+Number(ShellYProjected[i][o]-10));
+                                    ctx.lineTo(400+Number(ShellXProjected[i][o]-10),400+Number(ShellYProjected[i][o]+10))
+                                    ctx.stroke()
+                                }
+                            }
+                            
+                        }
+                        // Object Not Marked
+                        else{
+                            for (let o = 0; o < ShellXProjected[i].length; o++) {
+                                
+                                ctx.moveTo(400+Number(ShellXProjected[i][o]),400+Number(ShellYProjected[i][o]));
+                                ctx.lineTo(400+Number(ShellXProjected[i][o+1]),400+Number(ShellYProjected[i][o+1]))
+                                ctx.strokeStyle = "black";
+                                ctx.lineWidth = 2
+                                ctx.stroke()
+                            }
+                        } 
+                    }
+                }
+            }
+                // Canvas Draw Object Shells with Marking Function
+                
+                
+                
+                
+                
+                // Canvas draw Animation Pathing Visualisation Function
+                function CanvasDrawAnimationPathing(){
+                    if(ShowAnimationPathing == true){
+                        
+                        for (let i = 0; i < AnimationPathXProjected.length; i++) {
+                            
+                            if(DeletedObjects[i] != true){
+                                
+                                for (let o = 0; o < AnimationPathXProjected[i].length; o++) {
+                                    
+                                    ctx.moveTo(400+Number(AnimationPathXProjected[i][o]),400+Number(AnimationPathYProjected[i][o]));
+                                    ctx.lineTo(400+Number(AnimationPathXProjected[i][o+1]),400+Number(AnimationPathYProjected[i][o+1]));
+                                    ctx.strokeStyle = "purple"
+                                    ctx.lineWidth = 2
+                                    ctx.stroke()
+                                }
+                            }
+                        }
+                    }
+                }
+                // Canvas draw Animation Pathing Visualisation Function
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </script>
+            
+            
+        </body>
+        </html>
