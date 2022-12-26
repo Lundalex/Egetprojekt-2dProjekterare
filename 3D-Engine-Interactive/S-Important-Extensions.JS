@@ -58,10 +58,176 @@
             const ChangeX = DownX - UpX
             const ChangeY = DownY - UpY
             
-            // Continue Here - (6 Camera Perpectives)!!!
-        }
-        else{
-            return
+            if((Math.abs(ChangeX) > 100) || (Math.abs(ChangeY) > 100)){
+
+
+                if(CameraPerspective == 1){
+
+                    // Turn Right
+                    if(ChangeX < -100){
+
+                        CameraPerspective = 2
+                    }
+
+                    // Turn Up
+                    if(ChangeY > 100){
+
+                        CameraPerspective = 3
+                    }
+
+                    // Turn Left
+                    if(ChangeX > 100){
+
+                        CameraPerspective = 4
+                    }
+
+                    // Turn Down
+                    if(ChangeX < -100){
+                        
+                        CameraPerspective = 5
+                    }
+                }
+
+
+                else if(CameraPerspective == 2){
+
+                    // Turn Right
+                    if(ChangeX < -100){
+
+                        CameraPerspective = 6
+                    }
+
+                    // Turn Up
+                    if(ChangeY > 100){
+
+                        CameraPerspective = 3
+                    }
+
+                    // Turn Left
+                    if(ChangeX > 100){
+
+                        CameraPerspective = 1
+                    }
+
+                    // Turn Down
+                    if(ChangeX < -100){
+                        
+                        CameraPerspective = 5
+                    }
+                }
+
+
+                else if(CameraPerspective == 3){
+
+                    // Turn Right
+                    if(ChangeX < -100){
+
+                        CameraPerspective = 2
+                    }
+
+                    // Turn Up
+                    if(ChangeY > 100){
+
+                        CameraPerspective = 6
+                    }
+
+                    // Turn Left
+                    if(ChangeX > 100){
+
+                        CameraPerspective = 4
+                    }
+
+                    // Turn Down
+                    if(ChangeX < -100){
+                        
+                        CameraPerspective = 1
+                    }
+                }
+
+
+                else if(CameraPerspective == 4){
+
+                    // Turn Right
+                    if(ChangeX < -100){
+
+                        CameraPerspective = 1
+                    }
+
+                    // Turn Up
+                    if(ChangeY > 100){
+
+                        CameraPerspective = 3
+                    }
+
+                    // Turn Left
+                    if(ChangeX > 100){
+
+                        CameraPerspective = 6
+                    }
+
+                    // Turn Down
+                    if(ChangeX < -100){
+                        
+                        CameraPerspective = 5
+                    }
+                }
+
+
+                else if(CameraPerspective == 5){
+
+                    // Turn Right
+                    if(ChangeX < -100){
+
+                        CameraPerspective = 2
+                    }
+
+                    // Turn Up
+                    if(ChangeY > 100){
+
+                        CameraPerspective = 1
+                    }
+
+                    // Turn Left
+                    if(ChangeX > 100){
+
+                        CameraPerspective = 4
+                    }
+
+                    // Turn Down
+                    if(ChangeX < -100){
+                        
+                        CameraPerspective = 6
+                    }
+                }
+
+                
+                else if(CameraPerspective == 6){
+
+                    // Turn Right
+                    if(ChangeX < -100){
+
+                        CameraPerspective = 4
+                    }
+
+                    // Turn Up
+                    if(ChangeY > 100){
+
+                        CameraPerspective = 5
+                    }
+
+                    // Turn Left
+                    if(ChangeX > 100){
+
+                        CameraPerspective = 2
+                    }
+
+                    // Turn Down
+                    if(ChangeX < -100){
+                        
+                        CameraPerspective = 3
+                    }
+                }
+            }
         }
     }
     // Camera Perspective Function
