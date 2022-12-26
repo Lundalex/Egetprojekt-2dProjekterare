@@ -98,11 +98,19 @@ if(FoundCollision == true){
       case "n":
       ChosenPathStage = 3
       break;
+
 ////////////
       case "b":
       ShowAnimationPathing = true
       break;
 ////////////
+
+////////////
+case "v":
+  RunProgram = false
+  break;
+////////////
+
     default:
       return; // Quit when this doesn't handle the key event.
   }

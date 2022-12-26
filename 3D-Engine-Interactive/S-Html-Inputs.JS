@@ -58,6 +58,8 @@ function MoveUp(){
 
 
 
+
+    
     // Manipulate (Radiobuttons) Functions
 function ChangeManipulatePath(){
 Manipulate = "Path"

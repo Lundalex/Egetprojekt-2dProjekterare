@@ -6,12 +6,9 @@ function Start() {
     ctx.fillStyle = "white";
     ctx.fill();
     
-    // let FrameAmount = +prompt("Insert FrameAmount")
+    RunProgram = true
 
-    for (let g = 0; g < FrameAmount; g++) {
-
-        setTimeout(MainLoop, 20*g)
-    }
+    setTimeout(MainLoop, 20)
 }
     // Start Main Loop Function
 
