@@ -25,46 +25,22 @@
     
     // Camera Movement Functions
     function MoveRight(){
-        if(CameraMoveMode == 1){
-        for (let i = 0; i < ShellLeaderX.length; i++) {
-            ShellLeaderX[i] -= 100
-        }
-    }
+        AddedXDistance -= 100
 }
     function MoveLeft(){
-        if(CameraMoveMode == 1){
-        for (let i = 0; i < ShellLeaderX.length; i++) {
-            ShellLeaderX[i] += 100
-        }
-    }
+        AddedXDistance += 100
 }
     function MoveAhead(){
-        if(CameraMoveMode == 1){
-        for (let i = 0; i < ShellLeaderZ.length; i++) {
-            ShellLeaderZ[i] -= 100
-        }
-    }
+        AddedZDistance -= 100
 }
     function MoveBack(){
-        if(CameraMoveMode == 1){
-        for (let i = 0; i < ShellLeaderZ.length; i++) {
-            ShellLeaderZ[i] += 100
-        }
-    }
+        AddedZDistance += 100
 }
     function MoveDown(){
-        if(CameraMoveMode == 1){
-        for (let i = 0; i < ShellLeaderY.length; i++) {
-            ShellLeaderY[i] -= 100
-        }
-    }
+        AddedYDistance -= 100
 }
     function MoveUp(){
-        if(CameraMoveMode == 1){
-        for (let i = 0; i < ShellLeaderY.length; i++) {
-            ShellLeaderY[i] += 100
-        }
-    }
+        AddedYDistance += 100
 }
     // Camera Movement Functions
     
@@ -87,6 +63,8 @@
     
     
     
+
+    // Rendering Engine Settings Update Functions
     function UpdateHertz(){
         ProgramHertz = +document.getElementById("Hertz").value
         document.getElementById("HertzLabel").innerHTML = ProgramHertz + " Hertz (/ Max 50)"
@@ -96,3 +74,4 @@
         ProgramIncrementHertz = +document.getElementById("Increment/Hertz").value
         document.getElementById("IncrementHertzLabel").innerHTML = ProgramIncrementHertz*100 + "% Change per H(/ Max 200%)"
     }
+    // Rendering Engine Settings Update Functions

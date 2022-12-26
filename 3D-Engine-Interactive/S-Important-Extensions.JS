@@ -21,7 +21,7 @@
         
         let CDX = Math.random() * 500 - 250
         let CDY = Math.random() * 500 - 250
-        let CDZ = Math.random() * 500 - 250 + 250
+        let CDZ = Math.random() * 500 - 250
         
         ShellX.push([100-100+CDX,200-100+CDX,200-100+CDX,100-100+CDX,100-100+CDX,100-100+CDX,200-100+CDX,200-100+CDX,100-100+CDX,100-100+CDX,100-100+CDX,200-100+CDX,200-100+CDX,200-100+CDX,200-100+CDX,100-100+CDX,100-100+CDX])
         ShellY.push([100-100+CDY,100-100+CDY,200-100+CDY,200-100+CDY,100-100+CDY,100-100+CDY,100-100+CDY,200-100+CDY,200-100+CDY,100-100+CDY,100-100+CDY,100-100+CDY,100-100+CDY,200-100+CDY,200-100+CDY,200-100+CDY,200-100+CDY])
@@ -60,173 +60,48 @@
             
             if((Math.abs(ChangeX) > 100) || (Math.abs(ChangeY) > 100)){
 
-
-                if(CameraPerspective == 1){
-
-                    // Turn Right
-                    if(ChangeX < -100){
-
-                        CameraPerspective = 2
-                    }
-
-                    // Turn Up
-                    if(ChangeY > 100){
-
-                        CameraPerspective = 3
-                    }
-
-                    // Turn Left
-                    if(ChangeX > 100){
-
-                        CameraPerspective = 4
-                    }
-
-                    // Turn Down
-                    if(ChangeX < -100){
-                        
-                        CameraPerspective = 5
-                    }
-                }
-
-
-                else if(CameraPerspective == 2){
+                let NewCameraDirection1 = 0
+                let NewCameraDirection2 = 0
+                let NewCameraDirection3 = 0
 
                     // Turn Right
                     if(ChangeX < -100){
 
-                        CameraPerspective = 6
+                        NewCameraDirection1 = CameraDirection3
+                        NewCameraDirection2 = CameraDirection2
+                        NewCameraDirection3 = -CameraDirection1
+
                     }
 
                     // Turn Up
-                    if(ChangeY > 100){
+                    else if(ChangeY < -100){
 
-                        CameraPerspective = 3
+                        NewCameraDirection1 = CameraDirection1
+                        NewCameraDirection2 = -CameraDirection3
+                        NewCameraDirection3 = CameraDirection2
+
                     }
 
                     // Turn Left
-                    if(ChangeX > 100){
+                    else if(ChangeX > 100){
 
-                        CameraPerspective = 1
+                        NewCameraDirection1 = -CameraDirection3
+                        NewCameraDirection2 = CameraDirection2
+                        NewCameraDirection3 = CameraDirection1
                     }
 
                     // Turn Down
-                    if(ChangeX < -100){
+                    else if(ChangeY > 100){
+
+                        NewCameraDirection1 = CameraDirection1
+                        NewCameraDirection2 = CameraDirection3
+                        NewCameraDirection3 = -CameraDirection2
                         
-                        CameraPerspective = 5
-                    }
-                }
-
-
-                else if(CameraPerspective == 3){
-
-                    // Turn Right
-                    if(ChangeX < -100){
-
-                        CameraPerspective = 2
                     }
 
-                    // Turn Up
-                    if(ChangeY > 100){
-
-                        CameraPerspective = 6
-                    }
-
-                    // Turn Left
-                    if(ChangeX > 100){
-
-                        CameraPerspective = 4
-                    }
-
-                    // Turn Down
-                    if(ChangeX < -100){
-                        
-                        CameraPerspective = 1
-                    }
-                }
-
-
-                else if(CameraPerspective == 4){
-
-                    // Turn Right
-                    if(ChangeX < -100){
-
-                        CameraPerspective = 1
-                    }
-
-                    // Turn Up
-                    if(ChangeY > 100){
-
-                        CameraPerspective = 3
-                    }
-
-                    // Turn Left
-                    if(ChangeX > 100){
-
-                        CameraPerspective = 6
-                    }
-
-                    // Turn Down
-                    if(ChangeX < -100){
-                        
-                        CameraPerspective = 5
-                    }
-                }
-
-
-                else if(CameraPerspective == 5){
-
-                    // Turn Right
-                    if(ChangeX < -100){
-
-                        CameraPerspective = 2
-                    }
-
-                    // Turn Up
-                    if(ChangeY > 100){
-
-                        CameraPerspective = 1
-                    }
-
-                    // Turn Left
-                    if(ChangeX > 100){
-
-                        CameraPerspective = 4
-                    }
-
-                    // Turn Down
-                    if(ChangeX < -100){
-                        
-                        CameraPerspective = 6
-                    }
-                }
-
-                
-                else if(CameraPerspective == 6){
-
-                    // Turn Right
-                    if(ChangeX < -100){
-
-                        CameraPerspective = 4
-                    }
-
-                    // Turn Up
-                    if(ChangeY > 100){
-
-                        CameraPerspective = 5
-                    }
-
-                    // Turn Left
-                    if(ChangeX > 100){
-
-                        CameraPerspective = 2
-                    }
-
-                    // Turn Down
-                    if(ChangeX < -100){
-                        
-                        CameraPerspective = 3
-                    }
-                }
+                    CameraDirection1 = NewCameraDirection1
+                    CameraDirection2 = NewCameraDirection2
+                    CameraDirection3 = NewCameraDirection3
             }
         }
     }

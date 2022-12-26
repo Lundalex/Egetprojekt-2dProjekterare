@@ -12,7 +12,7 @@
 </head>
 <body onclick="OnClickFunction(event)" onmousedown="MouseDownFunction(event)" onmouseup="MouseUpFunction(event)" onwheel="ScrollFunction(event)" style="background-color: #909090">
     
-    <!-- <h1 style="color:rgb(255, 238, 0)">Unity(TM)</h1> -->
+    <div style="display: flex; flex-direction: row">
     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXUAAACHCAMAAADeDjlcAAAAgVBMVEX///8RCwkAAAD29vYLAgDCwcGmpaUfGxkFAABdW1usq6owLSzFxMRpZ2fNzc0/PTzU09N
     LSEgNBQB5d3e0s7Pq6urk5OTu7u4mIiE4NTT5+fmioaHb29tVU1KTkpKCgYEaFRQsKShHRURYVlZ+fHxycHBmZGONjIsWEQ81MjEjHx2eXKxYAAANTUlEQVR4nO2d53rqMAyGi1mhg7LKLi0tnfd/gScJIVj
     y5xVC1un3q09LinlxLFmSlZubMjTajLulvPF/q+3mXYQ6lD2O/0fb3mdEvNVqdb7LHsv/ofntQ0I8lpiXPaDGazGbtkLik9ZZolf2oBqtdvewDIl3WlRiUPbAGqv1/dcPIH7EXvbgmqnh7jEkHiDiMfVh2QNs
@@ -44,7 +44,9 @@
     /MaCZX5yQjrnxxrq1Xq2aX3k1Phhop3qTUsjFaWLOik1Lo1UlAylcFZV7PnsdRIozHOe6o1KIxWqLTyn4ka9EWmkcrTdxFVoWag3Io1Unka7tzji7qVM9Tl/Ilrff/0oyVrzVG9GGql0tbsv6GlEOurNSCNVQovZh+M
     y/+c35qv57YOdfFPSSJXSdvNuJt+UNFLlNNqN9a5NU9JIldTwawVdm0tq0f7koNC1WSquTWPSSFXWYjadkGW+MWmkqou4Ng7PIvhTXtr2BjF536ca/ulSxa7NXxqpBA3/a7/xHzzqxZbcK1bsAAAAAElFTkSuQmCC" 
     style="height: 100px; width: 300px;">
-    
+    <div style="width: 530px;"></div>
+    <h1 id="CameraDirection">Default Camera Orientation</h1>
+</div>
 
     <div style="display: flex; flex-direction: row">
         
@@ -218,9 +220,13 @@
 
             let CameraMoveMode = 1
             
-            let CameraPerspective = 1
+            let CameraDirection1 = 1 // 1 = X
+            let CameraDirection2 = 2 // 2 = Y
+            let CameraDirection3 = 3 // 3 = Z
             
-            
+            let AddedXDistance = 0
+            let AddedYDistance = 0
+            let AddedZDistance = 500
             
             
             function MainLoop(){
@@ -251,7 +257,20 @@
                 ScrollY = "None"
                 
                 
+
+                    const TestCameraArr = ApplyCameraPerspective(1,2,3)
+                if((TestCameraArr[0] == 1) && (TestCameraArr[1] == 2) && (TestCameraArr[2] == 3)){
                 
+                    document.getElementById("CameraDirection").innerHTML = "Default Camera Orientation"
+                    document.getElementById("CameraDirection").style.color = "lightgreen"
+                }
+                else{
+                    document.getElementById("CameraDirection").innerHTML = "Not Default Camera Orientation"
+                    document.getElementById("CameraDirection").style.color = "red"
+                }
+                
+
+
                 
                 if(RunProgram == true){
                     setTimeout(MainLoop, 1000/ProgramHertz)
@@ -496,9 +515,16 @@
                         
                         for (let o = 0; o < ShellX[i].length; o++) {
                             // Add Animation Frame Values
-                            let X = ShellX[i][o] + ShellLeaderX[i] + Number(AnimationX[i])
-                            let Y = ShellY[i][o] + ShellLeaderY[i] + Number(AnimationY[i])
-                            let Z = ShellZ[i][o] + ShellLeaderZ[i] + Number(AnimationZ[i])
+                            const ShellPointX = ShellX[i][o] + ShellLeaderX[i] + Number(AnimationX[i])
+                            const ShellPointY = ShellY[i][o] + ShellLeaderY[i] + Number(AnimationY[i])
+                            const ShellPointZ = ShellZ[i][o] + ShellLeaderZ[i] + Number(AnimationZ[i])
+
+                            const XYZArr = ApplyCameraPerspective(ShellPointX, ShellPointY, ShellPointZ)
+
+                            const X = XYZArr[0] + AddedXDistance
+                            const Y = XYZArr[1] + AddedYDistance
+                            const Z = XYZArr[2] + AddedZDistance
+                            
                             
                             ShellXProjected[i][o] = ((X * FocalLength) / (Z + FocalLength))
                             ShellYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
@@ -508,8 +534,83 @@
             }
             // Project Shell X/Y/Z -> 2D(X, Y) Function
             
+
+
+
+
+            // Camera Orientation Function
+            function ApplyCameraPerspective(X, Y, Z){
+
+                let NewX = 0
+                let NewY = 0
+                let NewZ = 0
+
+                if(CameraDirection1 == 1){
+                    NewX = X
+                }
+                if(CameraDirection1 == -1){
+                    NewX = -X
+                }
+                if(CameraDirection1 == 2){
+                    NewX = Y
+                }
+                if(CameraDirection1 == -2){
+                    NewX = -Y
+                }
+                if(CameraDirection1 == 3){
+                    NewX = Z
+                }
+                if(CameraDirection1 == -3){
+                    NewX = -Z
+                }
+
+
+
+                if(CameraDirection2 == 1){
+                    NewY = X
+                }
+                if(CameraDirection2 == -1){
+                    NewY = -X
+                }
+                if(CameraDirection2 == 2){
+                    NewY = Y
+                }
+                if(CameraDirection2 == -2){
+                    NewY = -Y
+                }
+                if(CameraDirection2 == 3){
+                    NewY = Z
+                }
+                if(CameraDirection2 == -3){
+                    NewY = -Z
+                }
+
+
+
+                if(CameraDirection3 == 1){
+                    NewZ = X
+                }
+                if(CameraDirection3 == -1){
+                    NewZ = -X
+                }
+                if(CameraDirection3 == 2){
+                    NewZ = Y
+                }
+                if(CameraDirection3 == -2){
+                    NewZ = -Y
+                }
+                if(CameraDirection3 == 3){
+                    NewZ = Z
+                }
+                if(CameraDirection3 == -3){
+                    NewZ = -Z
+                }
+                return [NewX, NewY, NewZ]
+            }
+            // Camera Orientation Function
             
-            
+
+
             
             
             // Project per Object Animation Path X/Y/Z -> 2D(X, Y) Function
@@ -524,16 +625,32 @@
                             
                             for (let o = 0; o < TotalAnimationX[i].length; o++) {
                                 
-                                let X = ShellLeaderX[i] + TotalAnimationX[i][o]
-                                let Y = ShellLeaderY[i] + TotalAnimationY[i][o]
-                                let Z = ShellLeaderZ[i] + TotalAnimationZ[i][o]
+                                const TotalAnimationpointX = ShellLeaderX[i] + TotalAnimationX[i][o]
+                                const TotalAnimationpointY = ShellLeaderY[i] + TotalAnimationY[i][o]
+                                const TotalAnimationpointZ = ShellLeaderZ[i] + TotalAnimationZ[i][o]
+
+                                const XYZArr = ApplyCameraPerspective(TotalAnimationpointX, TotalAnimationpointY, TotalAnimationpointZ)
+
+                                const X = XYZArr[0] + AddedXDistance
+                                const Y = XYZArr[1] + AddedYDistance
+                                const Z = XYZArr[2] + AddedZDistance
                                 
                                 AnimationPathXProjected[i][o] = ((X * FocalLength) / (Z + FocalLength))
                                 AnimationPathYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
                             }
-                            
-                            AnimationPathXProjected[i].unshift((ShellLeaderX[i] * FocalLength) / (ShellLeaderZ[i] + FocalLength))
-                            AnimationPathYProjected[i].unshift((ShellLeaderY[i] * FocalLength) / (ShellLeaderZ[i] + FocalLength))
+
+                            const TotalAnimationpointX = ShellLeaderX[i]
+                            const TotalAnimationpointY = ShellLeaderY[i]
+                            const TotalAnimationpointZ = ShellLeaderZ[i]
+
+                            const XYZArr = ApplyCameraPerspective(TotalAnimationpointX, TotalAnimationpointY, TotalAnimationpointZ)
+
+                            const X = XYZArr[0] + AddedXDistance
+                            const Y = XYZArr[1] + AddedYDistance
+                            const Z = XYZArr[2] + AddedZDistance
+                                
+                            AnimationPathXProjected[i].unshift((X * FocalLength) / (Z + FocalLength))
+                            AnimationPathYProjected[i].unshift((Y * FocalLength) / (Z + FocalLength))
                         }
                     }
                 }
@@ -617,27 +734,7 @@
                 }
                 // Canvas draw Animation Pathing Visualisation Function
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
             </script>
-            
             
         </body>
         </html>
