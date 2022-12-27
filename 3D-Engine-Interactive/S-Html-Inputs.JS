@@ -67,3 +67,15 @@
         document.getElementById("FocalLengthLabel").innerHTML = "(Min. 500F) Focal Length: (" +  FocalLength + ") (Max. 15000F)"
     }
     // Rendering Engine Settings Update Functions
+
+    
+
+
+
+    // Reset Camera Orientation Function
+    function ResetCameraOrientation(){
+        CameraDirection1 = 1
+        CameraDirection2 = 2
+        CameraDirection3 = 3
+    }
+    // Reset Camera Orientation Function

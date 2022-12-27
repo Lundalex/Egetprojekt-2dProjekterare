@@ -86,6 +86,19 @@ if(FoundCollision == true){
     DeleteObject(FoundObjectNumber)
       break;
 
+      case "a":
+        KeyPress = "ArrowLeft"
+          break;
+          case "d":
+            KeyPress = "ArrowRight"
+          break;
+          case "w":
+            KeyPress = "ArrowUp"
+          break;
+          case "s":
+            KeyPress = "ArrowDown"
+          break;
+
       case "k":
     ChosenPathStage = 0
       break;
