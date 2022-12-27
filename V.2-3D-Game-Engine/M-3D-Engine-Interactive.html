@@ -152,11 +152,17 @@
 
 
 
+            RegObjects = []
+
+
+
+
+
+
             
-            
-            let ShellX = []
-            let ShellY = []
-            let ShellZ = []
+            // let ShellX = []
+            // let ShellY = []
+            // let ShellZ = []
             
             let KeyPress = ""
             
@@ -164,45 +170,14 @@
             
             let ScrollY = "None"
             
-            let TX = 0
-            let TY = 0
-            let TZ = 0
-            let MX = 0
-            let MY = 0
-            let MZ = 0
-            
-            let XPosNeg = []
-            let ZPosNeg = []
-            let YPosNeg = []
-            let ZYPosNeg = []
-            
-            let ShellLeaderX = []
-            let ShellLeaderY = []
-            let ShellLeaderZ = []
-            
-            let ShellXProjected = [[]]
-            let ShellYProjected = [[]]
-            
-            let AnimationPathXProjected = [[]]
-            let AnimationPathYProjected = [[]]
-            
-            let LeaderStyle = []
-            
-            let Avgstyle = 0
             
             let FocalLength = 700
             
             let FrameAmount = 10000
             
-            let MarkedPoints = [[]]
-            let MarkedObject = []
-            
             let FoundObjectNumber = 0
             
-            let ObjectAnimationInstructionsX = []
-            let ObjectAnimationInstructionsY = []
-            let ObjectAnimationInstructionsZ = []
-            GenerateInfArrForObjectAnimationInstructions()
+            // GenerateInfArrForObjectAnimationInstructions()
             
             let AnimationX = []
             let AnimationY = []
@@ -219,18 +194,12 @@
             let ProgramHertz = 50
             let ProgramIncrementHertz = 0.5
             
-            let TotalAnimationX = []
-            let TotalAnimationY = []
-            let TotalAnimationZ = []
-            
             let ShowAnimationPathing = false
             
-            let AnimateFrame = 0
+            let Framestage = 0
             
             let RunProgram = false
-            // All Global Variables
-            
-            let DeletedObjects = []
+
 
             let CameraMoveMode = 1
             
@@ -241,6 +210,7 @@
             let AddedXDistance = 0
             let AddedYDistance = 0
             let AddedZDistance = 400
+            // All Global Variables
             
 
 
@@ -248,30 +218,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
             function MainLoop(){
                 
-                ResetCanvas()
+                ResetCanvas() //
                 
                 // (Manipulate path, object, point)
                 DoManipulation()
@@ -291,7 +240,7 @@
                 
                 CanvasDrawAnimationPathing()
                 //
-                
+                console.log(RegObjects)
                 
                 KeyPress = "NoKey"
                 ScrollY = "None"
@@ -343,27 +292,27 @@
                 if(Manipulate == "Path"){
                     switch (KeyPress) {
                         case "ArrowDown":
-                        ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) - 40
+                        RegObjects[FoundObjectNumber].AnimationInstructionsZ[ChosenPathStage] -= 40
                         
                         break;
                         case "ArrowUp":
-                        ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsZ[FoundObjectNumber][ChosenPathStage]) + 40
+                        RegObjects[FoundObjectNumber].AnimationInstructionsZ[ChosenPathStage] += 40
                         
                         break;
                         case "ArrowLeft":
-                        ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) - 40
+                        RegObjects[FoundObjectNumber].AnimationInstructionsX[ChosenPathStage] -= 40
                         
                         break;
                         case "ArrowRight":
-                        ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsX[FoundObjectNumber][ChosenPathStage]) + 40
+                        RegObjects[FoundObjectNumber].AnimationInstructionsX[ChosenPathStage] += 40
                         
                         break;
                         case "SpaceBar":
-                        ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) - 40
+                        RegObjects[FoundObjectNumber].AnimationInstructionsY[ChosenPathStage] -= 40
                         break;
                         
                         case "Shift":
-                        ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage] = Number(ObjectAnimationInstructionsY[FoundObjectNumber][ChosenPathStage]) + 40
+                        RegObjects[FoundObjectNumber].AnimationInstructionsY[ChosenPathStage] += 40
                         break;
                         
                         default:
@@ -372,35 +321,34 @@
                 }
                 else if(Manipulate == "Point"){
                     
-                    for (let i = 0; i < MarkedPoints.length; i++) {
+                    for (let i = 0; i < RegObjects[FoundObjectNumber].PointsMarked.length; i++) {
                         
-                        for (let o = 0; o < MarkedPoints[i].length; o++) {
                             
-                            if(MarkedPoints[i][o] == true){
+                            if(RegObjects[FoundObjectNumber].PointsMarked[i] == true){
                                 
                                 switch (KeyPress) {
                                     case "ArrowDown":
-                                    ShellZ[i][o] -= 20
+                                    RegObjects[FoundObjectNumber].ShellZ[i] -= 20
                                     
                                     break;
                                     case "ArrowUp":
-                                    ShellZ[i][o] += 20
+                                    RegObjects[FoundObjectNumber].ShellZ[i] += 20
                                     
                                     break;
                                     case "ArrowLeft":
-                                    ShellX[i][o] -= 20
+                                    RegObjects[FoundObjectNumber].ShellX[i] -= 20
                                     
                                     break;
                                     case "ArrowRight":
-                                    ShellX[i][o] += 20
+                                    RegObjects[FoundObjectNumber].ShellX[i] += 20
                                     
                                     break;
                                     case "SpaceBar":
-                                    ShellY[i][o] -= 20
+                                    RegObjects[FoundObjectNumber].ShellY[i] -= 20
                                     
                                     break;
                                     case "Shift":
-                                    ShellY[i][o] += 20
+                                    RegObjects[FoundObjectNumber].ShellY[i] += 20
                                     
                                     break;
                                     
@@ -408,34 +356,34 @@
                                     break;
                                 }
                             }
-                        }
+                        
                     }
                 }
                 
                 else if(Manipulate == "Object"){
                     switch (KeyPress) {
                         case "ArrowDown":
-                        ShellLeaderZ[FoundObjectNumber] -= 20
+                        RegObjects[FoundObjectNumber].LeaderZ -= 20
                         
                         break;
                         case "ArrowUp":
-                        ShellLeaderZ[FoundObjectNumber] += 20
+                        RegObjects[FoundObjectNumber].LeaderZ += 20
                         
                         break;
                         case "ArrowLeft":
-                        ShellLeaderX[FoundObjectNumber] -= 20
+                        RegObjects[FoundObjectNumber].LeaderX -= 20
                         
                         break;
                         case "ArrowRight":
-                        ShellLeaderX[FoundObjectNumber] += 20
+                        RegObjects[FoundObjectNumber].LeaderX += 20
                         
                         break;
                         case "SpaceBar":
-                        ShellLeaderY[FoundObjectNumber] -= 20
+                        RegObjects[FoundObjectNumber].LeaderY -= 20
                         
                         break;
                         case "Shift":
-                        ShellLeaderY[FoundObjectNumber] += 20
+                        RegObjects[FoundObjectNumber].LeaderY += 20
                         
                         break;
                         
@@ -460,14 +408,14 @@
                         Scalefactor = 1.1
                     }
                     
-                    else{
+                    else if (ScrollY == "Down"){
                         Scalefactor = 0.9
                     }
-                    
-                    for (let i = 0; i < ShellX[FoundObjectNumber].length; i++) {
-                        ShellX[FoundObjectNumber][i] *= Scalefactor
-                        ShellY[FoundObjectNumber][i] *= Scalefactor
-                        ShellZ[FoundObjectNumber][i] *= Scalefactor
+
+                    for (let i = 0; i < RegObjects[FoundObjectNumber].ShellX.length; i++) {
+                        RegObjects[FoundObjectNumber].ShellX[i] *= Scalefactor
+                        RegObjects[FoundObjectNumber].ShellY[i] *= Scalefactor
+                        RegObjects[FoundObjectNumber].ShellZ[i] *= Scalefactor
                         
                     }
                 }
@@ -480,62 +428,60 @@
             
             // Calculate Animation Values per Frame Function
             function DoCalculateAnimation(){
-                
-                if(AnimateFrame > 400){
-                    AnimateFrame = 1
+
+                if(Framestage > 400){
+                    Framestage = 1
                 }
                 else{
-                    AnimateFrame += 2 * ProgramIncrementHertz
+                    Framestage += 2 * ProgramIncrementHertz
                 }
                 
-                for (let i = 0; i < ShellX.length; i++) {
-                    if(DeletedObjects[i] != true){
-                        let CurrentAnimationStage = Math.floor(AnimateFrame/100)
-                        let FrameInAnimationStage = AnimateFrame % 100
+                for (let i = 0; i < RegObjects.length; i++) {
+                        let CurrentAnimationStage = Math.floor(Framestage/100)
+                        let FrameInAnimationStage = Framestage % 100
+
                         
-                        AnimationX[i] = 0
-                        AnimationY[i] = 0
-                        AnimationZ[i] = 0
+                        RegObjects[i].TotalAnimationDeviationX = 0
+                        RegObjects[i].TotalAnimationDeviationY = 0
+                        RegObjects[i].TotalAnimationDeviationZ = 0
                         
                         for (let o = 0; o < CurrentAnimationStage; o++) {
                             
-                            AnimationX[i] += Number(ObjectAnimationInstructionsX[i][o])
-                            AnimationY[i] += Number(ObjectAnimationInstructionsY[i][o])
-                            AnimationZ[i] += Number(ObjectAnimationInstructionsZ[i][o])
+                            RegObjects[i].TotalAnimationDeviationX += Number(RegObjects[i].AnimationInstructionsX[o])
+                            RegObjects[i].TotalAnimationDeviationY += Number(RegObjects[i].AnimationInstructionsY[o])
+                            RegObjects[i].TotalAnimationDeviationZ += Number(RegObjects[i].AnimationInstructionsZ[o])
                             
                         }
                         
-                        AnimationX[i] += Number(ObjectAnimationInstructionsX[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
-                        AnimationY[i] += Number(ObjectAnimationInstructionsY[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
-                        AnimationZ[i] += Number(ObjectAnimationInstructionsZ[i][CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
-                    }
+                        RegObjects[i].TotalAnimationDeviationX += Number(RegObjects[i].AnimationInstructionsX[CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+                        RegObjects[i].TotalAnimationDeviationY += Number(RegObjects[i].AnimationInstructionsY[CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+                        RegObjects[i].TotalAnimationDeviationZ += Number(RegObjects[i].AnimationInstructionsZ[CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+                    
                 }
-                
+
                 
                 
                 if(ShowAnimationPathing == true){
-                    
-                    for (let i = 0; i < ObjectAnimationInstructionsX.length; i++) {
-                        if(DeletedObjects[i] != true){
+
+                    for (let i = 0; i < RegObjects.length; i++) {
                             
-                            TotalAnimationX[i] = []
-                            TotalAnimationY[i] = []
-                            TotalAnimationZ[i] = []
-                            
-                            
-                            TotalAnimationX[i][0] = Number(ObjectAnimationInstructionsX[i][0])
-                            TotalAnimationY[i][0] = Number(ObjectAnimationInstructionsY[i][0])
-                            TotalAnimationZ[i][0] = Number(ObjectAnimationInstructionsZ[i][0])
+                            RegObjects[i].AnimationPathCoordsX = []
+                            RegObjects[i].AnimationPathCoordsY = []
+                            RegObjects[i].AnimationPathCoordsZ = []
                             
                             
-                            for (let o = 1; o < ObjectAnimationInstructionsX[i].length; o++) {
+                            RegObjects[i].AnimationPathCoordsX[0] = Number(RegObjects[i].AnimationInstructionsX[0])
+                            RegObjects[i].AnimationPathCoordsY[0] = Number(RegObjects[i].AnimationInstructionsY[0])
+                            RegObjects[i].AnimationPathCoordsZ[0] = Number(RegObjects[i].AnimationInstructionsZ[0])
+                            
+                            
+                            for (let o = 1; o < RegObjects[i].AnimationInstructionsX.length; o++) {
                                 
-                                TotalAnimationX[i][o] = Number(TotalAnimationX[i][o-1]) + Number(ObjectAnimationInstructionsX[i][o])
-                                TotalAnimationY[i][o] = Number(TotalAnimationY[i][o-1]) + Number(ObjectAnimationInstructionsY[i][o])
-                                TotalAnimationZ[i][o] = Number(TotalAnimationZ[i][o-1]) + Number(ObjectAnimationInstructionsZ[i][o])
-                                
+                                RegObjects[i].AnimationPathCoordsX[o] = Number(RegObjects[i].AnimationPathCoordsX[o-1]) + Number(RegObjects[i].AnimationInstructionsX[o])
+                                RegObjects[i].AnimationPathCoordsY[o] = Number(RegObjects[i].AnimationPathCoordsY[o-1]) + Number(RegObjects[i].AnimationInstructionsY[o])
+                                RegObjects[i].AnimationPathCoordsZ[o] = Number(RegObjects[i].AnimationPathCoordsZ[o-1]) + Number(RegObjects[i].AnimationInstructionsZ[o])
                             }
-                        }
+                        
                     }
                 }
             }
@@ -547,16 +493,16 @@
             
             // Project Shell X/Y/Z -> 2D(X, Y) Function
             function ProjectShell2D(){
-                for (let i = 0; i < ShellX.length; i++) {
-                    if(DeletedObjects[i] != true){
-                        ShellXProjected[i] = []
-                        ShellYProjected[i] = []
+                for (let i = 0; i < RegObjects.length; i++) {
+
+                        RegObjects[i].ShellprojectedX = []
+                        RegObjects[i].ShellprojectedY = []
                         
-                        for (let o = 0; o < ShellX[i].length; o++) {
+                        for (let o = 0; o < RegObjects[i].ShellX.length; o++) {
                             // Add Animation Frame Values
-                            const ShellPointX = ShellX[i][o] + ShellLeaderX[i] + Number(AnimationX[i])
-                            const ShellPointY = ShellY[i][o] + ShellLeaderY[i] + Number(AnimationY[i])
-                            const ShellPointZ = ShellZ[i][o] + ShellLeaderZ[i] + Number(AnimationZ[i])
+                            const ShellPointX = RegObjects[i].ShellX[o] + RegObjects[i].LeaderX + Number(RegObjects[i].TotalAnimationDeviationX)
+                            const ShellPointY = RegObjects[i].ShellY[o] + RegObjects[i].LeaderY + Number(RegObjects[i].TotalAnimationDeviationY)
+                            const ShellPointZ = RegObjects[i].ShellZ[o] + RegObjects[i].LeaderZ + Number(RegObjects[i].TotalAnimationDeviationZ)
 
                             const XYZArr = ApplyCameraPerspective(ShellPointX, ShellPointY, ShellPointZ)
 
@@ -565,10 +511,10 @@
                             const Z = XYZArr[2] + AddedZDistance
                             
                             
-                            ShellXProjected[i][o] = ((X * FocalLength) / (Z + FocalLength))
-                            ShellYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
+                            RegObjects[i].ShellprojectedX[o] = ((X * FocalLength) / (Z + FocalLength))
+                            RegObjects[i].ShellprojectedY[o] = ((Y * FocalLength) / (Z + FocalLength))
                         }
-                    }
+                    
                 }
             }
             // Project Shell X/Y/Z -> 2D(X, Y) Function
@@ -587,19 +533,19 @@
                 if(CameraDirection1 == 1){
                     NewX = X
                 }
-                if(CameraDirection1 == -1){
+                else if(CameraDirection1 == -1){
                     NewX = -X
                 }
-                if(CameraDirection1 == 2){
+                else if(CameraDirection1 == 2){
                     NewX = Y
                 }
-                if(CameraDirection1 == -2){
+                else if(CameraDirection1 == -2){
                     NewX = -Y
                 }
-                if(CameraDirection1 == 3){
+                else if(CameraDirection1 == 3){
                     NewX = Z
                 }
-                if(CameraDirection1 == -3){
+                else if(CameraDirection1 == -3){
                     NewX = -Z
                 }
 
@@ -608,19 +554,19 @@
                 if(CameraDirection2 == 1){
                     NewY = X
                 }
-                if(CameraDirection2 == -1){
+                else if(CameraDirection2 == -1){
                     NewY = -X
                 }
-                if(CameraDirection2 == 2){
+                else if(CameraDirection2 == 2){
                     NewY = Y
                 }
-                if(CameraDirection2 == -2){
+                else if(CameraDirection2 == -2){
                     NewY = -Y
                 }
-                if(CameraDirection2 == 3){
+                else if(CameraDirection2 == 3){
                     NewY = Z
                 }
-                if(CameraDirection2 == -3){
+                else if(CameraDirection2 == -3){
                     NewY = -Z
                 }
 
@@ -629,19 +575,19 @@
                 if(CameraDirection3 == 1){
                     NewZ = X
                 }
-                if(CameraDirection3 == -1){
+                else if(CameraDirection3 == -1){
                     NewZ = -X
                 }
-                if(CameraDirection3 == 2){
+                else if(CameraDirection3 == 2){
                     NewZ = Y
                 }
-                if(CameraDirection3 == -2){
+                else if(CameraDirection3 == -2){
                     NewZ = -Y
                 }
-                if(CameraDirection3 == 3){
+                else if(CameraDirection3 == 3){
                     NewZ = Z
                 }
-                if(CameraDirection3 == -3){
+                else if(CameraDirection3 == -3){
                     NewZ = -Z
                 }
                 return [NewX, NewY, NewZ]
@@ -656,17 +602,16 @@
             function ProjectAnimationPath2D(){
                 if(ShowAnimationPathing == true){
                     
-                    for (let i = 0; i < ShellLeaderX.length; i++) {
-                        if(DeletedObjects[i] != true){
+                    for (let i = 0; i < RegObjects.length; i++) {
                             
-                            AnimationPathXProjected[i] = []
-                            AnimationPathYProjected[i] = []
+                            RegObjects[i].AnimationPathProjectedX = []
+                            RegObjects[i].AnimationPathProjectedY = []
                             
-                            for (let o = 0; o < TotalAnimationX[i].length; o++) {
+                            for (let o = 0; o < RegObjects[i].AnimationInstructionsX.length; o++) {
                                 
-                                const TotalAnimationpointX = ShellLeaderX[i] + TotalAnimationX[i][o]
-                                const TotalAnimationpointY = ShellLeaderY[i] + TotalAnimationY[i][o]
-                                const TotalAnimationpointZ = ShellLeaderZ[i] + TotalAnimationZ[i][o]
+                                const TotalAnimationpointX = RegObjects[i].AnimationRelativePathCoordPositionX(o)
+                                const TotalAnimationpointY = RegObjects[i].AnimationRelativePathCoordPositionY(o)
+                                const TotalAnimationpointZ = RegObjects[i].AnimationRelativePathCoordPositionZ(o)
 
                                 const XYZArr = ApplyCameraPerspective(TotalAnimationpointX, TotalAnimationpointY, TotalAnimationpointZ)
 
@@ -674,13 +619,13 @@
                                 const Y = XYZArr[1] + AddedYDistance
                                 const Z = XYZArr[2] + AddedZDistance
                                 
-                                AnimationPathXProjected[i][o] = ((X * FocalLength) / (Z + FocalLength))
-                                AnimationPathYProjected[i][o] = ((Y * FocalLength) / (Z + FocalLength))
+                                RegObjects[i].AnimationPathProjectedX[o] = ((X * FocalLength) / (Z + FocalLength))
+                                RegObjects[i].AnimationPathProjectedY[o] = ((Y * FocalLength) / (Z + FocalLength))
                             }
 
-                            const TotalAnimationpointX = ShellLeaderX[i]
-                            const TotalAnimationpointY = ShellLeaderY[i]
-                            const TotalAnimationpointZ = ShellLeaderZ[i]
+                            const TotalAnimationpointX = RegObjects[i].LeaderX
+                            const TotalAnimationpointY = RegObjects[i].LeaderY
+                            const TotalAnimationpointZ = RegObjects[i].LeaderZ
 
                             const XYZArr = ApplyCameraPerspective(TotalAnimationpointX, TotalAnimationpointY, TotalAnimationpointZ)
 
@@ -688,9 +633,9 @@
                             const Y = XYZArr[1] + AddedYDistance
                             const Z = XYZArr[2] + AddedZDistance
                                 
-                            AnimationPathXProjected[i].unshift((X * FocalLength) / (Z + FocalLength))
-                            AnimationPathYProjected[i].unshift((Y * FocalLength) / (Z + FocalLength))
-                        }
+                            RegObjects[i].AnimationPathProjectedX.unshift((X * FocalLength) / (Z + FocalLength))
+                            RegObjects[i].AnimationPathProjectedY.unshift((Y * FocalLength) / (Z + FocalLength))
+                        
                     }
                 }
             }
@@ -702,30 +647,29 @@
             
             // Canvas Draw Object Shells with Marking Function
             function CanvasDrawObjectShells(){
-                for (let i = 0; i < ShellXProjected.length; i++) {
-                    if(DeletedObjects[i] != true){
+                for (let i = 0; i < RegObjects.length; i++) {
                         // Object Marked
-                        if(MarkedObject[i] == true){
-                            for (let o = 0; o < ShellXProjected[i].length; o++) {
+                        if(RegObjects[i].Marked == true){
+                            for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
                                 
-                                ctx.moveTo(400+Number(ShellXProjected[i][o]),400+Number(ShellYProjected[i][o]));
-                                ctx.lineTo(400+Number(ShellXProjected[i][o+1]),400+Number(ShellYProjected[i][o+1]));
+                                ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]),400+Number(RegObjects[i].ShellprojectedY[o]));
+                                ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o+1]),400+Number(RegObjects[i].ShellprojectedY[o+1]));
                                 ctx.strokeStyle = "orange"
                                 ctx.lineWidth = 2
                                 ctx.stroke()
                             }
                             // Point Marked (in Marked Object)
-                            for (let o = 0; o < ShellXProjected[i].length; o++) {
+                            for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
                                 
-                                if(MarkedPoints[i][o] == true){
+                                if(RegObjects[i].PointsMarked[o] == true){
                                     
-                                    ctx.moveTo(400+Number(ShellXProjected[i][o]-10),400+Number(ShellYProjected[i][o]-10));
-                                    ctx.lineTo(400+Number(ShellXProjected[i][o]+10),400+Number(ShellYProjected[i][o]+10));
+                                    ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]-10),400+Number(RegObjects[i].ShellprojectedY[o]-10));
+                                    ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o]+10),400+Number(RegObjects[i].ShellprojectedY[o]+10));
                                     ctx.strokeStyle = "red"
                                     ctx.lineWidth = 2
                                     ctx.stroke()
-                                    ctx.moveTo(400+Number(ShellXProjected[i][o]+10),400+Number(ShellYProjected[i][o]-10));
-                                    ctx.lineTo(400+Number(ShellXProjected[i][o]-10),400+Number(ShellYProjected[i][o]+10))
+                                    ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]+10),400+Number(RegObjects[i].ShellprojectedY[o]-10));
+                                    ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o]-10),400+Number(RegObjects[i].ShellprojectedY[o]+10))
                                     ctx.stroke()
                                 }
                             }
@@ -733,16 +677,16 @@
                         }
                         // Object Not Marked
                         else{
-                            for (let o = 0; o < ShellXProjected[i].length; o++) {
+                            for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
                                 
-                                ctx.moveTo(400+Number(ShellXProjected[i][o]),400+Number(ShellYProjected[i][o]));
-                                ctx.lineTo(400+Number(ShellXProjected[i][o+1]),400+Number(ShellYProjected[i][o+1]))
+                                ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]),400+Number(RegObjects[i].ShellprojectedY[o]));
+                                ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o+1]),400+Number(RegObjects[i].ShellprojectedY[o+1]))
                                 ctx.strokeStyle = "black";
                                 ctx.lineWidth = 2
                                 ctx.stroke()
                             }
                         } 
-                    }
+                    
                 }
             }
                 // Canvas Draw Object Shells with Marking Function
@@ -755,19 +699,18 @@
                 function CanvasDrawAnimationPathing(){
                     if(ShowAnimationPathing == true){
                         
-                        for (let i = 0; i < AnimationPathXProjected.length; i++) {
+                        for (let i = 0; i < RegObjects.length; i++) {
                             
-                            if(DeletedObjects[i] != true){
                                 
-                                for (let o = 0; o < AnimationPathXProjected[i].length; o++) {
+                                for (let o = 0; o < RegObjects[i].AnimationPathProjectedX.length; o++) {
                                     
-                                    ctx.moveTo(400+Number(AnimationPathXProjected[i][o]),400+Number(AnimationPathYProjected[i][o]));
-                                    ctx.lineTo(400+Number(AnimationPathXProjected[i][o+1]),400+Number(AnimationPathYProjected[i][o+1]));
+                                    ctx.moveTo(400+Number(RegObjects[i].AnimationPathProjectedX[o]),400+Number(RegObjects[i].AnimationPathProjectedY[o]));
+                                    ctx.lineTo(400+Number(RegObjects[i].AnimationPathProjectedX[o+1]),400+Number(RegObjects[i].AnimationPathProjectedY[o+1]));
                                     ctx.strokeStyle = "purple"
                                     ctx.lineWidth = 2
                                     ctx.stroke()
                                 }
-                            }
+                            
                         }
                     }
                 }
