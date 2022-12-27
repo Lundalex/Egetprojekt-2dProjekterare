@@ -282,5 +282,6 @@
             }    
         }
         RegObjects = CopyArr
+        FoundObjectNumber = 0
     }
     // Delete Object Function
