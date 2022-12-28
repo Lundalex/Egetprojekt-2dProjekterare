@@ -64,9 +64,16 @@
     }
     function UpdateFocalLength(){
         FocalLength = +document.getElementById("FocalLength").value
-        document.getElementById("FocalLengthLabel").innerHTML = "(Min. 500F) Focal Length: (" +  FocalLength + ") (Max. 15000F)"
+        document.getElementById("FocalLengthLabel").innerHTML = "Focal Length: (" +  FocalLength + ") (Min. 500F) (/Max. 15000F)"
     }
     // Rendering Engine Settings Update Functions
+
+
+
+    function UpdateElasticity(){
+        Elasticity = +document.getElementById("Elasticity").value
+        document.getElementById("ElasticityLabel").innerHTML = "Elasticity: (" + Elasticity + ") (Min. 0E) (Max. 1E)"
+    }
 
     
 

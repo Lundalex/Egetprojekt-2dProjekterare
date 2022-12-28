@@ -86,7 +86,7 @@ if(FoundCollision == true){
       break;
 
       case "Backspace":
-    DeleteObject(FoundObjectNumber)
+    DeleteFoundObject(FoundObjectNumber)
       break;
 
       case "a":
@@ -150,7 +150,7 @@ function ScrollFunction(event){
 
         ScrollY = "Down"
     }
-    else if(event.deltaY < 0 ){
+    else if(event.deltaY < 0){
 
         ScrollY = "Up"
     }

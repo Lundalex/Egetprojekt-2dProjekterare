@@ -7,6 +7,10 @@
         ctx.fill();
         
         RunProgram = true
+
+        if(RegObjects.length == 0){
+            AddCubeObject()
+        }
         
         setTimeout(MainLoop, 20)
     }
@@ -108,12 +112,14 @@
         this.ObjectType = "Physics"
         // Animated, Physics
 
-        this.MomentumX = 0
-        this.MomentumY = 0
-        this.MomentumZ = 0
+        this.VelocityX = 0
+        this.VelocityY = 0
+        this.VelocityZ = 0
 
         this.Mass = 100
 
+
+        this.DeleteOnCollision = false
 
 
 
@@ -169,6 +175,22 @@
         }
 
 
+        this.NextHitboxRelativeBoundraryXYZ = function(){
+            let SpanXYZ = []
+
+            SpanXYZ.push(this.TotalAnimationDeviationX + this.HitboxSizeX1 + this.LeaderX + this.VelocityX * ProgramIncrementHertz * 0.05)
+            SpanXYZ.push(this.TotalAnimationDeviationX + this.HitboxSizeX2 + this.LeaderX + this.VelocityX * ProgramIncrementHertz * 0.05)
+            SpanXYZ.push(this.TotalAnimationDeviationY + this.HitboxSizeY1 + this.LeaderY + this.VelocityY * ProgramIncrementHertz * 0.05)
+            SpanXYZ.push(this.TotalAnimationDeviationY + this.HitboxSizeY2 + this.LeaderY + this.VelocityY * ProgramIncrementHertz * 0.05)
+            SpanXYZ.push(this.TotalAnimationDeviationZ + this.HitboxSizeZ1 + this.LeaderZ + this.VelocityZ * ProgramIncrementHertz * 0.05)
+            SpanXYZ.push(this.TotalAnimationDeviationZ + this.HitboxSizeZ2 + this.LeaderZ + this.VelocityZ * ProgramIncrementHertz * 0.05)
+
+            return SpanXYZ
+        }
+
+        
+
+
 
     }
         // CONSTRUCTOR - RegObjects
@@ -213,7 +235,6 @@
             const NewShellLeaderZ = MZ
 
             RegObjects.push(new NewRegularObject(NewShellX, NewShellY, NewShellZ, NewShellLeaderX, NewShellLeaderY, NewShellLeaderZ))
-            console.log(RegObjects)
         }
         // Add New Sphere Object Function
     
@@ -300,8 +321,8 @@
     
     
     
-    // Delete Object Function
-    function DeleteObject(FoundObjectNumber){
+    // Delete Found Object Function
+    function DeleteFoundObject(FoundObjectNumber){
         let CopyArr = []
         for (let i = 0; i < RegObjects.length; i++) {
             if(i != FoundObjectNumber){
@@ -313,4 +334,23 @@
         RegObjects = CopyArr
         FoundObjectNumber = 0
     }
-    // Delete Object Function
+    // Delete Found Object Function
+
+
+
+
+
+        
+    // Delete Found Object Function
+    function DeleteObject(ObjectNumber){
+        let CopyArr = []
+        for (let i = 0; i < RegObjects.length; i++) {
+            if(i != ObjectNumber){
+
+                CopyArr.push(RegObjects[i])
+
+            }    
+        }
+        RegObjects = CopyArr
+    }
+    // Delete Found Object Function

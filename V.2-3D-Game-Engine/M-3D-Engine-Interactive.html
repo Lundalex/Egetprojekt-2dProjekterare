@@ -87,12 +87,20 @@
             <button style="width: 150px;" onclick="AddCubeObject()">AddCubeObject</button>
             <button style="width: 150px;" onclick="AddSphereObject()">AddSphereObject</button>
             <div>
-                <input type="radio" name="1" value="Manipulate Path" onchange="ChangeManipulatePath()"><label>Manipulate Path(/Momentum)</label><br>
+                <input type="radio" name="1" value="Manipulate Path" onchange="ChangeManipulatePath()"><label>Manipulate Path(/Velocity)</label><br>
                 <input type="radio" name="1" value="Manipulate Point" onchange="ChangeManipulatePoint()"><label>Manipulate Point</label><br>
                 <input type="radio" name="1" value="Manipulate Object" onchange="ChangeManipulateObject()"><label>Manipulate Object</label><br>
             </div>
             <button style="width: 150px; font-weight: 1000;" onclick="Start()">Start Program</button>
             <button style="width: 150px; font-weight: 1000;" onclick="QuickStart()">Quick Start</button>
+            <br>
+
+            <div>
+                <input type="range" id="Elasticity" name="Elasticity" 
+                min="0" max="1" value="0.5" step="0.01" onchange="UpdateElasticity()">
+                <label for="Elasticity" id="ElasticityLabel">(Min. 0E) Elasticity (Physics Bound Objects) (Max. 1E)</label>
+            </div>
+
             <br>
             
             
@@ -121,6 +129,7 @@
             
             <br>
 
+
             
             
         </div>
@@ -140,6 +149,7 @@
             <p>(Keys: "k", "l", "m", "n") to change Focus Animation Stage</p>
             <p>(Key: "v") to Stop Program</p>
             <p>(Key: "h") to show Hitboxes</p>
+            <p>RegObject[n].Delete Property not tested!!!!!!!!!</p>
             
         </div>
         
@@ -160,9 +170,6 @@
             let CubePresetX = [100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100,100-100,100-100]
             let CubePresetY = [100-100,100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,100-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100]
             let CubePresetZ = [100-100,100-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100,200-100,100-100,100-100,200-100,200-100,100-100,100-100,200-100]
-
-            
-
 
             
             let KeyPress = ""
@@ -204,6 +211,17 @@
             let RunProgram = false
 
 
+
+            let Elasticity = 0.5
+
+            let TimeFriction = 1
+
+
+
+
+
+
+
             let CameraMoveMode = 1
             
             let CameraDirection1 = 1 // 1 = X
@@ -230,9 +248,9 @@
                 
                 DoScaling()
                 
-                DoCalculateAnimationOrPhysics()
+                DoCalculateAnimation()
 
-                DoCalculateHitboxes()
+                DoCalculatePhysics()
                 
                 // Prepare Projection Arrays
                 ProjectShell2D()
@@ -333,27 +351,27 @@
                     
                     switch (KeyPress) {
                         case "ArrowDown":
-                        RegObjects[FoundObjectNumber].MomentumX -= 40
+                        RegObjects[FoundObjectNumber].VelocityZ -= 40
                         
                         break;
                         case "ArrowUp":
-                        RegObjects[FoundObjectNumber].MomentumX += 40
+                        RegObjects[FoundObjectNumber].VelocityZ += 40
                         
                         break;
                         case "ArrowLeft":
-                        RegObjects[FoundObjectNumber].MomentumY -= 40
+                        RegObjects[FoundObjectNumber].VelocityX -= 40
                         
                         break;
                         case "ArrowRight":
-                        RegObjects[FoundObjectNumber].MomentumY += 40
+                        RegObjects[FoundObjectNumber].VelocityX += 40
                         
                         break;
                         case "SpaceBar":
-                        RegObjects[FoundObjectNumber].MomentumZ -= 40
+                        RegObjects[FoundObjectNumber].VelocityY -= 40
                         break;
                         
                         case "Shift":
-                        RegObjects[FoundObjectNumber].MomentumZ += 40
+                        RegObjects[FoundObjectNumber].VelocityY += 40
                         break;
                         
                         default:
@@ -481,7 +499,7 @@
             
             
             // Calculate Animation Values per Frame Function
-            function DoCalculateAnimationOrPhysics(){
+            function DoCalculateAnimation(){
 
                 if(Framestage > 400){
                     Framestage = 1
@@ -551,65 +569,186 @@
 
 
 
-            // Calculate Hitboxes, Momentum, Collision Function
-            // Everything Hitboxes & Momentum
-            function DoCalculateHitboxes(){
+            // Calculate Hitboxes, Velocity, Collision Function
+            // Everything Hitboxes & Velocity
+            function DoCalculatePhysics(){
 
                 for (let i = 0; i < RegObjects.length; i++) {
 
                     if(RegObjects[i].ObjectType == "Physics"){
 
+                        for (let o = 0; o < RegObjects.length; o++) {
 
-                        const Hitbox = RegObjects[i].HitboxRelativeBoundraryXYZ()
+                            const Hitbox1 = RegObjects[i].HitboxRelativeBoundraryXYZ()
+                            const NewHitbox1 = RegObjects[i].NextHitboxRelativeBoundraryXYZ()
 
+                            if(RegObjects[o].ObjectType == "Physics" && i != o){
 
-
-
-
-
-
-
-
-
-
-
+                                
+                                const Hitbox2 = RegObjects[o].HitboxRelativeBoundraryXYZ()
+                                const NewHitbox2 = RegObjects[o].NextHitboxRelativeBoundraryXYZ()
+                                
+                                if((((NewHitbox1[0] > NewHitbox2[0]) && (NewHitbox1[0] < NewHitbox2[1])) || ((NewHitbox1[1] > NewHitbox2[0]) && (NewHitbox1[1] < NewHitbox2[1]))) && (((NewHitbox1[2] > NewHitbox2[2]) && (NewHitbox1[2] < NewHitbox2[3])) || ((NewHitbox1[3] > NewHitbox2[2]) && (NewHitbox1[3] < NewHitbox2[3]))) && (((NewHitbox1[4] > NewHitbox2[4]) && (NewHitbox1[4] < NewHitbox2[5])) || ((NewHitbox1[5] > NewHitbox2[4]) && (NewHitbox1[5] < NewHitbox2[5])))){
 
 
+
+                                    let CalculateNewVelocity = true 
+                                    if(RegObjects[i].DeleteOnCollision == true){
+                                        DeleteObject(i)
+                                        CalculateNewVelocity = false
+                                    }
+
+                                    if(RegObjects[o].DeleteOnCollision == true){
+                                        DeleteObject(o)
+                                        CalculateNewVelocity = false
+                                    }
+
+
+                                    if(CalculateNewVelocity == true){
+
+
+                                // Collision X
+
+                                    // Elasticity = 0 Method
+                                    const ForceX1 = RegObjects[i].Mass * RegObjects[i].VelocityX
+                                    const ForceX2 = RegObjects[o].Mass * RegObjects[o].VelocityX
+
+                                    const ForceTotalX = ForceX1 + ForceX2
+
+                                    const NoneElasticityVelocityX1 = ForceTotalX / RegObjects[i].Mass
+                                    const NoneElasticityVelocityX2 = ForceTotalX / RegObjects[o].Mass
+
+
+                                    // Elasticity = 1 Method
+
+                                    const MaxElasticityVelocityX1 = ForceX2 / RegObjects[i].Mass
+                                    const MaxElasticityVelocityX2 = ForceX1 / RegObjects[o].Mass
+
+                                    // Weighted
+
+                                    RegObjects[i].VelocityX = ((NoneElasticityVelocityX1 * (1-Elasticity)) + (MaxElasticityVelocityX1 * Elasticity))
+                                    RegObjects[o].VelocityX = ((NoneElasticityVelocityX2 * (1-Elasticity)) + (MaxElasticityVelocityX2 * Elasticity))
+
+                                    
+                                // Collision Y
+
+                                    // Elasticity = 0 Method
+                                    const ForceY1 = RegObjects[i].Mass * RegObjects[i].VelocityY
+                                    const ForceY2 = RegObjects[o].Mass * RegObjects[o].VelocityY
+
+                                    const ForceTotalY = ForceY1 + ForceY2
+
+                                    const NoneElasticityVelocityY1 = ForceTotalY / RegObjects[i].Mass
+                                    const NoneElasticityVelocityY2 = ForceTotalY / RegObjects[o].Mass
+
+
+                                    // Elasticity = 1 Method
+
+                                    const MaxElasticityVelocityY1 = ForceY2 / RegObjects[i].Mass
+                                    const MaxElasticityVelocityY2 = ForceY1 / RegObjects[o].Mass
+
+                                    // Weighted
+
+                                    RegObjects[i].VelocityY = ((NoneElasticityVelocityY1 * (1-Elasticity)) + (MaxElasticityVelocityY1 * Elasticity))
+                                    RegObjects[o].VelocityY = ((NoneElasticityVelocityY2 * (1-Elasticity)) + (MaxElasticityVelocityY2 * Elasticity))
+
+                                    
+                                // Collision Z
+
+                                    // Elasticity = 0 Method
+                                    const ForceZ1 = RegObjects[i].Mass * RegObjects[i].VelocityZ
+                                    const ForceZ2 = RegObjects[o].Mass * RegObjects[o].VelocityZ
+
+                                    const ForceTotalZ = ForceZ1 + ForceZ2
+
+                                    const NoneElasticityVelocityZ1 = ForceTotalZ / RegObjects[i].Mass
+                                    const NoneElasticityVelocityZ2 = ForceTotalZ / RegObjects[o].Mass
+
+
+                                    // Elasticity = 1 Method
+
+                                    const MaxElasticityVelocityZ1 = ForceZ2 / RegObjects[i].Mass
+                                    const MaxElasticityVelocityZ2 = ForceZ1 / RegObjects[o].Mass
+
+                                    // Weighted
+
+                                    RegObjects[i].VelocityZ = ((NoneElasticityVelocityZ1 * (1-Elasticity)) + (MaxElasticityVelocityZ1 * Elasticity))
+                                    RegObjects[o].VelocityZ = ((NoneElasticityVelocityZ2 * (1-Elasticity)) + (MaxElasticityVelocityZ2 * Elasticity))
+                            }
+                        }
                     }
-                
+                }
+                // Add VelocityX
+                if(RegObjects[i].VelocityX > 0){
+                RegObjects[i].VelocityX -= TimeFriction * ProgramIncrementHertz
 
-                    
+                if(RegObjects[i].VelocityX < 0){
+                    RegObjects[i].VelocityX = 0
                 }
 
+                }
+                else if(RegObjects[i].VelocityX < 0){
+                RegObjects[i].VelocityX += TimeFriction * ProgramIncrementHertz
 
+                if(RegObjects[i].VelocityX > 0){
+                    RegObjects[i].VelocityX = 0
+                }
 
+                }
+                if(RegObjects[i].VelocityX != 0){
+                    RegObjects[i].LeaderX += RegObjects[i].VelocityX * ProgramIncrementHertz * 0.05
+                }
 
+                // Add VelocityY
+                if(RegObjects[i].VelocityY > 0){
+                RegObjects[i].VelocityY -= TimeFriction * ProgramIncrementHertz
 
+                if(RegObjects[i].VelocityY < 0){
+                    RegObjects[i].VelocityY = 0
+                }
 
+                }
+                else if(RegObjects[i].VelocityY < 0){
+                RegObjects[i].VelocityY += TimeFriction * ProgramIncrementHertz
 
+                if(RegObjects[i].VelocityY > 0){
+                    RegObjects[i].VelocityY = 0
+                }
 
+                }
+                if(RegObjects[i].VelocityY != 0){
+                    RegObjects[i].LeaderY += RegObjects[i].VelocityY * ProgramIncrementHertz * 0.05
+                }
+
+                // Add VelocityZ
+                if(RegObjects[i].VelocityZ > 0){
+                RegObjects[i].VelocityZ -= TimeFriction * ProgramIncrementHertz
+
+                if(RegObjects[i].VelocityX < 0){
+                    RegObjects[i].VelocityX = 0
+                }
+
+                }
+                else if(RegObjects[i].VelocityZ < 0){
+                RegObjects[i].VelocityZ += TimeFriction * ProgramIncrementHertz
+
+                if(RegObjects[i].VelocityZ > 0){
+                    RegObjects[i].VelocityZ = 0
+                }
+
+                }
+                if(RegObjects[i].VelocityZ != 0){
+                    RegObjects[i].LeaderZ += RegObjects[i].VelocityZ * ProgramIncrementHertz * 0.05
+                }
             }
+        }
+    }
             // Calculate Hitboxes and Collision Function
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-            
-            
-            
-            
             // Project Shell X/Y/Z -> 2D(X, Y) Function
             function ProjectShell2D(){
                 for (let i = 0; i < RegObjects.length; i++) {
