@@ -103,9 +103,22 @@
         this.HitboxProjectedX = [0]
         this.HitboxProjectedY = [0]
 
-        this.HasHitbox = true
 
-            
+
+        this.ObjectType = "Physics"
+        // Animated, Physics
+
+        this.MomentumX = 0
+        this.MomentumY = 0
+        this.MomentumZ = 0
+
+        this.Mass = 100
+
+
+
+
+
+
         this.IsMarked = false;
     
         this.PointsMarked = [];

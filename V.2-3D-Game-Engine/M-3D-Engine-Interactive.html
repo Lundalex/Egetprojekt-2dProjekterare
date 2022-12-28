@@ -87,7 +87,7 @@
             <button style="width: 150px;" onclick="AddCubeObject()">AddCubeObject</button>
             <button style="width: 150px;" onclick="AddSphereObject()">AddSphereObject</button>
             <div>
-                <input type="radio" name="1" value="Manipulate Path" onchange="ChangeManipulatePath()"><label>Manipulate Path</label><br>
+                <input type="radio" name="1" value="Manipulate Path" onchange="ChangeManipulatePath()"><label>Manipulate Path(/Momentum)</label><br>
                 <input type="radio" name="1" value="Manipulate Point" onchange="ChangeManipulatePoint()"><label>Manipulate Point</label><br>
                 <input type="radio" name="1" value="Manipulate Object" onchange="ChangeManipulateObject()"><label>Manipulate Object</label><br>
             </div>
@@ -230,7 +230,7 @@
                 
                 DoScaling()
                 
-                DoCalculateAnimation()
+                DoCalculateAnimationOrPhysics()
 
                 DoCalculateHitboxes()
                 
@@ -247,7 +247,7 @@
                 
                 CanvasDrawAnimationPathing()
 
-                CanvasHitboxes()
+                CanvasDrawHitboxes()
                 //
                 
                 KeyPress = "NoKey"
@@ -298,6 +298,8 @@
             // Manipulate Path/Object/Point Function
             function DoManipulation(){
                 if(Manipulate == "Path"){
+                    if(RegObjects[FoundObjectNumber].ObjectType == "Animated"){
+
                     switch (KeyPress) {
                         case "ArrowDown":
                         RegObjects[FoundObjectNumber].AnimationInstructionsZ[ChosenPathStage] -= 40
@@ -326,6 +328,50 @@
                         default:
                         break;
                     }
+                }
+                else if(RegObjects[FoundObjectNumber].ObjectType == "Physics"){
+                    
+                    switch (KeyPress) {
+                        case "ArrowDown":
+                        RegObjects[FoundObjectNumber].MomentumX -= 40
+                        
+                        break;
+                        case "ArrowUp":
+                        RegObjects[FoundObjectNumber].MomentumX += 40
+                        
+                        break;
+                        case "ArrowLeft":
+                        RegObjects[FoundObjectNumber].MomentumY -= 40
+                        
+                        break;
+                        case "ArrowRight":
+                        RegObjects[FoundObjectNumber].MomentumY += 40
+                        
+                        break;
+                        case "SpaceBar":
+                        RegObjects[FoundObjectNumber].MomentumZ -= 40
+                        break;
+                        
+                        case "Shift":
+                        RegObjects[FoundObjectNumber].MomentumZ += 40
+                        break;
+                        
+                        default:
+                        break;
+                    }
+
+
+
+
+
+                }
+
+
+
+
+
+
+
                 }
                 else if(Manipulate == "Point"){
                     
@@ -435,7 +481,7 @@
             
             
             // Calculate Animation Values per Frame Function
-            function DoCalculateAnimation(){
+            function DoCalculateAnimationOrPhysics(){
 
                 if(Framestage > 400){
                     Framestage = 1
@@ -445,6 +491,7 @@
                 }
                 
                 for (let i = 0; i < RegObjects.length; i++) {
+                    if(RegObjects[i].ObjectType == "Animated"){
                         let CurrentAnimationStage = Math.floor(Framestage/100)
                         let FrameInAnimationStage = Framestage % 100
 
@@ -464,15 +511,19 @@
                         RegObjects[i].TotalAnimationDeviationX += Number(RegObjects[i].AnimationInstructionsX[CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
                         RegObjects[i].TotalAnimationDeviationY += Number(RegObjects[i].AnimationInstructionsY[CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
                         RegObjects[i].TotalAnimationDeviationZ += Number(RegObjects[i].AnimationInstructionsZ[CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
-                    
+                    }
                 }
 
                 
-                
+            
                 if(ShowAnimationPathing == true){
 
+
                     for (let i = 0; i < RegObjects.length; i++) {
+
+                        if(RegObjects[i].ObjectType == "Animated"){
                             
+
                             RegObjects[i].AnimationPathCoordsX = []
                             RegObjects[i].AnimationPathCoordsY = []
                             RegObjects[i].AnimationPathCoordsZ = []
@@ -489,7 +540,7 @@
                                 RegObjects[i].AnimationPathCoordsY[o] = Number(RegObjects[i].AnimationPathCoordsY[o-1]) + Number(RegObjects[i].AnimationInstructionsY[o])
                                 RegObjects[i].AnimationPathCoordsZ[o] = Number(RegObjects[i].AnimationPathCoordsZ[o-1]) + Number(RegObjects[i].AnimationInstructionsZ[o])
                             }
-                        
+                        }
                     }
                 }
             }
@@ -500,12 +551,32 @@
 
 
 
-            // Calculate Hitboxes and Collision Function
+            // Calculate Hitboxes, Momentum, Collision Function
+            // Everything Hitboxes & Momentum
             function DoCalculateHitboxes(){
 
                 for (let i = 0; i < RegObjects.length; i++) {
-                    
-                    const Hitbox = RegObjects[i].HitboxRelativeBoundraryXYZ()
+
+                    if(RegObjects[i].ObjectType == "Physics"){
+
+
+                        const Hitbox = RegObjects[i].HitboxRelativeBoundraryXYZ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    }
+                
 
                     
                 }
@@ -651,6 +722,9 @@
                 if(ShowAnimationPathing == true){
                     
                     for (let i = 0; i < RegObjects.length; i++) {
+
+                        if(RegObjects[i].ObjectType == "Animated"){
+
                             
                             RegObjects[i].AnimationPathProjectedX = []
                             RegObjects[i].AnimationPathProjectedY = []
@@ -683,7 +757,7 @@
                                 
                             RegObjects[i].AnimationPathProjectedX.unshift((X * FocalLength) / (Z + FocalLength))
                             RegObjects[i].AnimationPathProjectedY.unshift((Y * FocalLength) / (Z + FocalLength))
-                        
+                        }
                     }
                 }
             }
@@ -700,7 +774,7 @@
 
                 for (let i = 0; i < RegObjects.length; i++) {
 
-                    if(RegObjects[i].HasHitbox == true){
+                    if(RegObjects[i].ObjectType == "Physics"){
 
                         const Hitbox = RegObjects[i].HitboxRelativeBoundraryXYZ()
                         
@@ -721,33 +795,8 @@
                             RegObjects[i].HitboxProjectedY[o] = ((Y * FocalLength) / (Z + FocalLength))
                             
                         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     }
-                    
                 }
-
-
-
             }
 
 
@@ -813,6 +862,8 @@
                     if(ShowAnimationPathing == true){
                         
                         for (let i = 0; i < RegObjects.length; i++) {
+
+                            if(RegObjects[i].ObjectType == "Animated"){
                             
                                 
                                 for (let o = 0; o < RegObjects[i].AnimationPathProjectedX.length; o++) {
@@ -823,7 +874,7 @@
                                     ctx.lineWidth = 2
                                     ctx.stroke()
                                 }
-                            
+                            }
                         }
                     }
                 }
@@ -838,10 +889,12 @@
 
 
                 // Canvas draw Animation Pathing Visualisation Function
-                function CanvasHitboxes(){
+                function CanvasDrawHitboxes(){
                     if(ShowHitboxes == true){
                         
                         for (let i = 0; i < RegObjects.length; i++) {
+
+                            if(RegObjects[i].ObjectType == "Physics") {
                                
                                 for (let o = 0; o < RegObjects[i].HitboxProjectedX.length; o++) {
                                     
@@ -851,7 +904,7 @@
                                     ctx.lineWidth = 2
                                     ctx.stroke()
                                 }
-                            
+                            }
                         }
                     }
                 }
