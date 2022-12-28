@@ -23,9 +23,9 @@
         const CDY = Math.random() * 500 - 400
         const CDZ = Math.random() * 500 - 400
 
-        let NewShellX = [100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100,100-100,100-100]
-        let NewShellY = [100-100,100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,100-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100]
-        let NewShellZ = [100-100,100-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100,200-100,100-100,100-100,200-100,200-100,100-100,100-100,200-100]
+        let NewShellX = CubePresetX
+        let NewShellY = CubePresetY
+        let NewShellZ = CubePresetZ
 
 
         NewShellX = NewShellX.map(function Procfunc(num){return num + CDX})
@@ -58,6 +58,8 @@
 
 
 
+
+    // CONSTRUCTOR - RegObjects
     function NewRegularObject(ShellXArr, ShellYArr, ShellZArr, INLeaderX, INLeaderY, INLeaderZ) {
         this.ShellX = ShellXArr;
         this.ShellY = ShellYArr;
@@ -89,8 +91,22 @@
         this.TotalAnimationDeviationY = 0
         this.TotalAnimationDeviationZ = 0
 
+
+        this.HitboxSizeX1 = -100
+        this.HitboxSizeY1 = -100
+        this.HitboxSizeZ1 = -100
+
+        this.HitboxSizeX2 = 100
+        this.HitboxSizeY2 = 100
+        this.HitboxSizeZ2 = 100
+
+        this.HitboxProjectedX = [0]
+        this.HitboxProjectedY = [0]
+
+        this.HasHitbox = true
+
             
-        this.Marked = false;
+        this.IsMarked = false;
     
         this.PointsMarked = [];
     
@@ -124,25 +140,25 @@
         }
 
 
+        
+////////////////////////////////////////////////HITBOX BÖR VARA EFTER ANIMATION I LOOPEN
+        this.HitboxRelativeBoundraryXYZ = function(){
+            let SpanXYZ = []
+
+            SpanXYZ.push(this.TotalAnimationDeviationX + this.HitboxSizeX1 + this.LeaderX)
+            SpanXYZ.push(this.TotalAnimationDeviationX + this.HitboxSizeX2 + this.LeaderX)
+            SpanXYZ.push(this.TotalAnimationDeviationY + this.HitboxSizeY1 + this.LeaderY)
+            SpanXYZ.push(this.TotalAnimationDeviationY + this.HitboxSizeY2 + this.LeaderY)
+            SpanXYZ.push(this.TotalAnimationDeviationZ + this.HitboxSizeZ1 + this.LeaderZ)
+            SpanXYZ.push(this.TotalAnimationDeviationZ + this.HitboxSizeZ2 + this.LeaderZ)
+
+            return SpanXYZ
+        }
+
+
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // CONSTRUCTOR - RegObjects
 
 
 
@@ -156,9 +172,9 @@
             let CDY = Math.random() * 500 - 400
             let CDZ = Math.random() * 500 - 400
             
-            let NewShellX = [10, 11.25, 10, 11.25, 10, 11.25, 10,   7.5, 10, 7.5, 5, 7.5, 5,         3.75, 5, 3.75, 5,  3.75, 5,       7.5,  5,  7.5,  10, 7.5,  10,      7.5,  5,  7.5,  5,  7.5,  10,        7.5, 5,  7.5, 5, 7.5, 10,     10,        5,  5,  10, 10, 10,     10, 5,   5,  10,  10,  5,  5,  5,  5]
-            let NewShellY = [10, 7.5,  10, 7.5,  5,  7.5,  5,       3.75, 5,  3.75, 5, 3.75, 5,      7.5, 5, 7.5, 10, 7.5, 10,         7.5,  5,  7.5,  5,  7.5,  10,      11.25, 10, 11.25, 10, 11.25, 10,     7.5, 10, 7.5, 5, 7.5, 5,      10,        10, 5,  5, 10, 5,       5,  5,   10, 10,  10,  10, 10, 5,  5]
-            let NewShellZ = [5,  7.5,  10, 7.5,  5,  7.5,  10,      7.5, 5,  7.5, 5, 7.5, 10,        7.5, 5, 7.5, 5,  7.5, 10,         11.25, 10, 11.25, 10, 11.25, 10,   7.5,  10, 7.5,  5,  7.5,  5,         3.75, 5,  3.75, 5, 3.75, 5,   5,         5,  5,  5, 5, 5,        10, 10,  10, 10,  5,   5,  10, 10, 5]
+            let NewShellX = SpherePresetX
+            let NewShellY = SpherePresetY
+            let NewShellZ = SpherePresetZ
             
 
 

@@ -119,6 +119,10 @@ if(FoundCollision == true){
       case "b":
       ShowAnimationPathing = !ShowAnimationPathing
       break;
+
+      case "h":
+        ShowHitboxes = !ShowHitboxes
+        break;
 ////////////
 
 ////////////

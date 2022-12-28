@@ -139,6 +139,7 @@
             <p>(Key: "Backspace(Delete)") to Stop Program</p>
             <p>(Keys: "k", "l", "m", "n") to change Focus Animation Stage</p>
             <p>(Key: "v") to Stop Program</p>
+            <p>(Key: "h") to show Hitboxes</p>
             
         </div>
         
@@ -149,20 +150,20 @@
             let context = canvas.getContext('2d')
 
 
-
-
-
             RegObjects = []
 
 
-
-
-
+            let SpherePresetX = [10, 11.25, 10, 11.25, 10, 11.25, 10,   7.5, 10, 7.5, 5, 7.5, 5,         3.75, 5, 3.75, 5,  3.75, 5,       7.5,  5,  7.5,  10, 7.5,  10,      7.5,  5,  7.5,  5,  7.5,  10,        7.5, 5,  7.5, 5, 7.5, 10,     10,        5,  5,  10, 10, 10,     10, 5,   5,  10,  10,  5,  5,  5,  5]
+            let SpherePresetY = [10, 7.5,  10, 7.5,  5,  7.5,  5,       3.75, 5,  3.75, 5, 3.75, 5,      7.5, 5, 7.5, 10, 7.5, 10,         7.5,  5,  7.5,  5,  7.5,  10,      11.25, 10, 11.25, 10, 11.25, 10,     7.5, 10, 7.5, 5, 7.5, 5,      10,        10, 5,  5, 10, 5,       5,  5,   10, 10,  10,  10, 10, 5,  5]
+            let SpherePresetZ = [5,  7.5,  10, 7.5,  5,  7.5,  10,      7.5, 5,  7.5, 5, 7.5, 10,        7.5, 5, 7.5, 5,  7.5, 10,         11.25, 10, 11.25, 10, 11.25, 10,   7.5,  10, 7.5,  5,  7.5,  5,         3.75, 5,  3.75, 5, 3.75, 5,   5,         5,  5,  5, 5, 5,        10, 10,  10, 10,  5,   5,  10, 10, 5]
+            
+            let CubePresetX = [100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100,100-100,100-100]
+            let CubePresetY = [100-100,100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,100-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100]
+            let CubePresetZ = [100-100,100-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100,200-100,100-100,100-100,200-100,200-100,100-100,100-100,200-100]
 
             
-            // let ShellX = []
-            // let ShellY = []
-            // let ShellZ = []
+
+
             
             let KeyPress = ""
             
@@ -195,6 +196,8 @@
             let ProgramIncrementHertz = 0.5
             
             let ShowAnimationPathing = false
+
+            let ShowHitboxes = false
             
             let Framestage = 0
             
@@ -228,19 +231,24 @@
                 DoScaling()
                 
                 DoCalculateAnimation()
+
+                DoCalculateHitboxes()
                 
                 // Prepare Projection Arrays
                 ProjectShell2D()
                 
                 ProjectAnimationPath2D()
+
+                ProjectHitboxes2D()
                 //
                 
                 // Draw On Canvas
                 CanvasDrawObjectShells()
                 
                 CanvasDrawAnimationPathing()
+
+                CanvasHitboxes()
                 //
-                console.log(RegObjects)
                 
                 KeyPress = "NoKey"
                 ScrollY = "None"
@@ -487,6 +495,46 @@
             }
             // Calculate Animation Values per Frame Function
             
+
+
+
+
+
+            // Calculate Hitboxes and Collision Function
+            function DoCalculateHitboxes(){
+
+                for (let i = 0; i < RegObjects.length; i++) {
+                    
+                    const Hitbox = RegObjects[i].HitboxRelativeBoundraryXYZ()
+
+                    
+                }
+
+
+
+
+
+
+
+
+            }
+            // Calculate Hitboxes and Collision Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             
             
             
@@ -641,6 +689,71 @@
             }
             // Project per Object Animation Path X/Y/Z -> 2D(X, Y) Function
             
+
+
+
+
+
+
+
+            function ProjectHitboxes2D(){
+
+                for (let i = 0; i < RegObjects.length; i++) {
+
+                    if(RegObjects[i].HasHitbox == true){
+
+                        const Hitbox = RegObjects[i].HitboxRelativeBoundraryXYZ()
+                        
+                        const HitboxWireFrameX = [Hitbox[0],Hitbox[1],Hitbox[1],Hitbox[0],Hitbox[0],Hitbox[0],Hitbox[1],Hitbox[1],Hitbox[0],Hitbox[0],Hitbox[0],Hitbox[1],Hitbox[1],Hitbox[1],Hitbox[1],Hitbox[0],Hitbox[0]]
+                        const HitboxWireFrameY = [Hitbox[2],Hitbox[2],Hitbox[3],Hitbox[3],Hitbox[2],Hitbox[2],Hitbox[2],Hitbox[3],Hitbox[3],Hitbox[2],Hitbox[2],Hitbox[2],Hitbox[2],Hitbox[3],Hitbox[3],Hitbox[3],Hitbox[3]]
+                        const HitboxWireFrameZ = [Hitbox[4],Hitbox[4],Hitbox[4],Hitbox[4],Hitbox[4],Hitbox[5],Hitbox[5],Hitbox[5],Hitbox[5],Hitbox[5],Hitbox[4],Hitbox[4],Hitbox[5],Hitbox[5],Hitbox[4],Hitbox[4],Hitbox[5]]
+
+                        for (let o = 0; o < HitboxWireFrameX.length; o++) {
+                            
+
+                            const XYZArr = ApplyCameraPerspective(HitboxWireFrameX[o], HitboxWireFrameY[o], HitboxWireFrameZ[o])
+                            
+                            const X = XYZArr[0] + AddedXDistance
+                            const Y = XYZArr[1] + AddedYDistance
+                            const Z = XYZArr[2] + AddedZDistance
+
+                            RegObjects[i].HitboxProjectedX[o] = ((X * FocalLength) / (Z + FocalLength))
+                            RegObjects[i].HitboxProjectedY[o] = ((Y * FocalLength) / (Z + FocalLength))
+                            
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    }
+                    
+                }
+
+
+
+            }
+
+
+
+
+
             
             
             
@@ -707,6 +820,34 @@
                                     ctx.moveTo(400+Number(RegObjects[i].AnimationPathProjectedX[o]),400+Number(RegObjects[i].AnimationPathProjectedY[o]));
                                     ctx.lineTo(400+Number(RegObjects[i].AnimationPathProjectedX[o+1]),400+Number(RegObjects[i].AnimationPathProjectedY[o+1]));
                                     ctx.strokeStyle = "purple"
+                                    ctx.lineWidth = 2
+                                    ctx.stroke()
+                                }
+                            
+                        }
+                    }
+                }
+                // Canvas draw Animation Pathing Visualisation Function
+
+
+
+
+
+
+
+
+
+                // Canvas draw Animation Pathing Visualisation Function
+                function CanvasHitboxes(){
+                    if(ShowHitboxes == true){
+                        
+                        for (let i = 0; i < RegObjects.length; i++) {
+                               
+                                for (let o = 0; o < RegObjects[i].HitboxProjectedX.length; o++) {
+                                    
+                                    ctx.moveTo(400+Number(RegObjects[i].HitboxProjectedX[o]),400+Number(RegObjects[i].HitboxProjectedY[o]));
+                                    ctx.lineTo(400+Number(RegObjects[i].HitboxProjectedX[o+1]),400+Number(RegObjects[i].HitboxProjectedY[o+1]));
+                                    ctx.strokeStyle = "pink"
                                     ctx.lineWidth = 2
                                     ctx.stroke()
                                 }
