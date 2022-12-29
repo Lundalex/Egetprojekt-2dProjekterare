@@ -2,7 +2,7 @@
     function QuickStart(){
 
         // Calls Functions (2)
-        AddCubeObject()
+        AddCubeObject(0,0,0,1)
         Start()
     }
     // Quick Start Function

@@ -7,6 +7,7 @@
     <script src="S-Html-Inputs.JS"></script>
     <script src="S-Important-Extensions.JS"></script>
     <script src="S-User-Events.JS"></script>
+    <!-- <link rel="stylesheet" href="ThirdPartyCss.CSS"> -->
     
     <title>Unity(TM)</title>
 </head>
@@ -84,8 +85,8 @@
             </div>
             
             <h1 style="font-weight: bolder;">Settings:</h1>
-            <button style="width: 150px;" onclick="AddCubeObject()">AddCubeObject</button>
-            <button style="width: 150px;" onclick="AddSphereObject()">AddSphereObject</button>
+            <button style="width: 150px;" onclick="AddCubeObject(0,0,0,1)">AddCubeObject</button>
+            <button style="width: 150px;" onclick="AddSphereObject(0,0,0,1)">AddSphereObject</button>
             <div>
                 <input type="radio" name="1" value="Manipulate Path" onchange="ChangeManipulatePath()"><label>Manipulate Path(/Velocity)</label><br>
                 <input type="radio" name="1" value="Manipulate Point" onchange="ChangeManipulatePoint()"><label>Manipulate Point</label><br>
@@ -150,7 +151,6 @@
             <p>(Key: "v") to Stop Program</p>
             <p>(Key: "h") to show Hitboxes</p>
             <p>RegObject[n].Delete Property not tested!!!!!!!!!</p>
-            
         </div>
         
         <script>
@@ -161,6 +161,8 @@
 
 
             RegObjects = []
+
+            SpawnerObjects = []
 
 
             let SpherePresetX = [10, 11.25, 10, 11.25, 10, 11.25, 10,   7.5, 10, 7.5, 5, 7.5, 5,         3.75, 5, 3.75, 5,  3.75, 5,       7.5,  5,  7.5,  10, 7.5,  10,      7.5,  5,  7.5,  5,  7.5,  10,        7.5, 5,  7.5, 5, 7.5, 10,     10,        5,  5,  10, 10, 10,     10, 5,   5,  10,  10,  5,  5,  5,  5]
@@ -216,10 +218,8 @@
 
             let TimeFriction = 1
 
-
-
-
-
+        // SpawnerObjects.push(new NewSpawnerObject(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 0, 0))
+        // SpawnerObjects[0].Spawn()
 
 
             let CameraMoveMode = 1
@@ -234,15 +234,10 @@
             // All Global Variables
             
 
-
-
-
-
-
             function MainLoop(){
                 
                 ResetCanvas() //
-                
+
                 // (Manipulate path, object, point)
                 DoManipulation()
                 
