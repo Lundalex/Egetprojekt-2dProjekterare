@@ -153,7 +153,7 @@
     border: 2px solid #6a6a6a;
     padding: 15px;
     border-radius: 10px;
-    background-color: #212121;
+    background-color: #125127;
     font-size: small;
     font-weight: bold;
     text-align: center;
@@ -161,7 +161,7 @@
    
    .input:focus {
     outline-color: #a9a9a9;
-    background-color: #212121;
+    background-color: #061f0f;
     color: #6a6a6a;
     box-shadow: 5px 5px #888888;
    }
@@ -254,21 +254,21 @@
     background: #585858;
     padding: 20px;
     width: 280px;
-    height: 330px;
+    height: 240px;
   }
   .rcorners3 {
-    border-radius: 5px;
+    border-radius: 7px;
     background: #585858;
-    padding: 20px;
-    width: 280px;
-    height: 110px;
+    padding: 5px;
+    width: 310px;
+    height: 58px;
   }
   .rcorners4 {
     border-radius: 5px;
     background: #585858;
     padding: 10px;
-    width: 75px;
-    height: 575px;
+    width: 50px;
+    height: 595px;
   }
 
   .rcorners5 {
@@ -282,8 +282,8 @@
     border-radius: 5px;
     background: #585858;
     padding: 10px;
-    width: 75px;
-    height: 75px;
+    width: 50px;
+    height: 50px;
   }
   .rcorners7 {
     border-radius: 5px;
@@ -304,9 +304,15 @@
     background: #585858;
     padding: 20px;
     width: 280px;
-    height: 120px;
+    height: 180px;
   }
-
+  .rcorners9 {
+    border-radius: 5px;
+    background: #585858;
+    padding: 20px;
+    width: 280px;
+    height: 60px;
+  }
 
 
 
@@ -359,3 +365,9 @@
 	text-align: center;
 	width: 100%;
 }
+
+
+
+
+
+

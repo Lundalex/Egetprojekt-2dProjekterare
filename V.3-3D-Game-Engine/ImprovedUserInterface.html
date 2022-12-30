@@ -11,7 +11,7 @@
 
     <title>ImprovedUserInterface</title>
 </head>
-<body style="background-color: #363636;">
+<body style="background-color: #363636;" onclick="OnClickFunction(event)" onmousedown="MouseDownFunction(event)" onmouseup="MouseUpFunction(event)" onwheel="ScrollFunction(event)">
 
 
 
@@ -24,11 +24,19 @@
         <div class="rcorners1">
             <!-- INSERT Objects List -->
 
+            <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: xx-large;" id="ProjectOverview">Project Overview:</u>
 
-            <div class="rcornersObject"style="display: flex; flex-direction: row">
+
+<!-- box example -->
+            <div class="rcornersObject"style="display: flex; flex-direction: row" id="Sketch">
                 <img style="width: 30px; height: 30px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX-CCbO2MLqGBkTkhjXWc0VIcXE1O9pKH4btNYWLOnyxvqsW5DPBv-_-6nVzGuznFT9sA&usqp=CAU">
                 <p style="font-weight: bolder; color: black; font-family: sans-serif; font-size: large;">.     Cube 1</p>
             </div>
+<!-- box example -->
+
+
+
+
 
 
 
@@ -57,11 +65,11 @@
         <!-- INSERT Add Object -->
 
         <div style="display: flex; flex-direction: row">
-<button class="button-31" role="button" style="height: 70px;">New Cube</button>
+<button class="button-31" role="button" style="height: 70px;"onclick="AddCubeObject(0,0,0,1)">New Cube</button>
 
 <div style="width: 10px;"></div>
 
-<button class="button-31" role="button" style="height: 70px;">New Sphere</button>
+<button class="button-31" role="button" style="height: 70px;"onclick="AddSphereObject(0,0,0,1)">New Sphere</button>
 
 <div style="width: 10px;"></div>
 
@@ -71,13 +79,13 @@
 
 <div style="display: flex; flex-direction: column">
 
-<label style="font-weight: bold; color: orange;" >Physics</label>
-<label style="font-weight: bold; color: lightgreen;">Animation</label>
+<label style="font-weight: bold; color: orange;" id="Physics">Physics</label>
+<label style="font-weight: bold; color: lightgreen;" id="Animated">Animation</label>
 
 
 
 <!-- HTML !-->
-<button class="button-42" role="button">Switch</button>
+<button class="button-42" role="button" onclick="ChangePhysicsAnimation()">Switch</button>
 
 
 </div>
@@ -129,15 +137,15 @@
 
             <div style="height: 10px;"></div>
 
-            <input type="password" name="text" class="input" placeholder="Enter">
+            <input type="input" name="text" class="input" placeholder="Enter" style="height: 1px; width: 70px;">
 
             <div style="height: 5px;"></div>
 
-            <input type="password" name="text" class="input" placeholder="Enter">
+            <input type="input" name="text" class="input" placeholder="Enter" style="height: 1px; width: 70px;">
 
             <div style="height: 5px;"></div>
 
-            <input type="password" name="text" class="input" placeholder="Enter">
+            <input type="input" name="text" class="input" placeholder="Enter" style="height: 1px; width: 70px;">
 
             <div style="height: 5px;"></div>
 
@@ -153,23 +161,190 @@
                 <span class="slider"></span>
               </label>
 
+              
+
 
         </div>
+
+
+        
+        <div style="height: 10px;"></div>
+
+
+
+        <div class="rcorners9" >
+
+
+            <div style="display: flex; flex-direction: row">
+            
+            
+                
+            <u style="font-weight: bold; color: rgb(0, 0, 0);">Object Elasticity:</u>
+
+            <div style="width: 20px;"></div>
+            
+            <u style="font-weight: bold; color: rgb(0, 0, 0);" >Change% (/Frame):</u>
+
+
+            </div>
+
+
+            <div style="display: flex; flex-direction: row">
+            
+
+
+                <input type="range" id="Elasticity" name="points" min="0" max="1" value="0.5" step="0.01" onchange="UpdateElasticity()" style="width: 120px;">
+                
+                <div style="width: 15px;"></div>
+
+                <input type="range" id="Increment/Hertz" name="points" min="0.2" max="2" value="0.5" step="0.1" onchange="UpdateIncrementHertz()" style="width: 120px;">
+            
+
+                
+            </div>
+
+
+            <div style="height: 10px;"></div>
+
+            <div style="display: flex; flex-direction: row">
+
+
+                <u style="font-weight: bold; color: rgb(0, 0, 0);">Hertz (Frames/s):</u>
+
+                
+                <div style="width: 15px;"></div>
+            
+                <input type="range" name="points" min="1" max="50" value="50" step="1" id="Hertz" onchange="UpdateHertz()" style="width: 120px;">
+                
+            
+            
+            
+            
+            
+            
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
 
         <div style="height: 10px;"></div>
 
 
         <div class="rcorners8" >
             <!-- INSERT Camera/Marking Options -->
-            <label style="font-weight: bold; color: rgb(0, 0, 0);" >Manipulate (Cursor):</label>
+            <u style="font-weight: bold; color: rgb(0, 0, 0);" >Manipulate (Cursor):</u>
 
             <div style="height: 5px;"></div>
 
             <div class="radio">
-                <input label="Animation/Velocity" type="radio" id="male" name="gender" value="male" checked>
-                <input label="Object" type="radio" id="female" name="gender" value="female">
-                <input label="Point" type="radio" id="other" name="gender" value="other">
+                <input label="Animation/Velocity" type="radio" id="male" name="gender" value="Manipulate Path" onchange="ChangeManipulatePath()" checked>
+                <input label="Object" type="radio" id="female" name="gender" value="Manipulate Object" onchange="ChangeManipulateObject()">
+                <input label="Point" type="radio" id="other" name="gender" value="Manipulate Point" onchange="ChangeManipulatePoint()">
             </div>
+
+            <div style="height: 10px;"></div>
+
+
+
+            <div style="height: 5px;"></div>
+
+
+
+            <div style="display: flex; flex-direction: row">
+
+                <div style="width: 20px;"></div>
+            
+                <u style="width: 90px; font-weight: bolder; color: rgb(0, 0, 0);">Offset X:</u>
+                <div style="width: 5px;"></div>
+                <u style="width: 80px; font-weight: bolder; color: rgb(0, 0, 0);">Offset Y:</u>
+                <div style="width: 10px;"></div>
+                <u style="width: 70px; font-weight: bolder; color: rgb(0, 0, 0);">Offset Z:</u>
+
+                
+            
+            
+            
+            
+            
+            </div>
+
+
+
+            <div style="display: flex; flex-direction: row">
+            
+            
+            
+            <input type="range" id="OffsetX" name="points" min="-1000" max="1000" step="100" style="width: 90px;" onchange="UpdateOffsetX()">
+                
+            <input type="range" id="OffsetY" name="points" min="-1000" max="1000" step="100" style="width: 90px;" onchange="UpdateOffsetY()">
+            
+            <input type="range" id="OffsetZ" name="points" min="-600" max="1400" step="100" style="width: 90px;" onchange="UpdateOffsetZ()">
+
+
+            
+            
+            
+            
+            
+            </div>
+
+
+
+
+            <div style="height: 10px;"></div>
+
+
+
+            <div style="display: flex; flex-direction: row">
+            
+            
+                
+                <u style="font-weight: bold; color: rgb(0, 0, 0);" >Focal Length:</u>
+
+            <div style="width: 20px;"></div>
+            
+                <input type="range" id="OffsetX" name="points" min="500" max="2000" value="700" step="100" id="FocalLength" onchange="UpdateFocalLength()" style="width: 160px;" onchange="UpdateFocallength()">
+            
+            
+            
+            </div>
+
+
+
+            <div style="height: 10px;"></div>
+
+            <div style="display: flex; flex-direction: row">
+            
+
+
+                
+            <button class="button-42" role="button" style="width: 180px; height: 30px; ;" id="CameraOffsetButton" onclick="ResetCameraOffset()">Reset Offset</button>
+
+            <div style="width: 20px;"></div>
+            
+            <button class="button-42" role="button" style="width: 180px; height: 30px; ;" id="CameraOrientationButton" onclick="ResetCameraOrientation()">Reset Orientation</button>
+
+            
+            
+            </div>
+
 
 
         </div>
@@ -181,7 +356,7 @@
         <div class="rcorners3" >
             <!-- INSERT Engine Options Overlay -->
 
-            <button class="button-64" role="button"><span class="text" onclick="Start()">Start Program</span></button>
+            <button class="button-64" role="button"><span class="text" onclick="Start()" style="height: 20px;">Start Program</span></button>
 
         </div>
 
@@ -217,10 +392,17 @@
 
 
 <script>
+    
     // All Global Variables
     let canvas = document.getElementById("Canvas")
     let ctx = canvas.getContext("2d")
     let context = canvas.getContext('2d')
+
+    document.getElementById("Physics").style.color = "orange"
+    document.getElementById("Animated").style.color = "black"
+
+
+    HTMLProjectOverviewNode = document.getElementById("ProjectOverview")
 
 
     RegObjects = []
@@ -239,7 +421,7 @@
     
     let KeyPress = ""
     
-    let Manipulate = ""
+    let Manipulate = "Path"
     
     let ScrollY = "None"
     
@@ -291,10 +473,12 @@
     let CameraDirection2 = 2 // 2 = Y
     let CameraDirection3 = 3 // 3 = Z
     
-    let AddedXDistance = 0
-    let AddedYDistance = 0
-    let AddedZDistance = 400
+    let CameraOffsetX = 0
+    let CameraOffsetY = 0
+    let CameraOffsetZ = 400
     // All Global Variables
+
+    let ChosenRegObjectType = "Physics"
     
 
     function MainLoop(){
@@ -331,17 +515,21 @@
         
         
 
-        const TestCameraArr = ApplyCameraPerspective(1,2,3)
+        // const TestCameraArr = ApplyCameraPerspective(1,2,3)
 
-        if((TestCameraArr[0] == 1) && (TestCameraArr[1] == 2) && (TestCameraArr[2] == 3)){
+        // if((TestCameraArr[0] == 1) && (TestCameraArr[1] == 2) && (TestCameraArr[2] == 3)){
         
-            document.getElementById("CameraDirection").innerHTML = "Default Camera Orientation"
-            document.getElementById("CameraDirection").style.color = "lightgreen"
-        }
-        else{
-            document.getElementById("CameraDirection").innerHTML = "Not Default Camera Orientation"
-            document.getElementById("CameraDirection").style.color = "red"
-        }
+        //     document.getElementById("CameraOrientationButton").style.backgroundColor = "orange"
+        // }
+        // else{
+        //     document.getElementById("CameraOrientationButton").style.backgroundColor = "red"
+        // }
+        // if((document.getElementById("OffsetX").value == 0) && (document.getElementById("OffsetY").value == 0) && (document.getElementById("OffsetZ").value == 0)){
+        //     document.getElementById("CameraOffsetButton").style.backgroundColor = "orange"
+        // }
+        // else {
+        //     document.getElementById("CameraOffsetButton").style.backgroundColor = "orange"
+        // }
         
 
 
@@ -673,8 +861,8 @@
 
                             const ForceTotalX = ForceX1 + ForceX2
 
-                            const NoneElasticityVelocityX1 = ForceTotalX / RegObjects[i].Mass
-                            const NoneElasticityVelocityX2 = ForceTotalX / RegObjects[o].Mass
+                            const NoneElasticityVelocityX1 = ForceTotalX*0.5 / RegObjects[i].Mass
+                            const NoneElasticityVelocityX2 = ForceTotalX*0.5 / RegObjects[o].Mass
 
 
                             // Elasticity = 1 Method
@@ -696,8 +884,8 @@
 
                             const ForceTotalY = ForceY1 + ForceY2
 
-                            const NoneElasticityVelocityY1 = ForceTotalY / RegObjects[i].Mass
-                            const NoneElasticityVelocityY2 = ForceTotalY / RegObjects[o].Mass
+                            const NoneElasticityVelocityY1 = ForceTotalY*0.5 / RegObjects[i].Mass
+                            const NoneElasticityVelocityY2 = ForceTotalY*0.5 / RegObjects[o].Mass
 
 
                             // Elasticity = 1 Method
@@ -719,8 +907,8 @@
 
                             const ForceTotalZ = ForceZ1 + ForceZ2
 
-                            const NoneElasticityVelocityZ1 = ForceTotalZ / RegObjects[i].Mass
-                            const NoneElasticityVelocityZ2 = ForceTotalZ / RegObjects[o].Mass
+                            const NoneElasticityVelocityZ1 = ForceTotalZ*0.5 / RegObjects[i].Mass
+                            const NoneElasticityVelocityZ2 = ForceTotalZ*0.5 / RegObjects[o].Mass
 
 
                             // Elasticity = 1 Method
@@ -822,9 +1010,9 @@
 
                     const XYZArr = ApplyCameraPerspective(ShellPointX, ShellPointY, ShellPointZ)
 
-                    const X = XYZArr[0] + AddedXDistance
-                    const Y = XYZArr[1] + AddedYDistance
-                    const Z = XYZArr[2] + AddedZDistance
+                    const X = XYZArr[0] + CameraOffsetX
+                    const Y = XYZArr[1] + CameraOffsetY
+                    const Z = XYZArr[2] + CameraOffsetZ
                     
                     
                     RegObjects[i].ShellprojectedX[o] = ((X * FocalLength) / (Z + FocalLength))
@@ -934,9 +1122,9 @@
 
                         const XYZArr = ApplyCameraPerspective(TotalAnimationpointX, TotalAnimationpointY, TotalAnimationpointZ)
 
-                        const X = XYZArr[0] + AddedXDistance
-                        const Y = XYZArr[1] + AddedYDistance
-                        const Z = XYZArr[2] + AddedZDistance
+                        const X = XYZArr[0] + CameraOffsetX
+                        const Y = XYZArr[1] + CameraOffsetY
+                        const Z = XYZArr[2] + CameraOffsetZ
                         
                         RegObjects[i].AnimationPathProjectedX[o] = ((X * FocalLength) / (Z + FocalLength))
                         RegObjects[i].AnimationPathProjectedY[o] = ((Y * FocalLength) / (Z + FocalLength))
@@ -948,9 +1136,9 @@
 
                     const XYZArr = ApplyCameraPerspective(TotalAnimationpointX, TotalAnimationpointY, TotalAnimationpointZ)
 
-                    const X = XYZArr[0] + AddedXDistance
-                    const Y = XYZArr[1] + AddedYDistance
-                    const Z = XYZArr[2] + AddedZDistance
+                    const X = XYZArr[0] + CameraOffsetX
+                    const Y = XYZArr[1] + CameraOffsetY
+                    const Z = XYZArr[2] + CameraOffsetZ
                         
                     RegObjects[i].AnimationPathProjectedX.unshift((X * FocalLength) / (Z + FocalLength))
                     RegObjects[i].AnimationPathProjectedY.unshift((Y * FocalLength) / (Z + FocalLength))
@@ -984,9 +1172,9 @@
 
                     const XYZArr = ApplyCameraPerspective(HitboxWireFrameX[o], HitboxWireFrameY[o], HitboxWireFrameZ[o])
                     
-                    const X = XYZArr[0] + AddedXDistance
-                    const Y = XYZArr[1] + AddedYDistance
-                    const Z = XYZArr[2] + AddedZDistance
+                    const X = XYZArr[0] + CameraOffsetX
+                    const Y = XYZArr[1] + CameraOffsetY
+                    const Z = XYZArr[2] + CameraOffsetZ
 
                     RegObjects[i].HitboxProjectedX[o] = ((X * FocalLength) / (Z + FocalLength))
                     RegObjects[i].HitboxProjectedY[o] = ((Y * FocalLength) / (Z + FocalLength))
@@ -1107,6 +1295,9 @@
         }
         // Canvas draw Animation Pathing Visualisation Function
 
+
+        HTMLProjectOverviewNode.appendChild(document.getElementById("Sketch"))
+        HTMLProjectOverviewNode.appendChild(document.getElementById("Sketch"))
     </script>
 
 

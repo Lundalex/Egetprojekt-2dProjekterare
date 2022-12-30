@@ -21,6 +21,21 @@
    function UpdateOffsetZ(){
         CameraOffsetZ = +document.getElementById("OffsetZ").value
    }
+
+   function ChangePhysicsAnimation(){
+
+    if(ChosenRegObjectType == "Physics"){
+        ChosenRegObjectType = "Animated"
+        
+        document.getElementById("Animated").style.color = "lightgreen"
+        document.getElementById("Physics").style.color = "black"
+    }
+    else if(ChosenRegObjectType == "Animated"){
+        ChosenRegObjectType = "Physics"
+        document.getElementById("Physics").style.color = "orange"
+        document.getElementById("Animated").style.color = "black"
+    } 
+   }
    
 
    
