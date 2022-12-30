@@ -29,6 +29,8 @@ for (let i = 0; i < RegObjects.length; i++) {
 
             FoundObjectNumber = i
 
+            document.getElementById("ObjectSettings").innerHTML = "Properties - Object 5"
+
             FoundCollision = true
         }
     }

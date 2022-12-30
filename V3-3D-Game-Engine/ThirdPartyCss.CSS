@@ -245,9 +245,9 @@
    .rcorners1 {
     border-radius: 5px;
     background: #585858;
-    padding: 20px;
-    width: 170px;
-    height: 560px;
+    padding: 10px;
+    width: 190px;
+    height: 240px;
   }
   .rcorners2 {
     border-radius: 5px;
@@ -296,8 +296,8 @@
     border-radius: 5px;
     background: #2a2a2a;
     padding: 10px;
-    width: 160px;
-    height: 30px;
+    width: 30px;
+    height: 50px;
   }
   .rcorners8 {
     border-radius: 5px;
@@ -312,6 +312,13 @@
     padding: 20px;
     width: 280px;
     height: 60px;
+  }
+  .rcorners11 {
+    border-radius: 5px;
+    background: #585858;
+    padding: 10px;
+    width: 190px;
+    height: 310px;
   }
 
 
@@ -371,3 +378,34 @@
 
 
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(35, 35, 35);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.tooltip .tooltiptext {
+  width: 120px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}

@@ -269,6 +269,7 @@
 
         RegObjects.push(new NewRegularObject(NewShellX, NewShellY, NewShellZ, NewShellLeaderX, NewShellLeaderY, NewShellLeaderZ,     AnimationInstructionsX, AnimationInstructionsY, AnimationInstructionsZ,       HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision))
                                                                                                                                  // Extra
+    document.getElementById("ProjectOverviewObjects").innerHTML = new String(RegObjects.length)
     }
     // Add New Cube Object Function
 
@@ -279,7 +280,7 @@
 
         // Add New Sphere Object Function
         function AddSphereObject(INLeaderX, INLeaderY, INLeaderZ, Size,     AnimationInstructionsX, AnimationInstructionsY, AnimationInstructionsZ,       HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision){
-            alert(Size)
+            
             let CDX = -400
             let CDY = -400
             let CDZ = -400
@@ -332,6 +333,7 @@
             
 
             RegObjects.push(new NewRegularObject(NewShellX, NewShellY, NewShellZ, NewShellLeaderX, NewShellLeaderY, NewShellLeaderZ,        AnimationInstructionsX, AnimationInstructionsY, AnimationInstructionsZ,       HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision))
+            document.getElementById("ProjectOverviewObjects").innerHTML = new String(RegObjects.length)
         }                                                                                                                             // Extra
         // Add New Sphere Object Function
     
@@ -341,45 +343,48 @@
 
         // CONTRUCTOR New Spawner Object
         function NewSpawnerObject(SpawnSpaceX1, SpawnSpaceY1, SpawnSpaceZ1, SpawnSpaceX2, SpawnSpaceY2, SpawnSpaceZ2, SpawnedLeaderX, SpawnedLeaderY, SpawnedLeaderZ, SpawnedSize, SpawnedAnimationInstructionsX, SpawnedAnimationInstructionsY, SpawnedAnimationInstructionsZ, SpawnedHitboxSizeX1, SpawnedHitboxSizeY1, SpawnedHitboxSizeZ1, SpawnedHitboxSizeX2, SpawnedHitboxSizeY2, SpawnedHitboxSizeZ2, SpawnedVelocityX, SpawnedVelocityY, SpawnedVelocityZ, SpawnedMass, SpawnedDeleteOnCollision, SpawnedObjectCubeSphere){
+        //                              1           2             3               4            5            6              7               8               9             23                     10                            11                            12                          13                    14             15                     16                      17                      18                 19            20                   21           22               25                        24
+            
+        document.getElementById("ProjectOverviewSpawners").innerHTML = new String(SpawnerObjects.length + 1)
 
-            this.SpawnSpaceX1 = SpawnSpaceX1 // Def 0
-            this.SpawnSpaceY1 = SpawnSpaceY1 // Def 0
-            this.SpawnSpaceZ1 = SpawnSpaceZ1 // Def 0
+            this.SpawnSpaceX1 = +SpawnSpaceX1 // Def 0
+            this.SpawnSpaceY1 = +SpawnSpaceY1 // Def 0
+            this.SpawnSpaceZ1 = +SpawnSpaceZ1 // Def 0
 
-            this.SpawnSpaceX2 = SpawnSpaceX2 // Def 0
-            this.SpawnSpaceY2 = SpawnSpaceY2 // Def 0
-            this.SpawnSpaceZ2 = SpawnSpaceZ2 // Def 0
+            this.SpawnSpaceX2 = +SpawnSpaceX2 // Def 0
+            this.SpawnSpaceY2 = +SpawnSpaceY2 // Def 0
+            this.SpawnSpaceZ2 = +SpawnSpaceZ2 // Def 0
 
 
-            this.SpawnedLeaderX = SpawnedLeaderX // Def 0
-            this.SpawnedLeaderY = SpawnedLeaderY // Def 0
-            this.SpawnedLeaderZ = SpawnedLeaderZ // Def 0
+            this.SpawnedLeaderX = +SpawnedLeaderX // Def 0
+            this.SpawnedLeaderY = +SpawnedLeaderY // Def 0
+            this.SpawnedLeaderZ = +SpawnedLeaderZ // Def 0
 
-            this.SpawnedSize = SpawnedSize // Def 1
+            this.SpawnedSize = +SpawnedSize // Def 1
 
-            this.SpawnedAnimationInstructionsX = SpawnedAnimationInstructionsX // Def [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            this.SpawnedAnimationInstructionsY = SpawnedAnimationInstructionsY // Def [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            this.SpawnedAnimationInstructionsZ = SpawnedAnimationInstructionsZ // Def [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            this.SpawnedAnimationInstructionsX = +SpawnedAnimationInstructionsX // Def [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            this.SpawnedAnimationInstructionsY = +SpawnedAnimationInstructionsY // Def [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            this.SpawnedAnimationInstructionsZ = +SpawnedAnimationInstructionsZ // Def [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-            this.SpawnedHitboxSizeX1 = SpawnedHitboxSizeX1 // Def -100
-            this.SpawnedHitboxSizeY1 = SpawnedHitboxSizeY1 // Def -100
-            this.SpawnedHitboxSizeZ1 = SpawnedHitboxSizeZ1 // Def -100
+            this.SpawnedHitboxSizeX1 = +SpawnedHitboxSizeX1 // Def -100
+            this.SpawnedHitboxSizeY1 = +SpawnedHitboxSizeY1 // Def -100
+            this.SpawnedHitboxSizeZ1 = +SpawnedHitboxSizeZ1 // Def -100
     
-            this.SpawnedHitboxSizeX2 = SpawnedHitboxSizeX2 // Def 100
-            this.SpawnedHitboxSizeY2 = SpawnedHitboxSizeY2 // Def 100
-            this.SpawnedHitboxSizeZ2 = SpawnedHitboxSizeZ2 // Def 100
+            this.SpawnedHitboxSizeX2 = +SpawnedHitboxSizeX2 // Def 100
+            this.SpawnedHitboxSizeY2 = +SpawnedHitboxSizeY2 // Def 100
+            this.SpawnedHitboxSizeZ2 = +SpawnedHitboxSizeZ2 // Def 100
 
             this.SpawnedObjectType = ChosenRegObjectType // SET BY GLOBAL VARIABLE
             // Animated, Physics
     
-            this.SpawnedVelocityX = SpawnedVelocityX // Def 0
-            this.SpawnedVelocityY = SpawnedVelocityY // Def 0
-            this.SpawnedVelocityZ = SpawnedVelocityZ // Def 0
+            this.SpawnedVelocityX = +SpawnedVelocityX // Def 0
+            this.SpawnedVelocityY = +SpawnedVelocityY // Def 0
+            this.SpawnedVelocityZ = +SpawnedVelocityZ // Def 0
     
-            this.SpawnedMass = SpawnedMass // Def 100
+            this.SpawnedMass = +SpawnedMass // Def 100
     
     
-            this.SpawnedDeleteOnCollision = SpawnedDeleteOnCollision // Deffalse
+            this.SpawnedDeleteOnCollision = +SpawnedDeleteOnCollision // Def false
 
 
             this.SpawnedObjectCubeSphere = SpawnedObjectCubeSphere // Def "Cube"

@@ -13,46 +13,254 @@
 </head>
 <body style="background-color: #363636;" onclick="OnClickFunction(event)" onmousedown="MouseDownFunction(event)" onmouseup="MouseUpFunction(event)" onwheel="ScrollFunction(event)">
 
-
-
     <div style="display: flex; flex-direction: row">
 
         <div style="display: flex; flex-direction: column">
 
         <div style="display: flex; flex-direction: row">
     
+
+            <div style="display: flex; flex-direction: column">
         <div class="rcorners1">
             <!-- INSERT Objects List -->
 
-            <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: xx-large;" id="ProjectOverview">Project Overview:</u>
+            <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: x-large;" id="ProjectOverview">Project Overview:</u>
 
+
+            <div style="height: 10px;"></div>
+
+            <div style="display: flex; flex-direction: row">
+            
+                <div class="rcornersObject"style="display: flex; flex-direction: row; ">
+            
+                    <h1 id="ProjectOverviewObjects"></h1>
+            
+                </div>
+                <div style="width: 5px;"></div>
+                <div style="display: flex; flex-direction: column">
+                    <div style="height: 50px;"></div>
+
+                    <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: large;">Total Objects</u>
+                
+                </div>
+
+            
+            </div>
+
+
+            <div style="height: 10px;"></div>
+            
+            <div style="display: flex; flex-direction: row">
+            
+                <div class="rcornersObject"style="display: flex; flex-direction: row">
+            
+                    <h1 id="ProjectOverviewSpawners"></h1>
+            
+                </div>
+                <div style="width: 5px;"></div>
+                <div style="display: flex; flex-direction: column">
+                    <div style="height: 50px;"></div>
+
+                    <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: large;">Total Spawners</u>
+                
+                </div>
+    
+            
+            
+            </div>
 
 <!-- box example -->
-            <div class="rcornersObject"style="display: flex; flex-direction: row" id="Sketch">
+            <!-- <div class="rcornersObject"style="display: flex; flex-direction: row">
                 <img style="width: 30px; height: 30px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX-CCbO2MLqGBkTkhjXWc0VIcXE1O9pKH4btNYWLOnyxvqsW5DPBv-_-6nVzGuznFT9sA&usqp=CAU">
                 <p style="font-weight: bolder; color: black; font-family: sans-serif; font-size: large;">.     Cube 1</p>
-            </div>
+            </div> -->
 <!-- box example -->
 
+        </div>
+
+        <div style="height: 10px;"></div>
+
+        <div class="rcorners11"id="ProjectOverview">
+
+
+            <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: x-large;">New Spawner:</u>
 
 
 
+            <div style="display: flex; flex-direction: row">
+                <div class="tooltip">
+
+                    <span class="tooltiptext">SpawningArea - X1 Coord</span>
+                    <input id="1" type="input" name="text" class="input" placeholder="S-X1" style="height: 1px; width: 30px;">
+                </div>
+
+
+                <div class="tooltip">
+                    <span class="tooltiptext">SpawningArea - Y1 Coord</span>
+    
+                    <input id="2" type="input" name="text" class="input" placeholder="S-Y1" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">SpawningArea - Z1 Coord</span>
+    
+                    <input id="3" type="input" name="text" class="input" placeholder="S-Z1" style="height: 1px; width: 30px;">
+                </div>
 
 
 
+            </div>
 
+            <div style="display: flex; flex-direction: row">
+                <div class="tooltip">
+                    <span class="tooltiptext">SpawningArea - X2 Coord</span>
+    
+                    <input id="4" type="input" name="text" class="input" placeholder="S-X2" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">SpawningArea - Y2 Coord</span>
+    
+                    <input id="5" type="input" name="text" class="input" placeholder="S-Y2" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">SpawningArea - Z2 Coord</span>
+    
+                    <input id="6" type="input" name="text" class="input" placeholder="S-Z2" style="height: 1px; width: 30px;">
+                </div>
+
+            </div>
+
+            <div style="display: flex; flex-direction: row">
+                <div class="tooltip">
+                    <span class="tooltiptext">Leader X (Object X Position)</span>
+    
+                    <input id="7" type="input" name="text" class="input" placeholder="L-X" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Leader Y (Object Y Position)</span>
+    
+                    <input id="8" type="input" name="text" class="input" placeholder="L-Y" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Leader Z (Object Z Position)</span>
+    
+                    <input id="9" type="input" name="text" class="input" placeholder="L-Z" style="height: 1px; width: 30px;">
+                </div>
+
+
+            </div>
+            
+            <div style="display: flex; flex-direction: row">
+                <div class="tooltip">
+                    <span class="tooltiptext">Animation Instructions - X Axis (Arr)</span>
+    
+                    <input id="10" type="input" name="text" class="input" placeholder="A-X" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Animation Instructions - Y Axis (Arr)</span>
+    
+                    <input id="11" type="input" name="text" class="input" placeholder="A-Y" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Animation Instructions - Z Axis (Arr)</span>
+    
+                    <input id="12" type="input" name="text" class="input" placeholder="A-Z" style="height: 1px; width: 30px;">
+                </div>
+
+            </div>
+
+            <div style="display: flex; flex-direction: row">
+                <div class="tooltip">
+                    <span class="tooltiptext">Hitbox Boundrary - X1 Coord</span>
+    
+                    <input id="13" type="input" name="text" class="input" placeholder="H-X1" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Hitbox Boundrary - Y1 Coord</span>
+    
+                    <input id="14" type="input" name="text" class="input" placeholder="H-Y1" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Hitbox Boundrary - Z1 Coord</span>
+    
+                    <input id="15" type="input" name="text" class="input" placeholder="H-Z1" style="height: 1px; width: 30px;">
+                </div>
+
+
+            </div>
+
+            <div style="display: flex; flex-direction: row">
+                <div class="tooltip">
+                    <span class="tooltiptext">Hitbox Boundrary - X2 Coord</span>
+    
+                    <input id="16" type="input" name="text" class="input" placeholder="H-X2" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Hitbox Boundrary - Y2 Coord</span>
+    
+                    <input id="17" type="input" name="text" class="input" placeholder="H-Y2" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Hitbox Boundrary - Z2 Coord</span>
+    
+                    <input id="18" type="input" name="text" class="input" placeholder="H-Z2" style="height: 1px; width: 30px;">
+                </div>
+
+            </div>
+
+            <div style="display: flex; flex-direction: row">
+                <div class="tooltip">
+                    <span class="tooltiptext">Starting Velocity - X Axis</span>
+    
+                    <input id="19" type="input" name="text" class="input" placeholder="V-X" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Starting Velocity - Y Axis</span>
+    
+                    <input id="20" type="input" name="text" class="input" placeholder="V-Y" style="height: 1px; width: 30px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Starting Velocity - Z Axis</span>
+    
+                    <input id="21" type="input" name="text" class="input" placeholder="V-Z" style="height: 1px; width: 30px;">
+                </div>
+
+            </div>
+            
+            <div style="display: flex; flex-direction: row">
+                <div class="tooltip">
+                    <span class="tooltiptext">Mass Property</span>
+    
+                    <input id="22" type="input" name="text" class="input" placeholder="M" style="height: 1px; width: 13.5px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Size (Coefficient)</span>
+    
+                    <input id="23" type="input" name="text" class="input" placeholder="S" style="height: 1px; width: 13.5px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Mesh Preset ((Cube) or (Sphere))</span>
+    
+                    <input id="24" type="input" name="text" class="input" placeholder="M" style="height: 1px; width: 13.5px;">
+                </div>
+                <div class="tooltip">
+                    <span class="tooltiptext">Delete On Collision ((0) or (1)</span>
+    
+                    <input id="25" type="input" name="text" class="input" placeholder="D" style="height: 1px; width: 13.5px;">
+                </div>
+
+
+            </div>
 
 
         </div>
+
+    </div>
+
+
         
         <div style="width: 10px;"></div>
     
         <canvas id="Canvas" width="580" height="580" style="border:10px solid #585858; border-radius: 5px; width: 580px; height: 580px;"></canvas>
-
-
-
-
-
 
         
     </div>
@@ -73,7 +281,7 @@
 
 <div style="width: 10px;"></div>
 
-<button class="button-31" role="button" style="height: 70px;">New Spawner</button>
+<button class="button-31" role="button" style="height: 70px;" onclick="AddSpawnerObject()">New Spawner</button>
 
 <div style="width: 10px;"></div>
 
@@ -133,7 +341,7 @@
 
         <div class="rcorners2" >
             <!-- INSERT Options Overlay -->
-            <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: xx-large;">Cube Object 1:</u>
+            <u id="ObjectSettings" style="font-weight: bolder; color: black; font-family: sans-serif; font-size: x-large;">Cube Object 1:</u>
 
             <div style="height: 10px;"></div>
 
@@ -156,14 +364,50 @@
 
               <div style="height: 5px;"></div>
 
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-              </label>
+
+
+
+              <div style="display: flex; flex-direction: row">
+
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+
+                  <div style="width: 10px;"></div>
+
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+
+                  <div style="width: 10px;"></div>
+
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+
+                  <div style="width: 40px;"></div>
+
+
+
+
+
+                <div class="tooltip">
+                    <span class="tooltiptext">These Object Settings may Induce Bugs!</span>
+                    <img style="width: 40px; height: 40px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kJAYPbD2b8bdQjzWPJrRuEM6xDI66gDJAQ&usqp=CAU" alt="">
+                </div>
+
+
+              </div>
+
+
+
+
+
 
               
-
-
         </div>
 
 
@@ -216,33 +460,9 @@
             
                 <input type="range" name="points" min="1" max="50" value="50" step="1" id="Hertz" onchange="UpdateHertz()" style="width: 120px;">
                 
-            
-            
-            
-            
-            
-            
             </div>
 
-
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
 
         <div style="height: 10px;"></div>
 
@@ -749,6 +969,10 @@
 
         if(Framestage > 400){
             Framestage = 1
+            for (let i = 0; i < SpawnerObjects.length; i++) {
+                SpawnerObjects[i].Spawn()
+                
+            }
         }
         else{
             Framestage += 2 * ProgramIncrementHertz
@@ -1295,9 +1519,6 @@
         }
         // Canvas draw Animation Pathing Visualisation Function
 
-
-        HTMLProjectOverviewNode.appendChild(document.getElementById("Sketch"))
-        HTMLProjectOverviewNode.appendChild(document.getElementById("Sketch"))
     </script>
 
 
