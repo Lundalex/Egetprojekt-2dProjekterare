@@ -1,32 +1,27 @@
    
-
-   function ResetCameraOffset(){
+function ResetCameraOffset(){
     document.getElementById("OffsetX").value = 0
     document.getElementById("OffsetY").value = 0
     document.getElementById("OffsetZ").value = 400
     CameraOffsetX = 0
     CameraOffsetY = 0
     CameraOffsetZ = 400
+}
 
-   }
+function UpdateOffsetX(){
+    CameraOffsetX = +document.getElementById("OffsetX").value
+}
+function UpdateOffsetY(){
+    CameraOffsetY = +document.getElementById("OffsetY").value
+}
+function UpdateOffsetZ(){
+    CameraOffsetZ = +document.getElementById("OffsetZ").value
+}
 
-
-
-   function UpdateOffsetX(){
-        CameraOffsetX = +document.getElementById("OffsetX").value
-   }
-    function UpdateOffsetY(){
-        CameraOffsetY = +document.getElementById("OffsetY").value
-   }
-   function UpdateOffsetZ(){
-        CameraOffsetZ = +document.getElementById("OffsetZ").value
-   }
-
-   function ChangePhysicsAnimation(){
-
+function ChangePhysicsAnimation(){
+    
     if(ChosenRegObjectType == "Physics"){
         ChosenRegObjectType = "Animated"
-        
         document.getElementById("Animated").style.color = "lightgreen"
         document.getElementById("Physics").style.color = "black"
     }
@@ -35,10 +30,9 @@
         document.getElementById("Physics").style.color = "orange"
         document.getElementById("Animated").style.color = "black"
     } 
-   }
+}
 
-
-   function AddSpawnerObject(){
+function AddSpawnerObject(){
     const P1 = document.getElementById("1").value
     const P2 = document.getElementById("2").value
     const P3 = document.getElementById("3").value
@@ -49,129 +43,189 @@
     const P8 = document.getElementById("8").value
     const P9 = document.getElementById("9").value
     const P10 = document.getElementById("23").value
-    const P11 = document.getElementById("10").value
-    const P12 = document.getElementById("11").value
-    const P13 = document.getElementById("12").value
-    const P14 = document.getElementById("13").value
-    const P15 = document.getElementById("14").value
-    const P16 = document.getElementById("15").value
-    const P17 = document.getElementById("16").value
-    const P18 = document.getElementById("17").value
-    const P19 = document.getElementById("18").value
-    const P20 = document.getElementById("19").value
-    const P21 = document.getElementById("20").value
-    const P22 = document.getElementById("21").value
-    const P23 = document.getElementById("22").value
-    const P24 = document.getElementById("25").value
-    const P25 = document.getElementById("24").value
-
-    // Remember OUTER VARIBALE INPUT if used
-    SpawnerObjects.push(new NewSpawnerObject(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19,P20,P21,P22,P23,P24,P25))
-   }
-   
-
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   // Quick Start Function
-    function QuickStart(){
-
-        // Calls Functions (2)
-        AddCubeObject(0,0,0,1)
-        Start()
-    }
-    // Quick Start Function
+    const P11 = document.getElementById("13").value
+    const P12 = document.getElementById("14").value
+    const P13 = document.getElementById("15").value
+    const P14 = document.getElementById("16").value
+    const P15 = document.getElementById("17").value
+    const P16 = document.getElementById("18").value
+    const P17 = document.getElementById("19").value
+    const P18 = document.getElementById("20").value
+    const P19 = document.getElementById("21").value
+    const P20 = document.getElementById("22").value
+    const P21 = document.getElementById("25").value
+    const P22 = document.getElementById("24").value
     
+    const P30 = document.getElementById("30").value
+    const P31 = document.getElementById("31").value
+    const P32 = document.getElementById("32").value
     
-    
-    
-    
-    // Camera Movement Functions
-    function MoveRight(){
-        AddedXDistance -= 100
+    SpawnerObjects.push(new NewSpawnerObject(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,P14,P15,P16,P17,P18,P19,P20,P21,P22, P30, P31, P32))
 }
-    function MoveLeft(){
-        AddedXDistance += 100
+
+
+
+
+
+
+
+
+function Save1(){
+    if(SaveSlot1 == "Exported"){
+        // Import
+        SaveSlot1RegObjects = RegObjects.slice()
+        SaveSlot1SpawnerObjects = SpawnerObjects.slice()
+        document.getElementById("ExportImportSave").innerHTML = "Imported to:"
+        document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 1"
+        SaveSlot1 = "Imported"
+    }
+    else{
+        // Export
+        RegObjects = SaveSlot1RegObjects.slice()
+        SpawnerObjects = SaveSlot1SpawnerObjects.slice()
+        document.getElementById("ExportImportSave").innerHTML = "Exported from:"
+        document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 1"
+        SaveSlot1 = "Exported"
+    }
 }
-    function MoveAhead(){
-        AddedZDistance -= 100
+
+function Save2(){
+    if(SaveSlot2 == "Exported"){
+        // Import
+        SaveSlot2RegObjects = RegObjects.slice()
+        SaveSlot2SpawnerObjects = SpawnerObjects.slice()
+        document.getElementById("ExportImportSave").innerHTML = "Imported to:"
+        document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 2"
+        SaveSlot2 = "Imported"
+    }
+    else{
+        // Export
+        RegObjects = SaveSlot2RegObjects.slice()
+        SpawnerObjects = SaveSlot2SpawnerObjects.slice()
+        document.getElementById("ExportImportSave").innerHTML = "Exported from:"
+        document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 2"
+        SaveSlot2 = "Exported"
+    }
 }
-    function MoveBack(){
-        AddedZDistance += 100
+
+function Save3(){
+    if(SaveSlot3 == "Exported"){
+        // Import
+        SaveSlot3RegObjects = RegObjects.slice()
+        SaveSlot3SpawnerObjects = SpawnerObjects.slice()
+        document.getElementById("ExportImportSave").innerHTML = "Imported to:"
+        document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 3"
+        SaveSlot3 = "Imported"
+    }
+    else{
+        // Export
+        RegObjects = SaveSlot3RegObjects.slice()
+        SpawnerObjects = SaveSlot3SpawnerObjects.slice()
+        document.getElementById("ExportImportSave").innerHTML = "Exported from:"
+        document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 3"
+        SaveSlot3 = "Exported"
+    }
 }
-    function MoveDown(){
-        AddedYDistance -= 100
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Quick Start Function
+function QuickStart(){
+    
+    // Calls Functions (2)
+    AddCubeObject(0,0,0,1)
+    Start()
 }
-    function MoveUp(){
-        AddedYDistance += 100
+// Quick Start Function
+
+
+
+
+
+// Camera Movement Functions
+function MoveRight(){
+    AddedXDistance -= 100
 }
-    // Camera Movement Functions
-    
-    
-    
-    
-    
-    // Manipulate (Radiobuttons) Functions SAVE
-    function ChangeManipulatePath(){
-        Manipulate = "Path"
-    }
-    function ChangeManipulatePoint(){
-        Manipulate = "Point"
-    }
-    function ChangeManipulateObject(){
-        Manipulate = "Object"
-    }
-    // Manipulate (Radiobuttons) Functions SAVE
-    
-    
-    
-    
-
-    // Rendering Engine Settings Update Functions
-    function UpdateHertz(){
-        ProgramHertz = +document.getElementById("Hertz").value
-    }
-    
-    function UpdateIncrementHertz(){
-        ProgramIncrementHertz = +document.getElementById("Increment/Hertz").value
-    }
-    function UpdateFocalLength(){
-        FocalLength = +document.getElementById("FocalLength").value
-    }
-    // Rendering Engine Settings Update Functions
+function MoveLeft(){
+    AddedXDistance += 100
+}
+function MoveAhead(){
+    AddedZDistance -= 100
+}
+function MoveBack(){
+    AddedZDistance += 100
+}
+function MoveDown(){
+    AddedYDistance -= 100
+}
+function MoveUp(){
+    AddedYDistance += 100
+}
+// Camera Movement Functions
 
 
 
-    function UpdateElasticity(){
-        Elasticity = +document.getElementById("Elasticity").value
-    }
-
-    
 
 
+// Manipulate (Radiobuttons) Functions SAVE
+function ChangeManipulatePath(){
+    Manipulate = "Path"
+}
+function ChangeManipulatePoint(){
+    Manipulate = "Point"
+}
+function ChangeManipulateObject(){
+    Manipulate = "Object"
+}
+// Manipulate (Radiobuttons) Functions SAVE
 
-    // Reset Camera Orientation Function
-    function ResetCameraOrientation(){
-        CameraDirection1 = 1
-        CameraDirection2 = 2
-        CameraDirection3 = 3
-    }
-    // Reset Camera Orientation Function
+
+
+
+
+// Rendering Engine Settings Update Functions
+function UpdateHertz(){
+    ProgramHertz = +document.getElementById("Hertz").value
+}
+
+function UpdateIncrementHertz(){
+    ProgramIncrementHertz = +document.getElementById("Increment/Hertz").value
+}
+function UpdateFocalLength(){
+    FocalLength = +document.getElementById("FocalLength").value
+}
+// Rendering Engine Settings Update Functions
+
+
+
+
+function UpdateElasticity(){
+    Elasticity = +document.getElementById("Elasticity").value
+}
+
+
+
+
+
+// Reset Camera Orientation Function
+function ResetCameraOrientation(){
+    CameraDirection1 = 1
+    CameraDirection2 = 2
+    CameraDirection3 = 3
+}
+// Reset Camera Orientation Function

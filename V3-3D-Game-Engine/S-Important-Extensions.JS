@@ -21,7 +21,7 @@
 
 
     // CONSTRUCTOR - RegObjects
-    function NewRegularObject(INShellXArr, INShellYArr, INShellZArr, INLeaderX, INLeaderY, INLeaderZ,     AnimationInstructionsX, AnimationInstructionsY, AnimationInstructionsZ,       HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision) {
+    function NewRegularObject(INShellXArr, INShellYArr, INShellZArr, INLeaderX, INLeaderY, INLeaderZ,      HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision, ConstantForceX, ConstantForceY, ConstantForceZ) {
         
         this.ShellX = INShellXArr;
         this.ShellY = INShellYArr;
@@ -36,21 +36,10 @@
         this.ShellprojectedX = [0];
         this.ShellprojectedY = [0];
 
-        if(AnimationInstructionsX){
-            this.AnimationInstructionsX = AnimationInstructionsX}
-        else{
-            this.AnimationInstructionsX = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
 
-        if(AnimationInstructionsY){
-            this.AnimationInstructionsY = AnimationInstructionsY}
-        else{
-            this.AnimationInstructionsY = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
-
-        if(AnimationInstructionsZ){
-            this.AnimationInstructionsZ = AnimationInstructionsZ}
-        else{
-            this.AnimationInstructionsZ = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
-
+            this.AnimationInstructionsX = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            this.AnimationInstructionsY = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            this.AnimationInstructionsZ = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
         // FILL LATER
 
@@ -65,6 +54,20 @@
         this.TotalAnimationDeviationY = 0
         this.TotalAnimationDeviationZ = 0
 
+        if(ConstantForceX){
+            this.ConstantForceX = ConstantForceX}
+        else{
+            this.ConstantForceX = 0}
+
+        if(ConstantForceY){
+            this.ConstantForceY = ConstantForceY}
+        else{
+            this.ConstantForceY = 0}
+
+        if(ConstantForceZ){
+            this.ConstantForceZ = ConstantForceZ}
+        else{
+            this.ConstantForceZ = 0}
 
         if(HitboxSizeX1){
             this.HitboxSizeX1 = HitboxSizeX1}
@@ -104,10 +107,7 @@
             this.ObjectType = ObjectType}
         else{
             this.ObjectType = ChosenRegObjectType}
-
-
         // Animated, Physics
-
 
         if(VelocityX){
             this.VelocityX = VelocityX}
@@ -133,11 +133,10 @@
             this.Mass = 100}
 
 
-            if(DeleteOnCollision){
-                this.DeleteOnCollision = DeleteOnCollision}
-            else{
-                this.DeleteOnCollision = false}
-
+        if(DeleteOnCollision){
+            this.DeleteOnCollision = true}
+        else{
+            this.DeleteOnCollision = false}
 
 
         this.IsMarked = false;
@@ -159,8 +158,6 @@
 
 
 
-
-
         this.AnimationRelativePathCoordPositionX = function(PointNumber){
             return this.AnimationPathCoordsX[PointNumber] + this.LeaderX
         }
@@ -172,7 +169,6 @@
         this.AnimationRelativePathCoordPositionZ = function(PointNumber){
             return this.AnimationPathCoordsZ[PointNumber] + this.LeaderZ
         }
-
 
         this.HitboxRelativeBoundraryXYZ = function(){
             let SpanXYZ = []
@@ -187,7 +183,6 @@
             return SpanXYZ
         }
 
-
         this.NextHitboxRelativeBoundraryXYZ = function(){
             let SpanXYZ = []
 
@@ -200,23 +195,15 @@
 
             return SpanXYZ
         }
-
-        
     }
-        // CONSTRUCTOR - RegObjects
+    // CONSTRUCTOR - RegObjects
 
 
 
 
 
-
-
-
-
-
-
-            // Add New Cube Object Function
-    function AddCubeObject(INLeaderX, INLeaderY, INLeaderZ, Size,     AnimationInstructionsX, AnimationInstructionsY, AnimationInstructionsZ,       HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision){
+    // Add New Cube Object Function
+    function AddCubeObject(INLeaderX, INLeaderY, INLeaderZ, Size,     HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision, ConstantForceX, ConstantForceY, ConstantForceZ){
         
         let CDX = -400
         let CDY = -400
@@ -267,7 +254,7 @@
         NewShellY = NewShellY.map(function Procfunc(num){return (num-MY)*Size})
         NewShellZ = NewShellZ.map(function Procfunc(num){return (num-MZ)*Size})
 
-        RegObjects.push(new NewRegularObject(NewShellX, NewShellY, NewShellZ, NewShellLeaderX, NewShellLeaderY, NewShellLeaderZ,     AnimationInstructionsX, AnimationInstructionsY, AnimationInstructionsZ,       HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision))
+        RegObjects.push(new NewRegularObject(NewShellX, NewShellY, NewShellZ, NewShellLeaderX, NewShellLeaderY, NewShellLeaderZ,       HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision, ConstantForceX, ConstantForceY, ConstantForceZ))
                                                                                                                                  // Extra
     document.getElementById("ProjectOverviewObjects").innerHTML = new String(RegObjects.length)
     }
@@ -278,8 +265,8 @@
 
 
 
-        // Add New Sphere Object Function
-        function AddSphereObject(INLeaderX, INLeaderY, INLeaderZ, Size,     AnimationInstructionsX, AnimationInstructionsY, AnimationInstructionsZ,       HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision){
+    // Add New Sphere Object Function
+    function AddSphereObject(INLeaderX, INLeaderY, INLeaderZ, Size,      HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision, ConstantForceX, ConstantForceY, ConstantForceZ){
             
             let CDX = -400
             let CDY = -400
@@ -298,7 +285,6 @@
             let NewShellY = SpherePresetY
             let NewShellZ = SpherePresetZ
             
-
 
             NewShellX = NewShellX.map(function Procfunc(num){return num*20 + CDX})
             NewShellY = NewShellY.map(function Procfunc(num){return num*20 + CDY})
@@ -319,20 +305,18 @@
                 NewShellLeaderY = INLeaderY
                 NewShellLeaderZ = INLeaderZ
             }
-        
             else{
         
                 NewShellLeaderX = MX
                 NewShellLeaderY = MY
                 NewShellLeaderZ = MZ
             }
-
             NewShellX = NewShellX.map(function Procfunc(num){return (num-MX)*Size})
             NewShellY = NewShellY.map(function Procfunc(num){return (num-MY)*Size})
             NewShellZ = NewShellZ.map(function Procfunc(num){return (num-MZ)*Size})
             
 
-            RegObjects.push(new NewRegularObject(NewShellX, NewShellY, NewShellZ, NewShellLeaderX, NewShellLeaderY, NewShellLeaderZ,        AnimationInstructionsX, AnimationInstructionsY, AnimationInstructionsZ,       HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision))
+            RegObjects.push(new NewRegularObject(NewShellX, NewShellY, NewShellZ, NewShellLeaderX, NewShellLeaderY, NewShellLeaderZ,    HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision, ConstantForceX, ConstantForceY, ConstantForceZ))
             document.getElementById("ProjectOverviewObjects").innerHTML = new String(RegObjects.length)
         }                                                                                                                             // Extra
         // Add New Sphere Object Function
@@ -342,8 +326,8 @@
 
 
         // CONTRUCTOR New Spawner Object
-        function NewSpawnerObject(SpawnSpaceX1, SpawnSpaceY1, SpawnSpaceZ1, SpawnSpaceX2, SpawnSpaceY2, SpawnSpaceZ2, SpawnedLeaderX, SpawnedLeaderY, SpawnedLeaderZ, SpawnedSize, SpawnedAnimationInstructionsX, SpawnedAnimationInstructionsY, SpawnedAnimationInstructionsZ, SpawnedHitboxSizeX1, SpawnedHitboxSizeY1, SpawnedHitboxSizeZ1, SpawnedHitboxSizeX2, SpawnedHitboxSizeY2, SpawnedHitboxSizeZ2, SpawnedVelocityX, SpawnedVelocityY, SpawnedVelocityZ, SpawnedMass, SpawnedDeleteOnCollision, SpawnedObjectCubeSphere){
-        //                              1           2             3               4            5            6              7               8               9             23                     10                            11                            12                          13                    14             15                     16                      17                      18                 19            20                   21           22               25                        24
+        function NewSpawnerObject(SpawnSpaceX1, SpawnSpaceY1, SpawnSpaceZ1, SpawnSpaceX2, SpawnSpaceY2, SpawnSpaceZ2, SpawnedLeaderX, SpawnedLeaderY, SpawnedLeaderZ, SpawnedSize, SpawnedHitboxSizeX1, SpawnedHitboxSizeY1, SpawnedHitboxSizeZ1, SpawnedHitboxSizeX2, SpawnedHitboxSizeY2, SpawnedHitboxSizeZ2, SpawnedVelocityX, SpawnedVelocityY, SpawnedVelocityZ, SpawnedMass, SpawnedDeleteOnCollision, SpawnedObjectCubeSphere, SpawnedConstantForceX, SpawnedConstantForceY, SpawnedConstantForceZ){
+        //                            1             2            3             4                5                 6          7                8         9                 10           11                        12                13                     14                    15                   16                 17               18                   19             20                21                      22                        
             
         document.getElementById("ProjectOverviewSpawners").innerHTML = new String(SpawnerObjects.length + 1)
 
@@ -362,10 +346,6 @@
 
             this.SpawnedSize = +SpawnedSize // Def 1
 
-            this.SpawnedAnimationInstructionsX = +SpawnedAnimationInstructionsX // Def [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            this.SpawnedAnimationInstructionsY = +SpawnedAnimationInstructionsY // Def [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            this.SpawnedAnimationInstructionsZ = +SpawnedAnimationInstructionsZ // Def [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-
             this.SpawnedHitboxSizeX1 = +SpawnedHitboxSizeX1 // Def -100
             this.SpawnedHitboxSizeY1 = +SpawnedHitboxSizeY1 // Def -100
             this.SpawnedHitboxSizeZ1 = +SpawnedHitboxSizeZ1 // Def -100
@@ -374,8 +354,7 @@
             this.SpawnedHitboxSizeY2 = +SpawnedHitboxSizeY2 // Def 100
             this.SpawnedHitboxSizeZ2 = +SpawnedHitboxSizeZ2 // Def 100
 
-            this.SpawnedObjectType = ChosenRegObjectType // SET BY GLOBAL VARIABLE
-            // Animated, Physics
+            this.SpawnedObjectType = "Physics"
     
             this.SpawnedVelocityX = +SpawnedVelocityX // Def 0
             this.SpawnedVelocityY = +SpawnedVelocityY // Def 0
@@ -389,6 +368,10 @@
 
             this.SpawnedObjectCubeSphere = SpawnedObjectCubeSphere // Def "Cube"
 
+            this.SpawnedConstantForceX = SpawnedConstantForceX
+            this.SpawnedConstantForceY = SpawnedConstantForceY
+            this.SpawnedConstantForceZ = SpawnedConstantForceZ
+
                   
             this.Spawn = function(){
 
@@ -396,11 +379,11 @@
                 const LeaderY = this.SpawnSpaceY1 + (Math.random() * this.SpawnSpaceY2 - SpawnSpaceY1)
                 const LeaderZ = this.SpawnSpaceZ1 + (Math.random() * this.SpawnSpaceZ2 - SpawnSpaceZ1)
 
-                if(this.SpawnedObjectCubeSphere == "Cube"){
-                    AddCubeObject(LeaderX, LeaderY, LeaderZ, this.SpawnedSize, this.SpawnedAnimationInstructionsX, this.SpawnedAnimationInstructionsY, this.SpawnedAnimationInstructionsZ, this.SpawnedHitboxSizeX1, this.SpawnedHitboxSizeY1, this.SpawnedHitboxSizeZ1, this.SpawnedHitboxSizeX2, this.SpawnedHitboxSizeY2, this.SpawnedHitboxSizeZ2, this.SpawnedObjectType, this.SpawnedVelocityX, this.SpawnedVelocityY, this.SpawnedVelocityZ, this.SpawnedMass, this.SpawnedDeleteOnCollision)
+                if(this.SpawnedObjectCubeSphere == "C"){
+                    AddCubeObject(LeaderX, LeaderY, LeaderZ, this.SpawnedSize, this.SpawnedHitboxSizeX1, this.SpawnedHitboxSizeY1, this.SpawnedHitboxSizeZ1, this.SpawnedHitboxSizeX2, this.SpawnedHitboxSizeY2, this.SpawnedHitboxSizeZ2, this.SpawnedObjectType, this.SpawnedVelocityX, this.SpawnedVelocityY, this.SpawnedVelocityZ, this.SpawnedMass, this.SpawnedDeleteOnCollision, this.SpawnedConstantForceX, this.SpawnedConstantForceY, this.SpawnedConstantForceZ)
                 }
                 else{
-                    AddSphereObject(LeaderX, LeaderY, LeaderZ, this.SpawnedSize, this.SpawnedAnimationInstructionsX, this.SpawnedAnimationInstructionsY, this.SpawnedAnimationInstructionsZ, this.SpawnedHitboxSizeX1, this.SpawnedHitboxSizeY1, this.SpawnedHitboxSizeZ1, this.SpawnedHitboxSizeX2, this.SpawnedHitboxSizeY2, this.SpawnedHitboxSizeZ2, this.SpawnedObjectType, this.SpawnedVelocityX, this.SpawnedVelocityY, this.SpawnedVelocityZ, this.SpawnedMass, this.SpawnedDeleteOnCollision)
+                    AddSphereObject(LeaderX, LeaderY, LeaderZ, this.SpawnedSize, this.SpawnedHitboxSizeX1, this.SpawnedHitboxSizeY1, this.SpawnedHitboxSizeZ1, this.SpawnedHitboxSizeX2, this.SpawnedHitboxSizeY2, this.SpawnedHitboxSizeZ2, this.SpawnedObjectType, this.SpawnedVelocityX, this.SpawnedVelocityY, this.SpawnedVelocityZ, this.SpawnedMass, this.SpawnedDeleteOnCollision, this.SpawnedConstantForceX, this.SpawnedConstantForceY, this.SpawnedConstantForceZ)
                 }
             }
         }
@@ -428,18 +411,14 @@
                         NewCameraDirection1 = CameraDirection3
                         NewCameraDirection2 = CameraDirection2
                         NewCameraDirection3 = -CameraDirection1
-
                     }
-
                     // Turn Up
                     else if(ChangeY < -200){
 
                         NewCameraDirection1 = CameraDirection1
                         NewCameraDirection2 = -CameraDirection3
                         NewCameraDirection3 = CameraDirection2
-
                     }
-
                     // Turn Left
                     else if(ChangeX > 200){
 
@@ -447,16 +426,13 @@
                         NewCameraDirection2 = CameraDirection2
                         NewCameraDirection3 = CameraDirection1
                     }
-
                     // Turn Down
                     else if(ChangeY > 200){
 
                         NewCameraDirection1 = CameraDirection1
                         NewCameraDirection2 = CameraDirection3
                         NewCameraDirection3 = -CameraDirection2
-                        
                     }
-
                     CameraDirection1 = NewCameraDirection1
                     CameraDirection2 = NewCameraDirection2
                     CameraDirection3 = NewCameraDirection3
@@ -465,27 +441,8 @@
     }
     // Camera Perspective Function
     
-    
-    
-    
-    
-    // Inf Array Function
-    // function GenerateInfArrForObjectAnimationInstructions(){
-        
-    //     for (let i = 0; i < 99; i++) {
-    //         RegObjects[i].AnimationPathstageX = []
-    //         RegObjects[i].AnimationPathstageY = []
-    //         RegObjects[i].AnimationPathstageZ = []
-    //         for (let o = 0; o < 99; o++) {
-    //             RegObjects[i].AnimationPathstageX[o] = [0]
-    //             RegObjects[i].AnimationPathstageY[o] = [0]
-    //             RegObjects[i].AnimationPathstageZ[o] = [0]
-    //         }
-    //     }
-    // }
-    // Inf Array Function
-    
-    
+
+
     
     
     // Delete Found Object Function
@@ -499,7 +456,7 @@
             }    
         }
         RegObjects = CopyArr
-        FoundObjectNumber = 0
+        FoundObjectNumber = 1
     }
     // Delete Found Object Function
 
@@ -507,7 +464,6 @@
 
 
 
-        
     // Delete Found Object Function
     function DeleteObject(ObjectNumber){
         let CopyArr = []
@@ -521,3 +477,12 @@
         RegObjects = CopyArr
     }
     // Delete Found Object Function
+
+
+
+
+    // Project Function
+    function Project2D(XY, Z){
+        return (XY * FocalLength) / (Z + FocalLength)
+    }
+    // Project Function

@@ -29,7 +29,7 @@ for (let i = 0; i < RegObjects.length; i++) {
 
             FoundObjectNumber = i
 
-            document.getElementById("ObjectSettings").innerHTML = "Properties - Object 5"
+            document.getElementById("ObjectSettings").innerHTML = "Properties - Object " + (FoundObjectNumber + 1)
 
             FoundCollision = true
         }
