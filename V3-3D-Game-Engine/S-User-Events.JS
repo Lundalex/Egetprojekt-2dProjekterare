@@ -28,6 +28,7 @@ for (let i = 0; i < RegObjects.length; i++) {
             FoundZcoord = RegObjects[i].RelativePointPositionZ(o)
 
             FoundObjectNumber = i
+            ChangeObjectSettingsSet()
 
             document.getElementById("ObjectSettings").innerHTML = "Properties - Object " + (FoundObjectNumber + 1)
 
@@ -103,19 +104,6 @@ if(FoundCollision == true){
           case "s":
             KeyPress = "ArrowDown"
           break;
-
-      case "k":
-    ChosenPathStage = 0
-      break;
-      case "l":
-      ChosenPathStage = 1
-      break;
-      case "m":
-      ChosenPathStage = 2
-      break;
-      case "n":
-      ChosenPathStage = 3
-      break;
 
 ////////////
       case "b":

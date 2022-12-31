@@ -131,6 +131,9 @@ function Save3(){
 
 
 function UpdateObjectSettings(){
+
+    if(RegObjects[FoundObjectNumber].ObjectType == "Physics"){
+
     if(document.getElementById("a").value){
         RegObjects[FoundObjectNumber].ConstantForceX = +document.getElementById("a").value}
     if(document.getElementById("b").value){
@@ -149,8 +152,34 @@ function UpdateObjectSettings(){
         RegObjects[FoundObjectNumber].HitboxSizeY2 = +document.getElementById("h").value}
     if(document.getElementById("i").value){
         RegObjects[FoundObjectNumber].HitboxSizeZ2 = +document.getElementById("i").value}
-    if(document.getElementById("j").value){
-        RegObjects[FoundObjectNumber].Mass = +document.getElementById("j").value}
+    if(document.getElementById("k").value){
+        RegObjects[FoundObjectNumber].Mass = +document.getElementById("k").value}
+    }
+
+else{
+    // Animation
+
+    // if(document.getElementById("a").value){
+    //     RegObjects[FoundObjectNumber].AnimationInstructionsX[0] = +document.getElementById("a").value}
+    // if(document.getElementById("b").value){
+    //     RegObjects[FoundObjectNumber].ConstantForceY = +document.getElementById("b").value}
+    // if(document.getElementById("c").value){
+    //     RegObjects[FoundObjectNumber].ConstantForceZ = +document.getElementById("c").value}
+    // if(document.getElementById("d").value){
+    //     RegObjects[FoundObjectNumber].HitboxSizeX1 = +document.getElementById("d").value}
+    // if(document.getElementById("e").value){
+    //     RegObjects[FoundObjectNumber].HitboxSizeY1 = +document.getElementById("e").value}
+    // if(document.getElementById("f").value){
+    //     RegObjects[FoundObjectNumber].HitboxSizeZ1 = +document.getElementById("f").value}
+    // if(document.getElementById("g").value){
+    //     RegObjects[FoundObjectNumber].HitboxSizeX2 = +document.getElementById("g").value}
+    // if(document.getElementById("h").value){
+    //     RegObjects[FoundObjectNumber].HitboxSizeY2 = +document.getElementById("h").value}
+    if(document.getElementById("j").value >= 1){
+        ChosenPathStage = (+document.getElementById("j").value)-1}
+    if(document.getElementById("k").value){
+        RegObjects[FoundObjectNumber].AnimationStages = +document.getElementById("k").value}
+    }
 }
 function UpdateSettings2(){
     if(RegObjects[FoundObjectNumber].DeleteOnCollision == 1){
@@ -165,6 +194,55 @@ function UpdateSettings2(){
 
 
 
+function ChangeObjectSettingsSet(){
+
+    if(RegObjects[FoundObjectNumber].ObjectType == "Physics"){
+        
+    document.getElementById("ObjectTypeObjectSettingstag").innerHTML = "(Physics Object)"
+    document.getElementById("ObjectTypeObjectSettingstag").style.color = "orange"
+
+    document.getElementById("o").innerHTML = "Delete On Collision"
+    document.getElementById("p").innerHTML = "Something Object"
+    document.getElementById("r").innerHTML = "Object Mass Coefficient"
+
+        document.getElementById("a").placeholder = "Const.F-X"
+        document.getElementById("b").placeholder = "Const.F-Y"
+        document.getElementById("c").placeholder = "Const.F-Z"
+        document.getElementById("d").placeholder = "Hitbox-X1"
+        document.getElementById("e").placeholder = "Hitbox-Y1"
+        document.getElementById("f").placeholder = "Hitbox-Z1"
+        document.getElementById("g").placeholder = "Hitbox-X2"
+        document.getElementById("h").placeholder = "Hitbox-Y2"
+        document.getElementById("i").placeholder = "Hitbox-Z2"
+
+        document.getElementById("j").placeholder = "Nada"
+        document.getElementById("k").placeholder = "Mass"
+
+    }
+    else{
+        
+    document.getElementById("ObjectTypeObjectSettingstag").innerHTML = "(Animated Object)"
+    document.getElementById("ObjectTypeObjectSettingstag").style.color = "lightgreen"
+
+    document.getElementById("o").innerHTML = "Something Object"
+    document.getElementById("p").innerHTML = "Object Focus Stage"
+    document.getElementById("r").innerHTML = "Object Total Stages"
+
+        document.getElementById("a").placeholder = "Stage 1"
+        document.getElementById("b").placeholder = "Stage 2"
+        document.getElementById("c").placeholder = "Stage 3"
+        document.getElementById("d").placeholder = "Stage 4"
+        document.getElementById("e").placeholder = "Stage 5"
+        document.getElementById("f").placeholder = "Stage 6"
+        document.getElementById("g").placeholder = "Stage 7"
+        document.getElementById("h").placeholder = "Stage 8"
+        document.getElementById("i").placeholder = "Stage 9"
+
+        document.getElementById("j").placeholder = "Focus Stage"
+        document.getElementById("k").placeholder = "Stages"
+
+    }
+}
 
 
 

@@ -41,6 +41,9 @@
             this.AnimationInstructionsY = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             this.AnimationInstructionsZ = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
+            this.AnimationStages = 3
+            this.AnimationFrame = 1
+
         // FILL LATER
 
         this.AnimationPathCoordsX = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]

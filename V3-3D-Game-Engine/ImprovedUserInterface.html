@@ -312,13 +312,15 @@
 
                 <div class="tooltip">
                     <span class="tooltiptext">Changes may Induce Bugs!</span>
-                    <img style="width: 40px; height: 40px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kJAYPbD2b8bdQjzWPJrRuEM6xDI66gDJAQ&usqp=CAU" alt="">
+                    <img style="width: 30px; height: 30px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kJAYPbD2b8bdQjzWPJrRuEM6xDI66gDJAQ&usqp=CAU" alt="">
                 </div>
 
                 </div>
+                <label style="font-weight: bold; color: orange;" id="ObjectTypeObjectSettingstag">(Object Type)</label>
                 
-                <div style="height: 10px;"></div>
                 
+        <div style="height: 10px;"></div>
+
                 <div style="display: flex; flex-direction: row">
                 
                     <input onchange="UpdateObjectSettings()" id="a" type="input" name="text" class="input" placeholder="Const.F-X" style="height: 1px; width: 60px;">
@@ -373,15 +375,15 @@
                     
                     <div style="width: 5px;"></div>
                     
-                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);">Delete on Collision:</u>
+                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);" id="o">Delete on Collision:</u>
                     
                     <div style="width: 9px;"></div>
                     
-                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);">Object Size Coefficient:</u>
+                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);"id="p">Object Size Coefficient:</u>
                     
                     <div style="width: 9px;"></div>
                     
-                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);">Object Mass Property:</u>
+                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);"id="r">Object Mass Property:</u>
                 
                 </div>
 
@@ -587,7 +589,7 @@
     
     let FocalLength = 700
     
-    let FrameAmount = 10000
+    // let FrameAmount = 10000
     
     let FoundObjectNumber = 0
     
@@ -649,6 +651,16 @@
     
     
     function MainLoop(){
+
+        if(Framestage > 400){
+            Framestage = 1
+            for (let i = 0; i < SpawnerObjects.length; i++) {
+                SpawnerObjects[i].Spawn()
+            }
+        }
+        else{
+            Framestage += 2 * ProgramIncrementHertz
+        }
         
         ResetCanvas() //
         
@@ -881,24 +893,22 @@
     
     // Calculate Animation Values per Frame Function
     function DoCalculateAnimation(){
-        
-        if(Framestage > 400){
-            Framestage = 1
-            
-            
-            for (let i = 0; i < SpawnerObjects.length; i++) {
-                SpawnerObjects[i].Spawn()
-                
+
+        for (let i = 0; i < RegObjects.length; i++) {
+            if(RegObjects[i].ObjectType == "Animated"){
+                if(RegObjects[i].AnimationFrame > RegObjects[i].AnimationStages * 100){
+                    RegObjects[i].AnimationFrame = 1
+                }
+                else{
+                    RegObjects[i].AnimationFrame += 2 * ProgramIncrementHertz
+                }
             }
-        }
-        else{
-            Framestage += 2 * ProgramIncrementHertz
         }
         
         for (let i = 0; i < RegObjects.length; i++) {
             if(RegObjects[i].ObjectType == "Animated"){
-                let CurrentAnimationStage = Math.floor(Framestage/100)
-                let FrameInAnimationStage = Framestage % 100
+                let CurrentAnimationStage = Math.floor(RegObjects[i].AnimationFrame/100)
+                let FrameInAnimationStage = RegObjects[i].AnimationFrame % 100
                 
                 
                 RegObjects[i].TotalAnimationDeviationX = 0
@@ -957,10 +967,11 @@
     function DoCalculatePhysics(){
         
         for (let i = 0; i < RegObjects.length; i++) {
-            RegObjects[i].VelocityX += RegObjects[i].ConstantForceX  * ProgramIncrementHertz
-            RegObjects[i].VelocityY += RegObjects[i].ConstantForceY  * ProgramIncrementHertz
-            RegObjects[i].VelocityZ += RegObjects[i].ConstantForceZ  * ProgramIncrementHertz
-            
+            if(RegObjects[i].ObjectType == "Physics"){
+            RegObjects[i].VelocityX -= RegObjects[i].ConstantForceX  * ProgramIncrementHertz
+            RegObjects[i].VelocityY -= RegObjects[i].ConstantForceY  * ProgramIncrementHertz
+            RegObjects[i].VelocityZ -= RegObjects[i].ConstantForceZ  * ProgramIncrementHertz
+            }
         }
         
         for (let i = 0; i < RegObjects.length; i++) {
