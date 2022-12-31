@@ -306,59 +306,107 @@
             
             <div class="rcorners2" >
                 <!-- INSERT Options Overlay -->
-                <u id="ObjectSettings" style="font-weight: bolder; color: black; font-family: sans-serif; font-size: x-large;">Cube Object 1:</u>
+                <div style="display: flex; flex-direction: row">
+
+                <u id="ObjectSettings" style="font-weight: bolder; color: black; font-family: sans-serif; font-size: x-large; width: 270px;">Object Settings:</u>
+
+                <div class="tooltip">
+                    <span class="tooltiptext">Changes may Induce Bugs!</span>
+                    <img style="width: 40px; height: 40px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kJAYPbD2b8bdQjzWPJrRuEM6xDI66gDJAQ&usqp=CAU" alt="">
+                </div>
+
+                </div>
                 
                 <div style="height: 10px;"></div>
                 
-                <input type="input" name="text" class="input" placeholder="Enter" style="height: 1px; width: 70px;">
+                <div style="display: flex; flex-direction: row">
                 
-                <div style="height: 5px;"></div>
+                    <input onchange="UpdateObjectSettings()" id="a" type="input" name="text" class="input" placeholder="Const.F-X" style="height: 1px; width: 60px;">
                 
-                <input type="input" name="text" class="input" placeholder="Enter" style="height: 1px; width: 70px;">
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="b" type="input" name="text" class="input" placeholder="Const.F-Y" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="c" type="input" name="text" class="input" placeholder="Const.F-Z" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
                 
-                <div style="height: 5px;"></div>
+                </div>
+
+                <div style="display: flex; flex-direction: row">
                 
-                <input type="input" name="text" class="input" placeholder="Enter" style="height: 1px; width: 70px;">
+                    <input onchange="UpdateObjectSettings()" id="d" type="input" name="text" class="input" placeholder="Hitbox-X1" style="height: 1px; width: 60px;">
                 
-                <div style="height: 5px;"></div>
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="e" type="input" name="text" class="input" placeholder="Hitbox-Y1" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="f" type="input" name="text" class="input" placeholder="Hitbox-Z1" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
                 
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label>
+                </div>
+
+                <div style="display: flex; flex-direction: row">
                 
+                    <input onchange="UpdateObjectSettings()" id="g" type="input" name="text" class="input" placeholder="Hitbox-X2" style="height: 1px; width: 60px;">
+                
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="h" type="input" name="text" class="input" placeholder="Hitbox-Y2" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="i" type="input" name="text" class="input" placeholder="Hitbox-Z2" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
+                
+                </div>
+
                 <div style="height: 5px;"></div>
                 
                 <div style="display: flex; flex-direction: row">
                     
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <div style="width: 5px;"></div>
                     
-                    <div style="width: 10px;"></div>
+                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);">Delete on Collision:</u>
                     
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <div style="width: 9px;"></div>
                     
-                    <div style="width: 10px;"></div>
+                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);">Object Size Coefficient:</u>
                     
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
+                    <div style="width: 9px;"></div>
                     
-                    <div style="width: 40px;"></div>
-                    
-                    <div class="tooltip">
-                        <span class="tooltiptext">These Object Settings may Induce Bugs!</span>
-                        <img style="width: 40px; height: 40px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kJAYPbD2b8bdQjzWPJrRuEM6xDI66gDJAQ&usqp=CAU" alt="">
-                    </div>
-                    
-                </div>
+                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);">Object Mass Property:</u>
                 
+                </div>
+
+                <div style="height: 5px;"></div>
+
+                <div style="display: flex; flex-direction: row">
+                    
+                    <div style="width: 5px;"></div>
+
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"onchange="UpdateSettings2()"></span>
+                    </label>
+                    
+                    <div style="width: 24px;"></div>
+
+                    <input onchange="UpdateObjectSettings()" id="j" type="input" name="text" class="input" placeholder="Nada" style="height: 1px; width: 55px;">
+                    
+                    <div style="width: 10px;"></div>
+
+                    <input onchange="UpdateObjectSettings()" id="k" type="input" name="text" class="input" placeholder="Mass" style="height: 1px; width: 55px;">
+                
+                </div>
+                <div style="height: 5px;"></div>
+                    
                 <u style="font-weight: bold; color: rgb(0, 0, 0);" >Manipulate (Cursor):</u>
                 
                 <div style="height: 5px;"></div>
@@ -449,7 +497,7 @@
                     
                     <div style="width: 20px;"></div>
                     
-                    <input type="range" id="OffsetX" name="points" min="500" max="2000" value="700" step="100" id="FocalLength" onchange="UpdateFocalLength()" style="width: 160px;" onchange="UpdateFocallength()">
+                    <input type="range" name="points" min="500" max="2000" value="700" step="100" id="FocalLength" onchange="UpdateFocalLength()" style="width: 160px;" onchange="UpdateFocallength()">
                     
                 </div>
                 
@@ -484,7 +532,7 @@
             
             <div class="rcorners6" >
                 <!-- INSERT Upperright Logo -->
-                
+                 <img style="height: 60px; width: 60px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx-kbnRVBYVJDXFdMcBbxRPe-YzBqMmbM0EQ&usqp=CAU" alt="">
                 
                 
             </div>

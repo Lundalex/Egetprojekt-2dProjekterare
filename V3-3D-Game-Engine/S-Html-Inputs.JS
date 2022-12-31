@@ -72,18 +72,18 @@ function AddSpawnerObject(){
 
 function Save1(){
     if(SaveSlot1 == "Exported"){
-        // Import
+        // Export
         SaveSlot1RegObjects = RegObjects.slice()
         SaveSlot1SpawnerObjects = SpawnerObjects.slice()
-        document.getElementById("ExportImportSave").innerHTML = "Imported to:"
+        document.getElementById("ExportImportSave").innerHTML = "Exported to:"
         document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 1"
         SaveSlot1 = "Imported"
     }
     else{
-        // Export
+        // Import
         RegObjects = SaveSlot1RegObjects.slice()
         SpawnerObjects = SaveSlot1SpawnerObjects.slice()
-        document.getElementById("ExportImportSave").innerHTML = "Exported from:"
+        document.getElementById("ExportImportSave").innerHTML = "Imported from:"
         document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 1"
         SaveSlot1 = "Exported"
     }
@@ -91,18 +91,18 @@ function Save1(){
 
 function Save2(){
     if(SaveSlot2 == "Exported"){
-        // Import
+        // Export
         SaveSlot2RegObjects = RegObjects.slice()
         SaveSlot2SpawnerObjects = SpawnerObjects.slice()
-        document.getElementById("ExportImportSave").innerHTML = "Imported to:"
+        document.getElementById("ExportImportSave").innerHTML = "Exported to:"
         document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 2"
         SaveSlot2 = "Imported"
     }
     else{
-        // Export
+        // Import
         RegObjects = SaveSlot2RegObjects.slice()
         SpawnerObjects = SaveSlot2SpawnerObjects.slice()
-        document.getElementById("ExportImportSave").innerHTML = "Exported from:"
+        document.getElementById("ExportImportSave").innerHTML = "Imported from:"
         document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 2"
         SaveSlot2 = "Exported"
     }
@@ -110,18 +110,18 @@ function Save2(){
 
 function Save3(){
     if(SaveSlot3 == "Exported"){
-        // Import
+        // Export
         SaveSlot3RegObjects = RegObjects.slice()
         SaveSlot3SpawnerObjects = SpawnerObjects.slice()
-        document.getElementById("ExportImportSave").innerHTML = "Imported to:"
+        document.getElementById("ExportImportSave").innerHTML = "Exported to:"
         document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 3"
         SaveSlot3 = "Imported"
     }
     else{
-        // Export
+        // Import
         RegObjects = SaveSlot3RegObjects.slice()
         SpawnerObjects = SaveSlot3SpawnerObjects.slice()
-        document.getElementById("ExportImportSave").innerHTML = "Exported from:"
+        document.getElementById("ExportImportSave").innerHTML = "Imported from:"
         document.getElementById("LastInteractedSaveSlot").innerHTML = "Slot 3"
         SaveSlot3 = "Exported"
     }
@@ -130,8 +130,36 @@ function Save3(){
 
 
 
-
-
+function UpdateObjectSettings(){
+    if(document.getElementById("a").value){
+        RegObjects[FoundObjectNumber].ConstantForceX = +document.getElementById("a").value}
+    if(document.getElementById("b").value){
+        RegObjects[FoundObjectNumber].ConstantForceY = +document.getElementById("b").value}
+    if(document.getElementById("c").value){
+        RegObjects[FoundObjectNumber].ConstantForceZ = +document.getElementById("c").value}
+    if(document.getElementById("d").value){
+        RegObjects[FoundObjectNumber].HitboxSizeX1 = +document.getElementById("d").value}
+    if(document.getElementById("e").value){
+        RegObjects[FoundObjectNumber].HitboxSizeY1 = +document.getElementById("e").value}
+    if(document.getElementById("f").value){
+        RegObjects[FoundObjectNumber].HitboxSizeZ1 = +document.getElementById("f").value}
+    if(document.getElementById("g").value){
+        RegObjects[FoundObjectNumber].HitboxSizeX2 = +document.getElementById("g").value}
+    if(document.getElementById("h").value){
+        RegObjects[FoundObjectNumber].HitboxSizeY2 = +document.getElementById("h").value}
+    if(document.getElementById("i").value){
+        RegObjects[FoundObjectNumber].HitboxSizeZ2 = +document.getElementById("i").value}
+    if(document.getElementById("j").value){
+        RegObjects[FoundObjectNumber].Mass = +document.getElementById("j").value}
+}
+function UpdateSettings2(){
+    if(RegObjects[FoundObjectNumber].DeleteOnCollision == 1){
+        RegObjects[FoundObjectNumber].DeleteOnCollision = 0
+    }
+    else{
+        RegObjects[FoundObjectNumber].DeleteOnCollision = 1
+    }
+}
 
 
 
