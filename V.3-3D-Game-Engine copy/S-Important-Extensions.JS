@@ -57,6 +57,8 @@
         this.TotalAnimationDeviationY = 0
         this.TotalAnimationDeviationZ = 0
 
+        this.DeleteOTHERonCollision = false
+
         if(ConstantForceX){
             this.ConstantForceX = ConstantForceX}
         else{
@@ -459,7 +461,7 @@
             }    
         }
         RegObjects = CopyArr
-        FoundObjectNumber = 1
+        FoundObjectNumber = 0
     }
     // Delete Found Object Function
 
@@ -478,6 +480,7 @@
             }    
         }
         RegObjects = CopyArr
+        FoundObjectNumber = 0
     }
     // Delete Found Object Function
 

@@ -394,10 +394,10 @@
                     <div style="width: 5px;"></div>
 
                     <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"onchange="UpdateSettings2()"></span>
+                        <input type="checkbox"onchange="UpdateSettings2()">
+                        <span class="slider"></span>
                     </label>
-                    
+                                        
                     <div style="width: 24px;"></div>
 
                     <input onchange="UpdateObjectSettings()" id="j" type="input" name="text" class="input" placeholder="Nada" style="height: 1px; width: 55px;">
@@ -565,6 +565,7 @@
     
     HTMLProjectOverviewNode = document.getElementById("ProjectOverview")
     
+    let SwitchTracker = false
     
     let RegObjects = []
     
@@ -589,11 +590,7 @@
     
     let FocalLength = 700
     
-    // let FrameAmount = 10000
-    
     let FoundObjectNumber = 0
-    
-    // GenerateInfArrForObjectAnimationInstructions()
     
     let AnimationX = []
     let AnimationY = []
@@ -633,7 +630,6 @@
     let CameraOffsetX = 0
     let CameraOffsetY = 0
     let CameraOffsetZ = 400
-    // All Global Variables
     
     let ChosenRegObjectType = "Physics"
     
@@ -967,11 +963,44 @@
     function DoCalculatePhysics(){
         
         for (let i = 0; i < RegObjects.length; i++) {
+            
+            
+            const Hitbox1 = RegObjects[i].HitboxRelativeBoundraryXYZ()
+            const NewHitbox1 = RegObjects[i].NextHitboxRelativeBoundraryXYZ()
+
             if(RegObjects[i].ObjectType == "Physics"){
             RegObjects[i].VelocityX -= RegObjects[i].ConstantForceX  * ProgramIncrementHertz
             RegObjects[i].VelocityY -= RegObjects[i].ConstantForceY  * ProgramIncrementHertz
             RegObjects[i].VelocityZ -= RegObjects[i].ConstantForceZ  * ProgramIncrementHertz
             }
+            for (let o = 0; o < RegObjects.length; o++) {
+
+                if(i != o){
+                
+                    
+                    const Hitbox2 = RegObjects[o].HitboxRelativeBoundraryXYZ()
+                const NewHitbox2 = RegObjects[o].NextHitboxRelativeBoundraryXYZ()
+
+                if((((NewHitbox1[0] > NewHitbox2[0]) && (NewHitbox1[0] < NewHitbox2[1])) || ((NewHitbox1[1] > NewHitbox2[0]) && (NewHitbox1[1] < NewHitbox2[1]))) && (((NewHitbox1[2] > NewHitbox2[2]) && (NewHitbox1[2] < NewHitbox2[3])) || ((NewHitbox1[3] > NewHitbox2[2]) && (NewHitbox1[3] < NewHitbox2[3]))) && (((NewHitbox1[4] > NewHitbox2[4]) && (NewHitbox1[4] < NewHitbox2[5])) || ((NewHitbox1[5] > NewHitbox2[4]) && (NewHitbox1[5] < NewHitbox2[5])))){
+
+                    if(RegObjects[i].DeleteOTHERonCollision == true){
+                        DeleteObject(o)
+                    }
+                    else if(RegObjects[o].DeleteOTHERonCollision == true){
+                        
+                        DeleteObject(i)
+                    }
+                    else if(RegObjects[i].DeleteOnCollision == true){
+                        DeleteObject(i)
+                    }
+                            
+                    else if(RegObjects[o].DeleteOnCollision == true){
+                        DeleteObject(o)
+                    }
+
+                }
+            }
+        }
         }
         
         for (let i = 0; i < RegObjects.length; i++) {
@@ -990,7 +1019,6 @@
                         const NewHitbox2 = RegObjects[o].NextHitboxRelativeBoundraryXYZ()
                         
                         if((((NewHitbox1[0] > NewHitbox2[0]) && (NewHitbox1[0] < NewHitbox2[1])) || ((NewHitbox1[1] > NewHitbox2[0]) && (NewHitbox1[1] < NewHitbox2[1]))) && (((NewHitbox1[2] > NewHitbox2[2]) && (NewHitbox1[2] < NewHitbox2[3])) || ((NewHitbox1[3] > NewHitbox2[2]) && (NewHitbox1[3] < NewHitbox2[3]))) && (((NewHitbox1[4] > NewHitbox2[4]) && (NewHitbox1[4] < NewHitbox2[5])) || ((NewHitbox1[5] > NewHitbox2[4]) && (NewHitbox1[5] < NewHitbox2[5])))){
-                            
                             
                             if(RegObjects[i].DeleteOnCollision == true){
                                 DeleteObject(i)
@@ -1306,8 +1334,6 @@
     function ProjectHitboxes2D(){
         
         for (let i = 0; i < RegObjects.length; i++) {
-            
-            if(RegObjects[i].ObjectType == "Physics"){
                 
                 const Hitbox = RegObjects[i].HitboxRelativeBoundraryXYZ()
                 
@@ -1326,7 +1352,7 @@
                     RegObjects[i].HitboxProjectedX[o] = Project2D(X,Z)
                     RegObjects[i].HitboxProjectedY[o] = Project2D(Y,Z)
                 }
-            }
+            
         }
     }
     // Project per Object Hitbox X/Y/Z -> 2D(X, Y) Function
@@ -1422,7 +1448,7 @@
             
             for (let i = 0; i < RegObjects.length; i++) {
                 
-                if(RegObjects[i].ObjectType == "Physics" && RegObjects[i].ShellprojectedX.length > 1) {
+                if(RegObjects[i].ShellprojectedX.length > 1) {
                     
                     for (let o = 0; o < RegObjects[i].HitboxProjectedX.length; o++) {
                         

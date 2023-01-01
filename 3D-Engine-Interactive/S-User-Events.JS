@@ -83,7 +83,7 @@ if(FoundCollision == true){
       break;
 
       case "Backspace":
-    DeleteObject(FoundObjectNumber)
+        DeleteFoundObject(FoundObjectNumber)
       break;
 
       case "a":
