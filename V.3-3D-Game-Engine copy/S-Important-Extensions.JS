@@ -41,7 +41,7 @@
             this.AnimationInstructionsY = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             this.AnimationInstructionsZ = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-            this.AnimationStages = 3
+            this.AnimationStages = 1
             this.AnimationFrame = Framestage
 
         // FILL LATER

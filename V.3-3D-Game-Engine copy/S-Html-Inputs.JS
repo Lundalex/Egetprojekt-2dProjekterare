@@ -237,6 +237,18 @@ function ChangeObjectSettingsSet(){
         document.getElementById("j").placeholder = "Nada"
         document.getElementById("k").placeholder = "Mass"
 
+        document.getElementById("a").value = RegObjects[FoundObjectNumber].ConstantForceX
+        document.getElementById("b").value = RegObjects[FoundObjectNumber].ConstantForceY
+        document.getElementById("c").value = RegObjects[FoundObjectNumber].ConstantForceZ
+        document.getElementById("d").value = RegObjects[FoundObjectNumber].HitboxSizeX1
+        document.getElementById("e").value = RegObjects[FoundObjectNumber].HitboxSizeY1
+        document.getElementById("f").value = RegObjects[FoundObjectNumber].HitboxSizeZ1
+        document.getElementById("g").value = RegObjects[FoundObjectNumber].HitboxSizeX2
+        document.getElementById("h").value = RegObjects[FoundObjectNumber].HitboxSizeY2
+        document.getElementById("i").value = RegObjects[FoundObjectNumber].HitboxSizeZ2
+
+        document.getElementById("j").value = 0
+        document.getElementById("k").value = RegObjects[FoundObjectNumber].Mass
     }
     else{
         
@@ -256,6 +268,19 @@ function ChangeObjectSettingsSet(){
         document.getElementById("g").placeholder = "Hitbox-X2"
         document.getElementById("h").placeholder = "Hitbox-Y2"
         document.getElementById("i").placeholder = "Hitbox-Z2"
+
+        document.getElementById("a").value = RegObjects[FoundObjectNumber].LeaderX
+        document.getElementById("b").value = RegObjects[FoundObjectNumber].LeaderY
+        document.getElementById("c").value = RegObjects[FoundObjectNumber].LeaderZ
+        document.getElementById("d").value = RegObjects[FoundObjectNumber].HitboxSizeX1
+        document.getElementById("e").value = RegObjects[FoundObjectNumber].HitboxSizeY1
+        document.getElementById("f").value = RegObjects[FoundObjectNumber].HitboxSizeZ1
+        document.getElementById("g").value = RegObjects[FoundObjectNumber].HitboxSizeX2
+        document.getElementById("h").value = RegObjects[FoundObjectNumber].HitboxSizeY2
+        document.getElementById("i").value = RegObjects[FoundObjectNumber].HitboxSizeZ2
+
+        document.getElementById("j").value = ChosenPathStage
+        document.getElementById("k").value = RegObjects[FoundObjectNumber].AnimationStages
 
         document.getElementById("j").placeholder = "Focus Stage"
         document.getElementById("k").placeholder = "Stages"
