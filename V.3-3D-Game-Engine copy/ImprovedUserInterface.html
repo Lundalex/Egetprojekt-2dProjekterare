@@ -562,6 +562,8 @@
     document.getElementById("Physics").style.color = "orange"
     document.getElementById("Animated").style.color = "black"
     
+//     ctx.font = "30px Arial";
+// ctx.fillText("Cool text", 250, 300);
     
     HTMLProjectOverviewNode = document.getElementById("ProjectOverview")
     
@@ -648,7 +650,7 @@
     
     function MainLoop(){
 
-        if(Framestage > 400){
+        if(Framestage > 100){
             Framestage = 1
             for (let i = 0; i < SpawnerObjects.length; i++) {
                 SpawnerObjects[i].Spawn()
@@ -1371,6 +1373,7 @@
             if(RegObjects[i].Marked == true){
                 for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
                     
+                    ctx.beginPath()
                     ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]),400+Number(RegObjects[i].ShellprojectedY[o]));
                     ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o+1]),400+Number(RegObjects[i].ShellprojectedY[o+1]));
                     ctx.strokeStyle = "orange"
@@ -1382,6 +1385,7 @@
                     
                     if(RegObjects[i].PointsMarked[o] == true){
                         
+                        ctx.beginPath()
                         ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]-10),400+Number(RegObjects[i].ShellprojectedY[o]-10));
                         ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o]+10),400+Number(RegObjects[i].ShellprojectedY[o]+10));
                         ctx.strokeStyle = "red"
@@ -1397,6 +1401,7 @@
             else{
                 for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
                     
+                    ctx.beginPath()
                     ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]),400+Number(RegObjects[i].ShellprojectedY[o]));
                     ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o+1]),400+Number(RegObjects[i].ShellprojectedY[o+1]))
                     ctx.strokeStyle = "black";
@@ -1422,6 +1427,7 @@
                     
                     for (let o = 0; o < RegObjects[i].AnimationPathProjectedX.length; o++) {
                         
+                        ctx.beginPath()
                         ctx.moveTo(400+Number(RegObjects[i].AnimationPathProjectedX[o]),400+Number(RegObjects[i].AnimationPathProjectedY[o]));
                         ctx.lineTo(400+Number(RegObjects[i].AnimationPathProjectedX[o+1]),400+Number(RegObjects[i].AnimationPathProjectedY[o+1]));
                         ctx.strokeStyle = "purple"
@@ -1452,9 +1458,10 @@
                     
                     for (let o = 0; o < RegObjects[i].HitboxProjectedX.length; o++) {
                         
+                        ctx.beginPath()
                         ctx.moveTo(400+Number(RegObjects[i].HitboxProjectedX[o]),400+Number(RegObjects[i].HitboxProjectedY[o]));
                         ctx.lineTo(400+Number(RegObjects[i].HitboxProjectedX[o+1]),400+Number(RegObjects[i].HitboxProjectedY[o+1]));
-                        ctx.strokeStyle = "pink"
+                        ctx.strokeStyle = "#FF007F"
                         ctx.lineWidth = 2
                         ctx.stroke()
                     }

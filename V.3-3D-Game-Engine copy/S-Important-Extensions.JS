@@ -42,7 +42,7 @@
             this.AnimationInstructionsZ = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
             this.AnimationStages = 3
-            this.AnimationFrame = 1
+            this.AnimationFrame = Framestage
 
         // FILL LATER
 
@@ -77,32 +77,32 @@
         if(HitboxSizeX1){
             this.HitboxSizeX1 = HitboxSizeX1}
         else{
-            this.HitboxSizeX1 = -100}
+            this.HitboxSizeX1 = -60}
             
         if(HitboxSizeY1){
             this.HitboxSizeY1 = HitboxSizeY1}
         else{
-            this.HitboxSizeY1 = -100}
+            this.HitboxSizeY1 = -60}
 
         if(HitboxSizeZ1){
             this.HitboxSizeZ1 = HitboxSizeZ1}
         else{
-            this.HitboxSizeZ1 = -100}
+            this.HitboxSizeZ1 = -60}
 
         if(HitboxSizeX2){
             this.HitboxSizeX2 = HitboxSizeX2}
         else{
-            this.HitboxSizeX2 = 100}
+            this.HitboxSizeX2 = 60}
 
         if(HitboxSizeY2){
             this.HitboxSizeY2 = HitboxSizeY2}
         else{
-            this.HitboxSizeY2 = 100}
+            this.HitboxSizeY2 = 60}
 
         if(HitboxSizeZ2){
             this.HitboxSizeZ2 = HitboxSizeZ2}
         else{
-            this.HitboxSizeZ2 = 100}
+            this.HitboxSizeZ2 = 60}
 
 
         this.HitboxProjectedX = [0]
