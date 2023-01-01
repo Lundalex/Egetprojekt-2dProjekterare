@@ -492,3 +492,93 @@
         return (XY * FocalLength) / (Z + FocalLength)
     }
     // Project Function
+
+
+
+
+    // Draw Line Function
+    function DrawLine(X1,X2,Y1,Y2, Color, Thickness){
+        ctx.beginPath()
+        ctx.moveTo(((400+(+X1))),(400+(+Y1)));
+        ctx.lineTo(((400+(+X2))),(400+(+Y2)));
+        ctx.strokeStyle = new String(Color)
+        ctx.lineWidth = +Thickness
+        ctx.stroke()
+    }
+    // Draw Line Function
+
+
+
+
+
+        
+    
+    
+    
+    
+    // Camera Orientation Function (LOGIC TABLE)
+    function ApplyCameraPerspective(X, Y, Z){
+        
+        let NewX = 0
+        let NewY = 0
+        let NewZ = 0
+        
+        if(CameraDirection1 == 1){
+            NewX = X
+        }
+        else if(CameraDirection1 == -1){
+            NewX = -X
+        }
+        else if(CameraDirection1 == 2){
+            NewX = Y
+        }
+        else if(CameraDirection1 == -2){
+            NewX = -Y
+        }
+        else if(CameraDirection1 == 3){
+            NewX = Z
+        }
+        else if(CameraDirection1 == -3){
+            NewX = -Z
+        }
+        
+        if(CameraDirection2 == 1){
+            NewY = X
+        }
+        else if(CameraDirection2 == -1){
+            NewY = -X
+        }
+        else if(CameraDirection2 == 2){
+            NewY = Y
+        }
+        else if(CameraDirection2 == -2){
+            NewY = -Y
+        }
+        else if(CameraDirection2 == 3){
+            NewY = Z
+        }
+        else if(CameraDirection2 == -3){
+            NewY = -Z
+        }
+        
+        if(CameraDirection3 == 1){
+            NewZ = X
+        }
+        else if(CameraDirection3 == -1){
+            NewZ = -X
+        }
+        else if(CameraDirection3 == 2){
+            NewZ = Y
+        }
+        else if(CameraDirection3 == -2){
+            NewZ = -Y
+        }
+        else if(CameraDirection3 == 3){
+            NewZ = Z
+        }
+        else if(CameraDirection3 == -3){
+            NewZ = -Z
+        }
+        return [NewX, NewY, NewZ]
+    }
+    // Camera Orientation Function (LOGIC TABLE)

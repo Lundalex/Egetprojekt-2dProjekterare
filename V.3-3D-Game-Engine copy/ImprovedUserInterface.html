@@ -310,11 +310,6 @@
 
                 <u id="ObjectSettings" style="font-weight: bolder; color: black; font-family: sans-serif; font-size: x-large; width: 270px;">Object Settings:</u>
 
-                <div class="tooltip">
-                    <span class="tooltiptext">Changes may Induce Bugs!</span>
-                    <img style="width: 30px; height: 30px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7kJAYPbD2b8bdQjzWPJrRuEM6xDI66gDJAQ&usqp=CAU" alt="">
-                </div>
-
                 </div>
                 <label style="font-weight: bold; color: orange;" id="ObjectTypeObjectSettingstag">(Object Type)</label>
                 
@@ -534,7 +529,7 @@
             
             <div class="rcorners6" >
                 <!-- INSERT Upperright Logo -->
-                 <img style="height: 60px; width: 60px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx-kbnRVBYVJDXFdMcBbxRPe-YzBqMmbM0EQ&usqp=CAU" alt="">
+                 <img id="UnrealEngineLogo" style="height: 60px; width: 60px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx-kbnRVBYVJDXFdMcBbxRPe-YzBqMmbM0EQ&usqp=CAU" alt="">
                 
                 
             </div>
@@ -562,8 +557,12 @@
     document.getElementById("Physics").style.color = "orange"
     document.getElementById("Animated").style.color = "black"
     
-//     ctx.font = "30px Arial";
-// ctx.fillText("Cool text", 250, 300);
+    ctx.beginPath();
+        ctx.rect(00, 00, 800, 800);
+        ctx.fillStyle = "#18191a";
+        ctx.fill();
+    const img = document.getElementById("UnrealEngineLogo")
+    ctx.drawImage(img, 200,200)
     
     HTMLProjectOverviewNode = document.getElementById("ProjectOverview")
     
@@ -598,7 +597,7 @@
     let AnimationY = []
     let AnimationZ = []
     
-    let ChosenPathStage = 0
+    let ChosenPathStage = 1
     
     let LastMouseDownX = 0
     let LastMouseDownY = 0
@@ -1203,77 +1202,6 @@
     
     
     
-    // Camera Orientation Function
-    function ApplyCameraPerspective(X, Y, Z){
-        
-        let NewX = 0
-        let NewY = 0
-        let NewZ = 0
-        
-        if(CameraDirection1 == 1){
-            NewX = X
-        }
-        else if(CameraDirection1 == -1){
-            NewX = -X
-        }
-        else if(CameraDirection1 == 2){
-            NewX = Y
-        }
-        else if(CameraDirection1 == -2){
-            NewX = -Y
-        }
-        else if(CameraDirection1 == 3){
-            NewX = Z
-        }
-        else if(CameraDirection1 == -3){
-            NewX = -Z
-        }
-        
-        if(CameraDirection2 == 1){
-            NewY = X
-        }
-        else if(CameraDirection2 == -1){
-            NewY = -X
-        }
-        else if(CameraDirection2 == 2){
-            NewY = Y
-        }
-        else if(CameraDirection2 == -2){
-            NewY = -Y
-        }
-        else if(CameraDirection2 == 3){
-            NewY = Z
-        }
-        else if(CameraDirection2 == -3){
-            NewY = -Z
-        }
-        
-        if(CameraDirection3 == 1){
-            NewZ = X
-        }
-        else if(CameraDirection3 == -1){
-            NewZ = -X
-        }
-        else if(CameraDirection3 == 2){
-            NewZ = Y
-        }
-        else if(CameraDirection3 == -2){
-            NewZ = -Y
-        }
-        else if(CameraDirection3 == 3){
-            NewZ = Z
-        }
-        else if(CameraDirection3 == -3){
-            NewZ = -Z
-        }
-        return [NewX, NewY, NewZ]
-    }
-    // Camera Orientation Function
-    
-    
-    
-    
-    
     // Project per Object Animation Path X/Y/Z -> 2D(X, Y) Function
     function ProjectAnimationPath2D(){
         if(ShowAnimationPathing == true){
@@ -1371,42 +1299,25 @@
         for (let i = 0; i < RegObjects.length; i++) {
             // Object Marked
             if(RegObjects[i].Marked == true){
+
                 for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
-                    
-                    ctx.beginPath()
-                    ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]),400+Number(RegObjects[i].ShellprojectedY[o]));
-                    ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o+1]),400+Number(RegObjects[i].ShellprojectedY[o+1]));
-                    ctx.strokeStyle = "orange"
-                    ctx.lineWidth = 2
-                    ctx.stroke()
+
+                    DrawLine(RegObjects[i].ShellprojectedX[o],RegObjects[i].ShellprojectedX[o+1],RegObjects[i].ShellprojectedY[o],RegObjects[i].ShellprojectedY[o+1],"orange",3)
                 }
                 // Point Marked (in Marked Object)
                 for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
-                    
+
                     if(RegObjects[i].PointsMarked[o] == true){
-                        
-                        ctx.beginPath()
-                        ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]-10),400+Number(RegObjects[i].ShellprojectedY[o]-10));
-                        ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o]+10),400+Number(RegObjects[i].ShellprojectedY[o]+10));
-                        ctx.strokeStyle = "red"
-                        ctx.lineWidth = 2
-                        ctx.stroke()
-                        ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]+10),400+Number(RegObjects[i].ShellprojectedY[o]-10));
-                        ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o]-10),400+Number(RegObjects[i].ShellprojectedY[o]+10))
-                        ctx.stroke()
+
+                        DrawLine(RegObjects[i].ShellprojectedX[o]-10,RegObjects[i].ShellprojectedX[o]+10,RegObjects[i].ShellprojectedY[o]-10,RegObjects[i].ShellprojectedY[o]+10,"red",4)
+                        DrawLine(RegObjects[i].ShellprojectedX[o]+10,RegObjects[i].ShellprojectedX[o]-10,RegObjects[i].ShellprojectedY[o]-10,RegObjects[i].ShellprojectedY[o]+10,"red",4)
                     }
                 }
             }
             // Object Not Marked
             else{
                 for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
-                    
-                    ctx.beginPath()
-                    ctx.moveTo(400+Number(RegObjects[i].ShellprojectedX[o]),400+Number(RegObjects[i].ShellprojectedY[o]));
-                    ctx.lineTo(400+Number(RegObjects[i].ShellprojectedX[o+1]),400+Number(RegObjects[i].ShellprojectedY[o+1]))
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2
-                    ctx.stroke()
+                    DrawLine(RegObjects[i].ShellprojectedX[o],RegObjects[i].ShellprojectedX[o+1],RegObjects[i].ShellprojectedY[o],RegObjects[i].ShellprojectedY[o+1],"black",2)
                 }
             }
         }
@@ -1426,13 +1337,7 @@
                 if(RegObjects[i].ObjectType == "Animated"){
                     
                     for (let o = 0; o < RegObjects[i].AnimationPathProjectedX.length; o++) {
-                        
-                        ctx.beginPath()
-                        ctx.moveTo(400+Number(RegObjects[i].AnimationPathProjectedX[o]),400+Number(RegObjects[i].AnimationPathProjectedY[o]));
-                        ctx.lineTo(400+Number(RegObjects[i].AnimationPathProjectedX[o+1]),400+Number(RegObjects[i].AnimationPathProjectedY[o+1]));
-                        ctx.strokeStyle = "purple"
-                        ctx.lineWidth = 2
-                        ctx.stroke()
+                        DrawLine(RegObjects[i].AnimationPathProjectedX[o],RegObjects[i].AnimationPathProjectedX[o+1],RegObjects[i].AnimationPathProjectedY[o],RegObjects[i].AnimationPathProjectedY[o+1],"purple",3)
                     }
                 }
             }
@@ -1457,13 +1362,7 @@
                 if(RegObjects[i].ShellprojectedX.length > 1) {
                     
                     for (let o = 0; o < RegObjects[i].HitboxProjectedX.length; o++) {
-                        
-                        ctx.beginPath()
-                        ctx.moveTo(400+Number(RegObjects[i].HitboxProjectedX[o]),400+Number(RegObjects[i].HitboxProjectedY[o]));
-                        ctx.lineTo(400+Number(RegObjects[i].HitboxProjectedX[o+1]),400+Number(RegObjects[i].HitboxProjectedY[o+1]));
-                        ctx.strokeStyle = "#FF007F"
-                        ctx.lineWidth = 2
-                        ctx.stroke()
+                        DrawLine(RegObjects[i].HitboxProjectedX[o],RegObjects[i].HitboxProjectedX[o+1],RegObjects[i].HitboxProjectedY[o],RegObjects[i].HitboxProjectedY[o+1],"#FF007F",2)
                     }
                 }
             }
