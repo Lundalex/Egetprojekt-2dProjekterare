@@ -499,8 +499,8 @@
     // Draw Line Function
     function DrawLine(X1,X2,Y1,Y2, Color, Thickness){
         ctx.beginPath()
-        ctx.moveTo(((400+(+X1))),(400+(+Y1)));
-        ctx.lineTo(((400+(+X2))),(400+(+Y2)));
+        ctx.moveTo(((290+(+X1))),(290+(+Y1)));
+        ctx.lineTo(((290+(+X2))),(290+(+Y2)));
         ctx.strokeStyle = new String(Color)
         ctx.lineWidth = +Thickness
         ctx.stroke()
