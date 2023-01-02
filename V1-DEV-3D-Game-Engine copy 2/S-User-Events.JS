@@ -1,8 +1,8 @@
     // Select Function -----
 function OnClickFunction(event) {
     // Mouse X/Y coords
-    const X = event.clientX +138 - 800
-    const Y = event.clientY +372 - 800
+    const X = event.clientX +138 - 690
+    const Y = event.clientY +372 - 690
     
     let FoundCollision = false
 
