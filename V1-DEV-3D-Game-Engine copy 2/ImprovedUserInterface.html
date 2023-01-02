@@ -650,6 +650,9 @@
     
     function MainLoop(){
 
+        let Continue = OnNewFrame()
+        if(!Continue){return}
+
         if(Framestage > 100){
             Framestage = 1
             for (let i = 0; i < SpawnerObjects.length; i++) {
