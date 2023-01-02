@@ -1,5 +1,6 @@
     // Start Main Loop Function
     function Start() {
+        OnStart()
         // Clear graph(fill)
         ctx.beginPath();
         ctx.rect(00, 00, 800, 800);
@@ -21,8 +22,12 @@
 
 
     // CONSTRUCTOR - RegObjects
-    function NewRegularObject(INShellXArr, INShellYArr, INShellZArr, INLeaderX, INLeaderY, INLeaderZ,      HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision, ConstantForceX, ConstantForceY, ConstantForceZ) {
+    function NewRegularObject(INShellXArr, INShellYArr, INShellZArr, INLeaderX, INLeaderY, INLeaderZ,      HitboxSizeX1, HitboxSizeY1, HitboxSizeZ1, HitboxSizeX2, HitboxSizeY2, HitboxSizeZ2,    ObjectType,    VelocityX, VelocityY, VelocityZ,    Mass,    DeleteOnCollision, ConstantForceX, ConstantForceY, ConstantForceZ, ObjectTag) {
         
+        if(ObjectTag){
+            this.Tag = ObjectTag
+        }
+
         this.ShellX = INShellXArr;
         this.ShellY = INShellYArr;
         this.ShellZ = INShellZArr;
@@ -452,6 +457,10 @@
     
     // Delete Found Object Function
     function DeleteFoundObject(FoundObjectNumber){
+        let Continue = OnDeleteFoundObject(FoundObjectNumber)
+        if(!Continue){return}
+
+
         let CopyArr = []
         for (let i = 0; i < RegObjects.length; i++) {
             if(i != FoundObjectNumber){
@@ -471,6 +480,9 @@
 
     // Delete Found Object Function
     function DeleteObject(ObjectNumber){
+        let Continue = OnDeleteObject(ObjectNumber)
+        if(!Continue){return}
+
         let CopyArr = []
         for (let i = 0; i < RegObjects.length; i++) {
             if(i != ObjectNumber){

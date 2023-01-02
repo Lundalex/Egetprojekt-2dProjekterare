@@ -68,6 +68,8 @@ if(FoundCollision == true){
   if (event.defaultPrevented) {
     return; // Do nothing if the event was already processed
   }
+  let Continue = OnKeyPress(event.key)
+  if(!Continue){return}
   switch (event.key) {
     case "ArrowDown":
     KeyPress = "ArrowDown"
