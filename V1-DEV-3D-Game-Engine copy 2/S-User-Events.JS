@@ -138,6 +138,9 @@ case "v":
 
     // Scroll Function (Up & Down) -----
 function ScrollFunction(event){
+  let Continue = OnScroll(event.deltaY)
+  if(!Continue){return}
+
     if(event.deltaY > 0){
 
         ScrollY = "Down"

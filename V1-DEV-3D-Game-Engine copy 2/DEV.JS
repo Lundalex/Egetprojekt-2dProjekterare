@@ -12,6 +12,7 @@ function OnDeleteFoundObject(FoundObjectNumber){return true}
 function OnDeleteObject(ObjectNumber){return true}
 function OnKeyPress(PressedKey){return true}
 function OnNewFrame(){return true}
+function OnScroll(ScrollValue){return true}
 
 // return 1 => (Cancel function of origin)
 // return 2 => (Don't do CollisionPhysics)
