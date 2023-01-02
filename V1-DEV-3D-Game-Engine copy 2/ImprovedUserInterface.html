@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ThirdPartyCss.CSS">
+    <script src="S-Html-Inputs.JS"></script>
+    <script src="S-Important-Extensions.JS"></script>
+    <script src="S-User-Events.JS"></script>
+    <script src="DEV.JS"></script>
+    
+    <title>ImprovedUserInterface</title>
+</head>
+<body style="background-color: #363636;" onclick="OnClickFunction(event)" onmousedown="MouseDownFunction(event)" onmouseup="MouseUpFunction(event)" onwheel="ScrollFunction(event)">
+    
+    <div style="display: flex; flex-direction: row">
+        
+        <div style="display: flex; flex-direction: column">
+            
+            <div style="display: flex; flex-direction: row">
+                
+                <div style="display: flex; flex-direction: column">
+                    <div class="rcorners1">
+                        <!-- INSERT Objects List -->
+                        
+                        <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: x-large;" id="ProjectOverview">Project Overview:</u>
+                        
+                        <div style="height: 10px;"></div>
+                        
+                        <div style="display: flex; flex-direction: row">
+                            
+                            <div class="rcornersObject"style="display: flex; flex-direction: row; ">
+                                
+                                <h1 id="ProjectOverviewObjects"></h1>
+                                
+                            </div>
+                            <div style="width: 5px;"></div>
+                            <div style="display: flex; flex-direction: column">
+                                <div style="height: 50px;"></div>
+                                
+                                <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: large;">Total Objects</u>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                        <div style="height: 10px;"></div>
+                        
+                        <div style="display: flex; flex-direction: row">
+                            
+                            <div class="rcornersObject"style="display: flex; flex-direction: row">
+                                
+                                <h1 id="ProjectOverviewSpawners"></h1>
+                                
+                            </div>
+                            <div style="width: 5px;"></div>
+                            <div style="display: flex; flex-direction: column">
+                                <div style="height: 50px;"></div>
+                                
+                                <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: large;">Total Spawners</u>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div style="height: 10px;"></div>
+                    
+                    <div class="rcorners11"id="ProjectOverview">
+                        
+                        <u style="font-weight: bolder; color: black; font-family: sans-serif; font-size: x-large;">New Spawner:</u>
+                        
+                        <div style="display: flex; flex-direction: row">
+                            <div class="tooltip">
+                                
+                                <span class="tooltiptext">SpawningArea - X1 Coord</span>
+                                <input id="1" type="input" name="text" class="input" placeholder="S-X1" style="height: 1px; width: 30px;">
+                            </div>
+                            
+                            <div class="tooltip">
+                                <span class="tooltiptext">SpawningArea - Y1 Coord</span>
+                                
+                                <input id="2" type="input" name="text" class="input" placeholder="S-Y1" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">SpawningArea - Z1 Coord</span>
+                                
+                                <input id="3" type="input" name="text" class="input" placeholder="S-Z1" style="height: 1px; width: 30px;">
+                            </div>
+                            
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: row">
+                            <div class="tooltip">
+                                <span class="tooltiptext">SpawningArea - X2 Coord</span>
+                                
+                                <input id="4" type="input" name="text" class="input" placeholder="S-X2" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">SpawningArea - Y2 Coord</span>
+                                
+                                <input id="5" type="input" name="text" class="input" placeholder="S-Y2" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">SpawningArea - Z2 Coord</span>
+                                
+                                <input id="6" type="input" name="text" class="input" placeholder="S-Z2" style="height: 1px; width: 30px;">
+                            </div>
+                            
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: row">
+                            <div class="tooltip">
+                                <span class="tooltiptext">Leader X (Object X Position)</span>
+                                
+                                <input id="7" type="input" name="text" class="input" placeholder="L-X" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Leader Y (Object Y Position)</span>
+                                
+                                <input id="8" type="input" name="text" class="input" placeholder="L-Y" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Leader Z (Object Z Position)</span>
+                                
+                                <input id="9" type="input" name="text" class="input" placeholder="L-Z" style="height: 1px; width: 30px;">
+                            </div>
+                            
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: row">
+                            <div class="tooltip">
+                                <span class="tooltiptext">Constant Force - X Axis (Gravity)</span>
+                                
+                                <input id="30" type="input" name="text" class="input" placeholder="C-X" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Constant Force - Y Axis (Gravity)</span>
+                                
+                                <input id="31" type="input" name="text" class="input" placeholder="C-Y" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Constant Force - Z Axis (Gravity)</span>
+                                
+                                <input id="32" type="input" name="text" class="input" placeholder="C-Z" style="height: 1px; width: 30px;">
+                            </div>
+                            
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: row">
+                            <div class="tooltip">
+                                <span class="tooltiptext">Hitbox Boundrary - X1 Coord</span>
+                                
+                                <input id="13" type="input" name="text" class="input" placeholder="H-X1" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Hitbox Boundrary - Y1 Coord</span>
+                                
+                                <input id="14" type="input" name="text" class="input" placeholder="H-Y1" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Hitbox Boundrary - Z1 Coord</span>
+                                
+                                <input id="15" type="input" name="text" class="input" placeholder="H-Z1" style="height: 1px; width: 30px;">
+                            </div>
+                            
+                            
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: row">
+                            <div class="tooltip">
+                                <span class="tooltiptext">Hitbox Boundrary - X2 Coord</span>
+                                
+                                <input id="16" type="input" name="text" class="input" placeholder="H-X2" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Hitbox Boundrary - Y2 Coord</span>
+                                
+                                <input id="17" type="input" name="text" class="input" placeholder="H-Y2" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Hitbox Boundrary - Z2 Coord</span>
+                                
+                                <input id="18" type="input" name="text" class="input" placeholder="H-Z2" style="height: 1px; width: 30px;">
+                            </div>
+                            
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: row">
+                            <div class="tooltip">
+                                <span class="tooltiptext">Starting Velocity - X Axis</span>
+                                
+                                <input id="19" type="input" name="text" class="input" placeholder="V-X" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Starting Velocity - Y Axis</span>
+                                
+                                <input id="20" type="input" name="text" class="input" placeholder="V-Y" style="height: 1px; width: 30px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Starting Velocity - Z Axis</span>
+                                
+                                <input id="21" type="input" name="text" class="input" placeholder="V-Z" style="height: 1px; width: 30px;">
+                            </div>
+                            
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: row">
+                            <div class="tooltip">
+                                <span class="tooltiptext">Mass Property</span>
+                                
+                                <input id="22" type="input" name="text" class="input" placeholder="M" style="height: 1px; width: 13.5px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Size (Coefficient)</span>
+                                
+                                <input id="23" type="input" name="text" class="input" placeholder="S" style="height: 1px; width: 13.5px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Mesh Preset ((C) for Cube or (X) for Sphere)</span>
+                                
+                                <input id="24" type="input" name="text" class="input" placeholder="M" style="height: 1px; width: 13.5px;">
+                            </div>
+                            <div class="tooltip">
+                                <span class="tooltiptext">Delete On Collision ((0) or (1)</span>
+                                
+                                <input id="25" type="input" name="text" class="input" placeholder="D" style="height: 1px; width: 13.5px;">
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div style="width: 10px;"></div>
+                
+                <canvas id="Canvas" width="580" height="580" style="border:10px solid #585858; border-radius: 5px; width: 580px; height: 580px;"></canvas>
+                
+            </div>
+            
+            <div style="height: 10px;"></div>
+            
+            <div style="display: flex; flex-direction: row">
+                
+                <div class="rcorners7" >
+                    <!-- INSERT Add Object -->
+                    
+                    <div style="display: flex; flex-direction: row">
+                        <button class="button-31" role="button" style="height: 70px;"onclick="AddCubeObject(0,0,0,1)">New Cube</button>
+                        
+                        <div style="width: 10px;"></div>
+                        
+                        <button class="button-31" role="button" style="height: 70px;"onclick="AddSphereObject(0,0,0,1)">New Sphere</button>
+                        
+                        <div style="width: 10px;"></div>
+                        
+                        <button class="button-31" role="button" style="height: 70px;" onclick="AddSpawnerObject()">New Spawner</button>
+                        
+                        <div style="width: 10px;"></div>
+                        
+                        <div style="display: flex; flex-direction: column">
+                            
+                            <label style="font-weight: bold; color: orange;" id="Physics">Physics</label>
+                            <label style="font-weight: bold; color: lightgreen;" id="Animated">Animation</label>
+                            
+                            <!-- HTML !-->
+                            <button class="button-42" role="button" onclick="ChangePhysicsAnimation()">Switch</button>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div style="width: 10px;"></div>
+                
+                <div class="rcorners5" style="display: flex; flex-direction: row">
+                    <!-- INSERT Save Bar -->
+                    
+                    <img onclick="Save1()" style="height: 70px; width: 70px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAdVBMVEX///8AAABTU1NXV1cbGxv7+/sXFxd0dHRubm7d3d3t7e0eHh5NTU0NDQ1wcHAkJCRCQkIrKythYWFHR0c0NDTp6emhoaF9fX3j4+Pz8/Ovr6/Z2dkmJibQ0NC+vr49PT2YmJiFhYW2trZmZmbFxcWPj48wMDAhgmfpAAAEAElEQVR4nO2d65KiMBBGae+CjIqOeBkvuzO77/+IiyIio8smpEl3ud/5MzVVGPsUBtJJaIIAAAAAAAAAAAAAAAAAwH9G/+dosuwNTOhNj6PtRjrg54yTmOyIk7100I+EI0uLnE9tZ2X30ciDaKrrpBxsf1Ul8UE6+Dt2zT0yEz3nJJw6eBBF79ICBYmTB9GxL22Qs3f0yK5d0go5E2cROkk7nAndPYi+pC0yVhwig7W0RhB0OURoKd/hlywilEh7BD0eEfolLcLkQSQ8VumziQzGLyJCc9ExPaMITSQvXZwiNBMcP7KKUJyKdRRekYzpouNEN0lXTcYJ7CIsLE/W3U2nCFFv9SIi2TUwfBER+rDqKopFaGpzNdcsYjUboFqEfryKSGzeTXSL0OhVRGLjEbVyEdo2EomOna44nWN0F5Lxb+smMk8PahY7Nod0fg3raPqZXCT+1DOnfmWfT0kPTI+/iCQK5tceWZ+n3GLTozORSNNaTYVD1ltMj+3TRE3XeCRcmIuY33Ik6Ddasliv0qTrlqi60zTVLd1PTLPAHDRIdQtWA+ngq1inujkhw7IVN5ap7oV10/0CrWKX6p55d1ufbg2rVDejr6iXV7Fc+E6l4/07FqluEIylo63BItUNgk/paOuwGHdsXHbUtI55qsuzzt4exqmu85aaljH/bf2WDrUe41Q3UN1FLFJdvnX2drBJdXUDEW1ARBsQ0QZEtAERbQiJxJMJ8yhURmQWBkE4Y21SRCS+TA6GrOdERGSRt7ngbFNEpJO32eFsEyIuQKQGiLgAkRog4gJEaoCICxCpASIuQKQGiLgAkRog4gJEaoCIJYu0W87HPYjE3aHrJJcnkfNWkd3t6YLvIr1d9t/W7Rv8iOTbi8eFyTeRXv7gbrNCUX5Frnt3CpOqSHR9ANntlPgRKTbnXk0qIoWH40YqPyKzopnc5F7k5hG4LTP4EaG3ismdSOkxdPsGTyKlyTq6F2Hz8HdDLE2mpQifh8c7+51JIcLo4XOIUpoMr9Ezengda91M+pU/LB5+B41vz9vm8PA8+n1qwuLhexj/ZHsuj4f3fOTBhMnDf2L1zYTLQyBDrJiweUikuncmfB4iOfvNhNFDZvJhxO8htM1pdL6pv7E2KSNC82HK/ByHkAg/ENEGRLQBEW1ARBsQ0YapyMs8UPk6j7iqLMBRsjQW4Sm33hrm1c9P0qHWY16wZi0daj0W5WoUVtsp6Zp7BF/SwdZhVRpPcdUHuzJhYfTvFmWYWlaV2yu9Kdq/x8jh9U8tEjd4PcteYWGqj0Y1MDduO19aYNS06uLO+qV1LRInu4Yal7OyfVvMo54w0Xwx1PqGQgAAAAAAAAAAAAAAAADt8QdUZmgRF+a46wAAAABJRU5ErkJggg==" alt="">
+                    <div style="width: 10px;"></div>
+                    <img onclick="Save2()" style="height: 70px; width: 70px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAdVBMVEX///8AAABTU1NXV1cbGxv7+/sXFxd0dHRubm7d3d3t7e0eHh5NTU0NDQ1wcHAkJCRCQkIrKythYWFHR0c0NDTp6emhoaF9fX3j4+Pz8/Ovr6/Z2dkmJibQ0NC+vr49PT2YmJiFhYW2trZmZmbFxcWPj48wMDAhgmfpAAAEAElEQVR4nO2d65KiMBBGae+CjIqOeBkvuzO77/+IiyIio8smpEl3ud/5MzVVGPsUBtJJaIIAAAAAAAAAAAAAAAAAwH9G/+dosuwNTOhNj6PtRjrg54yTmOyIk7100I+EI0uLnE9tZ2X30ciDaKrrpBxsf1Ul8UE6+Dt2zT0yEz3nJJw6eBBF79ICBYmTB9GxL22Qs3f0yK5d0go5E2cROkk7nAndPYi+pC0yVhwig7W0RhB0OURoKd/hlywilEh7BD0eEfolLcLkQSQ8VumziQzGLyJCc9ExPaMITSQvXZwiNBMcP7KKUJyKdRRekYzpouNEN0lXTcYJ7CIsLE/W3U2nCFFv9SIi2TUwfBER+rDqKopFaGpzNdcsYjUboFqEfryKSGzeTXSL0OhVRGLjEbVyEdo2EomOna44nWN0F5Lxb+smMk8PahY7Nod0fg3raPqZXCT+1DOnfmWfT0kPTI+/iCQK5tceWZ+n3GLTozORSNNaTYVD1ltMj+3TRE3XeCRcmIuY33Ik6Ddasliv0qTrlqi60zTVLd1PTLPAHDRIdQtWA+ngq1inujkhw7IVN5ap7oV10/0CrWKX6p55d1ufbg2rVDejr6iXV7Fc+E6l4/07FqluEIylo63BItUNgk/paOuwGHdsXHbUtI55qsuzzt4exqmu85aaljH/bf2WDrUe41Q3UN1FLFJdvnX2drBJdXUDEW1ARBsQ0QZEtAERbQiJxJMJ8yhURmQWBkE4Y21SRCS+TA6GrOdERGSRt7ngbFNEpJO32eFsEyIuQKQGiLgAkRog4gJEaoCICxCpASIuQKQGiLgAkRog4gJEaoCIJYu0W87HPYjE3aHrJJcnkfNWkd3t6YLvIr1d9t/W7Rv8iOTbi8eFyTeRXv7gbrNCUX5Frnt3CpOqSHR9ANntlPgRKTbnXk0qIoWH40YqPyKzopnc5F7k5hG4LTP4EaG3ismdSOkxdPsGTyKlyTq6F2Hz8HdDLE2mpQifh8c7+51JIcLo4XOIUpoMr9Ezengda91M+pU/LB5+B41vz9vm8PA8+n1qwuLhexj/ZHsuj4f3fOTBhMnDf2L1zYTLQyBDrJiweUikuncmfB4iOfvNhNFDZvJhxO8htM1pdL6pv7E2KSNC82HK/ByHkAg/ENEGRLQBEW1ARBsQ0YapyMs8UPk6j7iqLMBRsjQW4Sm33hrm1c9P0qHWY16wZi0daj0W5WoUVtsp6Zp7BF/SwdZhVRpPcdUHuzJhYfTvFmWYWlaV2yu9Kdq/x8jh9U8tEjd4PcteYWGqj0Y1MDduO19aYNS06uLO+qV1LRInu4Yal7OyfVvMo54w0Xwx1PqGQgAAAAAAAAAAAAAAAADt8QdUZmgRF+a46wAAAABJRU5ErkJggg==" alt="">
+                    <div style="width: 10px;"></div>
+                    <img onclick="Save3()" style="height: 70px; width: 70px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAdVBMVEX///8AAABTU1NXV1cbGxv7+/sXFxd0dHRubm7d3d3t7e0eHh5NTU0NDQ1wcHAkJCRCQkIrKythYWFHR0c0NDTp6emhoaF9fX3j4+Pz8/Ovr6/Z2dkmJibQ0NC+vr49PT2YmJiFhYW2trZmZmbFxcWPj48wMDAhgmfpAAAEAElEQVR4nO2d65KiMBBGae+CjIqOeBkvuzO77/+IiyIio8smpEl3ud/5MzVVGPsUBtJJaIIAAAAAAAAAAAAAAAAAwH9G/+dosuwNTOhNj6PtRjrg54yTmOyIk7100I+EI0uLnE9tZ2X30ciDaKrrpBxsf1Ul8UE6+Dt2zT0yEz3nJJw6eBBF79ICBYmTB9GxL22Qs3f0yK5d0go5E2cROkk7nAndPYi+pC0yVhwig7W0RhB0OURoKd/hlywilEh7BD0eEfolLcLkQSQ8VumziQzGLyJCc9ExPaMITSQvXZwiNBMcP7KKUJyKdRRekYzpouNEN0lXTcYJ7CIsLE/W3U2nCFFv9SIi2TUwfBER+rDqKopFaGpzNdcsYjUboFqEfryKSGzeTXSL0OhVRGLjEbVyEdo2EomOna44nWN0F5Lxb+smMk8PahY7Nod0fg3raPqZXCT+1DOnfmWfT0kPTI+/iCQK5tceWZ+n3GLTozORSNNaTYVD1ltMj+3TRE3XeCRcmIuY33Ik6Ddasliv0qTrlqi60zTVLd1PTLPAHDRIdQtWA+ngq1inujkhw7IVN5ap7oV10/0CrWKX6p55d1ufbg2rVDejr6iXV7Fc+E6l4/07FqluEIylo63BItUNgk/paOuwGHdsXHbUtI55qsuzzt4exqmu85aaljH/bf2WDrUe41Q3UN1FLFJdvnX2drBJdXUDEW1ARBsQ0QZEtAERbQiJxJMJ8yhURmQWBkE4Y21SRCS+TA6GrOdERGSRt7ngbFNEpJO32eFsEyIuQKQGiLgAkRog4gJEaoCICxCpASIuQKQGiLgAkRog4gJEaoCIJYu0W87HPYjE3aHrJJcnkfNWkd3t6YLvIr1d9t/W7Rv8iOTbi8eFyTeRXv7gbrNCUX5Frnt3CpOqSHR9ANntlPgRKTbnXk0qIoWH40YqPyKzopnc5F7k5hG4LTP4EaG3ismdSOkxdPsGTyKlyTq6F2Hz8HdDLE2mpQifh8c7+51JIcLo4XOIUpoMr9Ezengda91M+pU/LB5+B41vz9vm8PA8+n1qwuLhexj/ZHsuj4f3fOTBhMnDf2L1zYTLQyBDrJiweUikuncmfB4iOfvNhNFDZvJhxO8htM1pdL6pv7E2KSNC82HK/ByHkAg/ENEGRLQBEW1ARBsQ0YapyMs8UPk6j7iqLMBRsjQW4Sm33hrm1c9P0qHWY16wZi0daj0W5WoUVtsp6Zp7BF/SwdZhVRpPcdUHuzJhYfTvFmWYWlaV2yu9Kdq/x8jh9U8tEjd4PcteYWGqj0Y1MDduO19aYNS06uLO+qV1LRInu4Yal7OyfVvMo54w0Xwx1PqGQgAAAAAAAAAAAAAAAADt8QdUZmgRF+a46wAAAABJRU5ErkJggg==" alt="">
+                    
+                    <div style="width: 20px;"></div>
+                    
+                    <div style="display: flex; flex-direction: column">
+                        
+                        <u style="font-weight: bolder; color: rgb(0, 0, 0);" id="ExportImportSave">Currently Loaded:</u>
+                        <label style="font-weight: bolder; color: rgb(255, 196, 0); font-size: xx-large;" id="LastInteractedSaveSlot">Save 2</label>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        <div style="width: 10px;"></div>
+        
+        <div style="display: flex; flex-direction: column;">
+            
+            <div class="rcorners2" >
+                <!-- INSERT Options Overlay -->
+                <div style="display: flex; flex-direction: row">
+
+                <u id="ObjectSettings" style="font-weight: bolder; color: black; font-family: sans-serif; font-size: x-large; width: 270px;">Object Settings:</u>
+
+                </div>
+                <label style="font-weight: bold; color: orange;" id="ObjectTypeObjectSettingstag">(Object Type)</label>
+                
+                
+        <div style="height: 10px;"></div>
+
+                <div style="display: flex; flex-direction: row">
+                
+                    <input onchange="UpdateObjectSettings()" id="a" type="input" name="text" class="input" placeholder="Const.F-X" style="height: 1px; width: 60px;">
+                
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="b" type="input" name="text" class="input" placeholder="Const.F-Y" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="c" type="input" name="text" class="input" placeholder="Const.F-Z" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
+                
+                </div>
+
+                <div style="display: flex; flex-direction: row">
+                
+                    <input onchange="UpdateObjectSettings()" id="d" type="input" name="text" class="input" placeholder="Hitbox-X1" style="height: 1px; width: 60px;">
+                
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="e" type="input" name="text" class="input" placeholder="Hitbox-Y1" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="f" type="input" name="text" class="input" placeholder="Hitbox-Z1" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
+                
+                </div>
+
+                <div style="display: flex; flex-direction: row">
+                
+                    <input onchange="UpdateObjectSettings()" id="g" type="input" name="text" class="input" placeholder="Hitbox-X2" style="height: 1px; width: 60px;">
+                
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="h" type="input" name="text" class="input" placeholder="Hitbox-Y2" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
+                    
+                    <input onchange="UpdateObjectSettings()" id="i" type="input" name="text" class="input" placeholder="Hitbox-Z2" style="height: 1px; width: 60px;">
+                    
+                    <div style="height: 5px;"></div>
+                
+                </div>
+
+                <div style="height: 5px;"></div>
+                
+                <div style="display: flex; flex-direction: row">
+                    
+                    <div style="width: 5px;"></div>
+                    
+                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);" id="o">Delete on Collision:</u>
+                    
+                    <div style="width: 9px;"></div>
+                    
+                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);"id="p">Object Size Coefficient:</u>
+                    
+                    <div style="width: 9px;"></div>
+                    
+                    <u style="width: 95px; font-weight: bolder; color: rgb(0, 0, 0);"id="r">Object Mass Property:</u>
+                
+                </div>
+
+                <div style="height: 5px;"></div>
+
+                <div style="display: flex; flex-direction: row">
+                    
+                    <div style="width: 5px;"></div>
+
+                    <label class="switch">
+                        <input type="checkbox"onchange="UpdateSettings2()">
+                        <span class="slider"></span>
+                    </label>
+                                        
+                    <div style="width: 24px;"></div>
+
+                    <input onchange="UpdateObjectSettings()" id="j" type="input" name="text" class="input" placeholder="Nada" style="height: 1px; width: 55px;">
+                    
+                    <div style="width: 10px;"></div>
+
+                    <input onchange="UpdateObjectSettings()" id="k" type="input" name="text" class="input" placeholder="Mass" style="height: 1px; width: 55px;">
+                
+                </div>
+                <div style="height: 5px;"></div>
+                    
+                <u style="font-weight: bold; color: rgb(0, 0, 0);" >Manipulate (Cursor):</u>
+                
+                <div style="height: 5px;"></div>
+                
+                <div class="radio">
+                    <input label="Animation/Velocity" type="radio" id="male" name="gender" value="Manipulate Path" onchange="ChangeManipulatePath()" checked>
+                    <input label="Object" type="radio" id="female" name="gender" value="Manipulate Object" onchange="ChangeManipulateObject()">
+                    <input label="Point" type="radio" id="other" name="gender" value="Manipulate Point" onchange="ChangeManipulatePoint()">
+                </div>
+                
+                <div style="height: 10px;"></div>
+                
+            </div>
+            
+            <div style="height: 10px;"></div>
+            
+            <div class="rcorners9" >
+                
+                <div style="display: flex; flex-direction: row">
+                    
+                    <u style="font-weight: bold; color: rgb(0, 0, 0);">Object Elasticity:</u>
+                    
+                    <div style="width: 20px;"></div>
+                    
+                    <u style="font-weight: bold; color: rgb(0, 0, 0);" >Change% (/Frame):</u>
+                    
+                </div>
+                
+                <div style="display: flex; flex-direction: row">
+                    
+                    <input type="range" id="Elasticity" name="points" min="0" max="1" value="0.5" step="0.01" onchange="UpdateElasticity()" style="width: 120px;">
+                    
+                    <div style="width: 15px;"></div>
+                    
+                    <input type="range" id="Increment/Hertz" name="points" min="0.2" max="2" value="0.5" step="0.1" onchange="UpdateIncrementHertz()" style="width: 120px;">
+                    
+                </div>
+                
+                <div style="height: 10px;"></div>
+                
+                <div style="display: flex; flex-direction: row">
+                    
+                    <u style="font-weight: bold; color: rgb(0, 0, 0);">Hertz (Frames/s):</u>
+                    
+                    <div style="width: 15px;"></div>
+                    
+                    <input type="range" name="points" min="1" max="50" value="50" step="1" id="Hertz" onchange="UpdateHertz()" style="width: 120px;">
+                    
+                </div>
+                
+            </div>
+            
+            <div style="height: 10px;"></div>
+            
+            
+            <div class="rcorners8" >
+                <!-- INSERT Camera/Marking Options -->
+                
+                <div style="height: 5px;"></div>
+                
+                <div style="display: flex; flex-direction: row">
+                    
+                    <div style="width: 20px;"></div>
+                    
+                    <u style="width: 90px; font-weight: bolder; color: rgb(0, 0, 0);">Offset X:</u>
+                    <div style="width: 5px;"></div>
+                    <u style="width: 80px; font-weight: bolder; color: rgb(0, 0, 0);">Offset Y:</u>
+                    <div style="width: 10px;"></div>
+                    <u style="width: 70px; font-weight: bolder; color: rgb(0, 0, 0);">Offset Z:</u>
+                   
+                </div>
+                
+                <div style="display: flex; flex-direction: row">
+                    
+                    <input type="range" id="OffsetX" name="points" min="-1000" max="1000" step="100" style="width: 90px;" onchange="UpdateOffsetX()">
+                    
+                    <input type="range" id="OffsetY" name="points" min="-1000" max="1000" step="100" style="width: 90px;" onchange="UpdateOffsetY()">
+                    
+                    <input type="range" id="OffsetZ" name="points" min="-600" max="1400" step="100" style="width: 90px;" onchange="UpdateOffsetZ()">
+                    
+                </div>
+                
+                <div style="height: 10px;"></div>
+                
+                <div style="display: flex; flex-direction: row">
+                    
+                    <u style="font-weight: bold; color: rgb(0, 0, 0);" >Focal Length:</u>
+                    
+                    <div style="width: 20px;"></div>
+                    
+                    <input type="range" name="points" min="500" max="2000" value="700" step="100" id="FocalLength" onchange="UpdateFocalLength()" style="width: 160px;" onchange="UpdateFocallength()">
+                    
+                </div>
+                
+                <div style="height: 10px;"></div>
+                
+                <div style="display: flex; flex-direction: row">
+                    
+                    <button class="button-42" role="button" style="width: 180px; height: 30px; ;" id="CameraOffsetButton" onclick="ResetCameraOffset()">Reset Offset</button>
+                    
+                    <div style="width: 20px;"></div>
+                    
+                    <button class="button-42" role="button" style="width: 180px; height: 30px; ;" id="CameraOrientationButton" onclick="ResetCameraOrientation()">Reset Orientation</button>
+                    
+                </div>
+                
+            </div>
+            
+            <div style="height: 10px;"></div>
+            
+            <div class="rcorners3" >
+                <!-- INSERT Engine Options Overlay -->
+                
+                <button class="button-64" role="button"><span class="text" onclick="Start()" style="height: 20px;">Start Program</span></button>
+                
+            </div>
+            
+        </div>
+        
+        <div style="width: 10px;"></div>
+        
+        <div style="display: flex; flex-direction: column; width: 40px;">
+            
+            <div class="rcorners6" >
+                <!-- INSERT Upperright Logo -->
+                 <img id="UnrealEngineLogo" style="height: 60px; width: 60px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx-kbnRVBYVJDXFdMcBbxRPe-YzBqMmbM0EQ&usqp=CAU" alt="">
+                
+                
+            </div>
+            
+            <div style="height: 10px;"></div>
+            
+            <div class="rcorners4" >
+                <!-- INSERT Side Bar -->
+                
+                
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+
+<script>
+    
+    // All Global Variables
+    let canvas = document.getElementById("Canvas")
+    let ctx = canvas.getContext("2d")
+    let context = canvas.getContext('2d')
+    
+    document.getElementById("Physics").style.color = "orange"
+    document.getElementById("Animated").style.color = "black"
+    
+    ctx.beginPath();
+        ctx.rect(00, 00, 800, 800);
+        ctx.fillStyle = "#18191a";
+        ctx.fill();
+    const img = document.getElementById("UnrealEngineLogo")
+    ctx.drawImage(img, 200,200)
+    
+    HTMLProjectOverviewNode = document.getElementById("ProjectOverview")
+    
+    let SwitchTracker = false
+    
+    let RegObjects = []
+    
+    let SpawnerObjects = []
+    
+    
+    let SpherePresetX = [10, 11.25, 10, 11.25, 10, 11.25, 10,   7.5, 10, 7.5, 5, 7.5, 5,         3.75, 5, 3.75, 5,  3.75, 5,       7.5,  5,  7.5,  10, 7.5,  10,      7.5,  5,  7.5,  5,  7.5,  10,        7.5, 5,  7.5, 5, 7.5, 10,     10,        5,  5,  10, 10, 10,     10, 5,   5,  10,  10,  5,  5,  5,  5]
+    let SpherePresetY = [10, 7.5,  10, 7.5,  5,  7.5,  5,       3.75, 5,  3.75, 5, 3.75, 5,      7.5, 5, 7.5, 10, 7.5, 10,         7.5,  5,  7.5,  5,  7.5,  10,      11.25, 10, 11.25, 10, 11.25, 10,     7.5, 10, 7.5, 5, 7.5, 5,      10,        10, 5,  5, 10, 5,       5,  5,   10, 10,  10,  10, 10, 5,  5]
+    let SpherePresetZ = [5,  7.5,  10, 7.5,  5,  7.5,  10,      7.5, 5,  7.5, 5, 7.5, 10,        7.5, 5, 7.5, 5,  7.5, 10,         11.25, 10, 11.25, 10, 11.25, 10,   7.5,  10, 7.5,  5,  7.5,  5,         3.75, 5,  3.75, 5, 3.75, 5,   5,         5,  5,  5, 5, 5,        10, 10,  10, 10,  5,   5,  10, 10, 5]
+    
+    let CubePresetX = [100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100,100-100,100-100]
+    let CubePresetY = [100-100,100-100,200-100,200-100,100-100,100-100,100-100,200-100,200-100,100-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100]
+    let CubePresetZ = [100-100,100-100,100-100,100-100,100-100,200-100,200-100,200-100,200-100,200-100,100-100,100-100,200-100,200-100,100-100,100-100,200-100]
+    
+    
+    let KeyPress = ""
+    
+    let Manipulate = "Path"
+    
+    let ScrollY = "None"
+    
+    
+    let FocalLength = 700
+    
+    let FoundObjectNumber = 0
+    
+    let AnimationX = []
+    let AnimationY = []
+    let AnimationZ = []
+    
+    let ChosenPathStage = 0
+    
+    let LastMouseDownX = 0
+    let LastMouseDownY = 0
+    
+    let LastMouseUpX = 0
+    let LastMouseUpY = 0
+    
+    let ProgramHertz = 50
+    let ProgramIncrementHertz = 0.5
+    
+    let ShowAnimationPathing = false
+    
+    let ShowHitboxes = false
+    
+    let Framestage = 0
+    
+    let RunProgram = false
+    
+    
+    let Elasticity = 0.5
+    
+    let TimeFriction = 1
+    
+    
+    let CameraMoveMode = 1
+    
+    let CameraDirection1 = 1 // 1 = X
+    let CameraDirection2 = 2 // 2 = Y
+    let CameraDirection3 = 3 // 3 = Z
+    
+    let CameraOffsetX = 0
+    let CameraOffsetY = 0
+    let CameraOffsetZ = 400
+    
+    let ChosenRegObjectType = "Physics"
+    
+    let SaveSlot1 = "Exported"
+    let SaveSlot1RegObjects = []
+    let SaveSlot1SpawnerObjects = []
+    
+    let SaveSlot2 = "Exported"
+    let SaveSlot2RegObjects = []
+    let SaveSlot2SpawnerObjects = []
+    
+    let SaveSlot3 = "Exported"
+    let SaveSlot3RegObjects = []
+    let SaveSlot3SpawnerObjects = []
+    
+    
+    function MainLoop(){
+
+        if(Framestage > 100){
+            Framestage = 1
+            for (let i = 0; i < SpawnerObjects.length; i++) {
+                SpawnerObjects[i].Spawn()
+            }
+        }
+        else{
+            Framestage += 2 * ProgramIncrementHertz
+        }
+        
+        ResetCanvas() //
+        
+        // (Manipulate path, object, point)
+        DoManipulation()
+        
+        DoScaling()
+        
+        DoCalculateAnimation()
+        
+        DoCalculatePhysics()
+        
+        // Prepare Projection Arrays
+        ProjectShell2D()
+        
+        ProjectAnimationPath2D()
+        
+        ProjectHitboxes2D()
+        //
+        
+        // Draw On Canvas
+        CanvasDrawObjectShells()
+        
+        CanvasDrawAnimationPathing()
+        
+        CanvasDrawHitboxes()
+        //
+        
+        KeyPress = "NoKey"
+        ScrollY = "None"
+        
+        
+        
+        if(RunProgram == true){
+            setTimeout(MainLoop, 1000/ProgramHertz)
+        }
+        else{
+            ResetCanvas()
+        }
+    }
+    // END OF MAIN LOOP
+    
+    
+    
+    
+    
+    // Reset Canvas Function
+    function ResetCanvas(){
+        ctx.beginPath();
+        ctx.rect(00, 00, 800, 800);
+        ctx.fillStyle = "lightgrey";
+        ctx.fill();
+    }
+    // Reset Canvas Function
+    
+    
+    
+    
+    
+    // Manipulate Path/Object/Point Function
+    function DoManipulation(){
+        if(Manipulate == "Path"){
+            if(RegObjects[FoundObjectNumber].ObjectType == "Animated"){
+                
+                switch (KeyPress) {
+                    case "ArrowDown":
+                    RegObjects[FoundObjectNumber].AnimationInstructionsZ[ChosenPathStage] -= 40
+                    
+                    break;
+                    case "ArrowUp":
+                    RegObjects[FoundObjectNumber].AnimationInstructionsZ[ChosenPathStage] += 40
+                    
+                    break;
+                    case "ArrowLeft":
+                    RegObjects[FoundObjectNumber].AnimationInstructionsX[ChosenPathStage] -= 40
+                    
+                    break;
+                    case "ArrowRight":
+                    RegObjects[FoundObjectNumber].AnimationInstructionsX[ChosenPathStage] += 40
+                    
+                    break;
+                    case "SpaceBar":
+                    RegObjects[FoundObjectNumber].AnimationInstructionsY[ChosenPathStage] -= 40
+                    break;
+                    
+                    case "Shift":
+                    RegObjects[FoundObjectNumber].AnimationInstructionsY[ChosenPathStage] += 40
+                    break;
+                    
+                    default:
+                    break;
+                }
+            }
+            else if(RegObjects[FoundObjectNumber].ObjectType == "Physics"){
+                
+                switch (KeyPress) {
+                    case "ArrowDown":
+                    RegObjects[FoundObjectNumber].VelocityZ -= 40
+                    
+                    break;
+                    case "ArrowUp":
+                    RegObjects[FoundObjectNumber].VelocityZ += 40
+                    
+                    break;
+                    case "ArrowLeft":
+                    RegObjects[FoundObjectNumber].VelocityX -= 40
+                    
+                    break;
+                    case "ArrowRight":
+                    RegObjects[FoundObjectNumber].VelocityX += 40
+                    
+                    break;
+                    case "SpaceBar":
+                    RegObjects[FoundObjectNumber].VelocityY -= 40
+                    break;
+                    
+                    case "Shift":
+                    RegObjects[FoundObjectNumber].VelocityY += 40
+                    break;
+                    
+                    default:
+                    break;
+                }
+            }
+            
+        }
+        else if(Manipulate == "Point"){
+            
+            for (let i = 0; i < RegObjects[FoundObjectNumber].PointsMarked.length; i++) {
+                
+                if(RegObjects[FoundObjectNumber].PointsMarked[i] == true){
+                    
+                    switch (KeyPress) {
+                        case "ArrowDown":
+                        RegObjects[FoundObjectNumber].ShellZ[i] -= 20
+                        
+                        break;
+                        case "ArrowUp":
+                        RegObjects[FoundObjectNumber].ShellZ[i] += 20
+                        
+                        break;
+                        case "ArrowLeft":
+                        RegObjects[FoundObjectNumber].ShellX[i] -= 20
+                        
+                        break;
+                        case "ArrowRight":
+                        RegObjects[FoundObjectNumber].ShellX[i] += 20
+                        
+                        break;
+                        case "SpaceBar":
+                        RegObjects[FoundObjectNumber].ShellY[i] -= 20
+                        
+                        break;
+                        case "Shift":
+                        RegObjects[FoundObjectNumber].ShellY[i] += 20
+                        
+                        break;
+                        
+                        default:
+                        break;
+                    }
+                }
+            }
+        }
+        
+        else if(Manipulate == "Object"){
+            switch (KeyPress) {
+                case "ArrowDown":
+                RegObjects[FoundObjectNumber].LeaderZ -= 20
+                
+                break;
+                case "ArrowUp":
+                RegObjects[FoundObjectNumber].LeaderZ += 20
+                
+                break;
+                case "ArrowLeft":
+                RegObjects[FoundObjectNumber].LeaderX -= 20
+                
+                break;
+                case "ArrowRight":
+                RegObjects[FoundObjectNumber].LeaderX += 20
+                
+                break;
+                case "SpaceBar":
+                RegObjects[FoundObjectNumber].LeaderY -= 20
+                
+                break;
+                case "Shift":
+                RegObjects[FoundObjectNumber].LeaderY += 20
+                
+                break;
+                
+                default:
+                break;
+            }
+        }
+    }
+    // Manipulate Path/Object/Point Function
+    
+    
+    
+    
+    
+    // Apply Scaling Function
+    function DoScaling(){
+        if(ScrollY != "None"){
+            
+            let Scalefactor = 0
+            
+            if(ScrollY == "Up"){
+                Scalefactor = 1.1
+            }
+            
+            else if (ScrollY == "Down"){
+                Scalefactor = 0.9
+            }
+            
+            for (let i = 0; i < RegObjects[FoundObjectNumber].ShellX.length; i++) {
+                RegObjects[FoundObjectNumber].ShellX[i] *= Scalefactor
+                RegObjects[FoundObjectNumber].ShellY[i] *= Scalefactor
+                RegObjects[FoundObjectNumber].ShellZ[i] *= Scalefactor
+            }
+        }
+    }
+    // Apply Scaling Function
+    
+    
+    
+    
+    
+    // Calculate Animation Values per Frame Function
+    function DoCalculateAnimation(){
+
+        for (let i = 0; i < RegObjects.length; i++) {
+            if(RegObjects[i].ObjectType == "Animated"){
+                if(RegObjects[i].AnimationFrame > RegObjects[i].AnimationStages * 100){
+                    RegObjects[i].AnimationFrame = 1
+                }
+                else{
+                    RegObjects[i].AnimationFrame += 2 * ProgramIncrementHertz
+                }
+            }
+        }
+        
+        for (let i = 0; i < RegObjects.length; i++) {
+            if(RegObjects[i].ObjectType == "Animated"){
+                let CurrentAnimationStage = Math.floor(RegObjects[i].AnimationFrame/100)
+                let FrameInAnimationStage = RegObjects[i].AnimationFrame % 100
+                
+                
+                RegObjects[i].TotalAnimationDeviationX = 0
+                RegObjects[i].TotalAnimationDeviationY = 0
+                RegObjects[i].TotalAnimationDeviationZ = 0
+                
+                for (let o = 0; o < CurrentAnimationStage; o++) {
+                    
+                    RegObjects[i].TotalAnimationDeviationX += Number(RegObjects[i].AnimationInstructionsX[o])
+                    RegObjects[i].TotalAnimationDeviationY += Number(RegObjects[i].AnimationInstructionsY[o])
+                    RegObjects[i].TotalAnimationDeviationZ += Number(RegObjects[i].AnimationInstructionsZ[o])
+                }
+                
+                RegObjects[i].TotalAnimationDeviationX += Number(RegObjects[i].AnimationInstructionsX[CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+                RegObjects[i].TotalAnimationDeviationY += Number(RegObjects[i].AnimationInstructionsY[CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+                RegObjects[i].TotalAnimationDeviationZ += Number(RegObjects[i].AnimationInstructionsZ[CurrentAnimationStage]) * 0.01 * FrameInAnimationStage
+            }
+        }
+        
+        if(ShowAnimationPathing == true){
+            
+            
+            for (let i = 0; i < RegObjects.length; i++) {
+                
+                if(RegObjects[i].ObjectType == "Animated"){
+                    
+                    
+                    RegObjects[i].AnimationPathCoordsX = []
+                    RegObjects[i].AnimationPathCoordsY = []
+                    RegObjects[i].AnimationPathCoordsZ = []
+                    
+                    
+                    RegObjects[i].AnimationPathCoordsX[0] = Number(RegObjects[i].AnimationInstructionsX[0])
+                    RegObjects[i].AnimationPathCoordsY[0] = Number(RegObjects[i].AnimationInstructionsY[0])
+                    RegObjects[i].AnimationPathCoordsZ[0] = Number(RegObjects[i].AnimationInstructionsZ[0])
+                    
+                    
+                    for (let o = 1; o < RegObjects[i].AnimationInstructionsX.length; o++) {
+                        
+                        RegObjects[i].AnimationPathCoordsX[o] = Number(RegObjects[i].AnimationPathCoordsX[o-1]) + Number(RegObjects[i].AnimationInstructionsX[o])
+                        RegObjects[i].AnimationPathCoordsY[o] = Number(RegObjects[i].AnimationPathCoordsY[o-1]) + Number(RegObjects[i].AnimationInstructionsY[o])
+                        RegObjects[i].AnimationPathCoordsZ[o] = Number(RegObjects[i].AnimationPathCoordsZ[o-1]) + Number(RegObjects[i].AnimationInstructionsZ[o])
+                    }
+                }
+            }
+        }
+    }
+    // Calculate Animation Values per Frame Function
+    
+    
+    
+    
+    
+    
+    // Calculate Physics Function
+    function DoCalculatePhysics(){
+        
+        for (let i = 0; i < RegObjects.length; i++) {
+            
+            
+            const Hitbox1 = RegObjects[i].HitboxRelativeBoundraryXYZ()
+            const NewHitbox1 = RegObjects[i].NextHitboxRelativeBoundraryXYZ()
+
+            if(RegObjects[i].ObjectType == "Physics"){
+            RegObjects[i].VelocityX -= RegObjects[i].ConstantForceX  * ProgramIncrementHertz
+            RegObjects[i].VelocityY -= RegObjects[i].ConstantForceY  * ProgramIncrementHertz
+            RegObjects[i].VelocityZ -= RegObjects[i].ConstantForceZ  * ProgramIncrementHertz
+            }
+            for (let o = 0; o < RegObjects.length; o++) {
+
+                if(i != o){
+                
+                    
+                    const Hitbox2 = RegObjects[o].HitboxRelativeBoundraryXYZ()
+                const NewHitbox2 = RegObjects[o].NextHitboxRelativeBoundraryXYZ()
+
+                if((((NewHitbox1[0] > NewHitbox2[0]) && (NewHitbox1[0] < NewHitbox2[1])) || ((NewHitbox1[1] > NewHitbox2[0]) && (NewHitbox1[1] < NewHitbox2[1]))) && (((NewHitbox1[2] > NewHitbox2[2]) && (NewHitbox1[2] < NewHitbox2[3])) || ((NewHitbox1[3] > NewHitbox2[2]) && (NewHitbox1[3] < NewHitbox2[3]))) && (((NewHitbox1[4] > NewHitbox2[4]) && (NewHitbox1[4] < NewHitbox2[5])) || ((NewHitbox1[5] > NewHitbox2[4]) && (NewHitbox1[5] < NewHitbox2[5])))){
+
+                    let Continue = OnCollision(i,o)
+                    if(Continue == 1){return}
+
+                    if(RegObjects[i].ObjectType == "Physics" && RegObjects[o].ObjectType == "Physics" && Continue == 3){
+
+                                                    
+                            // Collision X
+                            
+                            // Elasticity = 0 Method
+                            const ForceX1 = RegObjects[i].Mass * RegObjects[i].VelocityX
+                            const ForceX2 = RegObjects[o].Mass * RegObjects[o].VelocityX
+                            
+                            const ForceTotalX = ForceX1 + ForceX2
+                            
+                            const NoneElasticityVelocityX1 = ForceTotalX*0.5 / RegObjects[i].Mass
+                            const NoneElasticityVelocityX2 = ForceTotalX*0.5 / RegObjects[o].Mass
+                            
+                            
+                            // Elasticity = 1 Method
+                            
+                            const MaxElasticityVelocityX1 = ForceX2 / RegObjects[i].Mass
+                            const MaxElasticityVelocityX2 = ForceX1 / RegObjects[o].Mass
+                            
+                            // Weighted
+                            
+                            RegObjects[i].VelocityX = ((NoneElasticityVelocityX1 * (1-Elasticity)) + (MaxElasticityVelocityX1 * Elasticity))
+                            RegObjects[o].VelocityX = ((NoneElasticityVelocityX2 * (1-Elasticity)) + (MaxElasticityVelocityX2 * Elasticity))
+                            
+                            // Collision Y
+                            
+                            // Elasticity = 0 Method
+                            const ForceY1 = RegObjects[i].Mass * RegObjects[i].VelocityY
+                            const ForceY2 = RegObjects[o].Mass * RegObjects[o].VelocityY
+                            
+                            const ForceTotalY = ForceY1 + ForceY2
+                            
+                            const NoneElasticityVelocityY1 = ForceTotalY*0.5 / RegObjects[i].Mass
+                            const NoneElasticityVelocityY2 = ForceTotalY*0.5 / RegObjects[o].Mass
+                            
+                            
+                            // Elasticity = 1 Method
+                            
+                            const MaxElasticityVelocityY1 = ForceY2 / RegObjects[i].Mass
+                            const MaxElasticityVelocityY2 = ForceY1 / RegObjects[o].Mass
+                            
+                            // Weighted
+                            
+                            RegObjects[i].VelocityY = ((NoneElasticityVelocityY1 * (1-Elasticity)) + (MaxElasticityVelocityY1 * Elasticity))
+                            RegObjects[o].VelocityY = ((NoneElasticityVelocityY2 * (1-Elasticity)) + (MaxElasticityVelocityY2 * Elasticity))
+                            
+                            // Collision Z
+                            
+                            // Elasticity = 0 Method
+                            const ForceZ1 = RegObjects[i].Mass * RegObjects[i].VelocityZ
+                            const ForceZ2 = RegObjects[o].Mass * RegObjects[o].VelocityZ
+                            
+                            const ForceTotalZ = ForceZ1 + ForceZ2
+                            
+                            const NoneElasticityVelocityZ1 = ForceTotalZ*0.5 / RegObjects[i].Mass
+                            const NoneElasticityVelocityZ2 = ForceTotalZ*0.5 / RegObjects[o].Mass
+                            
+                            
+                            // Elasticity = 1 Method
+                            
+                            const MaxElasticityVelocityZ1 = ForceZ2 / RegObjects[i].Mass
+                            const MaxElasticityVelocityZ2 = ForceZ1 / RegObjects[o].Mass
+                            
+                            // Weighted
+                            
+                            RegObjects[i].VelocityZ = ((NoneElasticityVelocityZ1 * (1-Elasticity)) + (MaxElasticityVelocityZ1 * Elasticity))
+                            RegObjects[o].VelocityZ = ((NoneElasticityVelocityZ2 * (1-Elasticity)) + (MaxElasticityVelocityZ2 * Elasticity))
+
+                    }
+                }
+            }
+        }
+
+                        // Add VelocityX
+                if(RegObjects[i].VelocityX > 0){
+                    RegObjects[i].VelocityX -= TimeFriction * ProgramIncrementHertz
+                    
+                    if(RegObjects[i].VelocityX < 0){
+                        RegObjects[i].VelocityX = 0
+                    }
+                    
+                }
+                else if(RegObjects[i].VelocityX < 0){
+                    RegObjects[i].VelocityX += TimeFriction * ProgramIncrementHertz
+                    
+                    if(RegObjects[i].VelocityX > 0){
+                        RegObjects[i].VelocityX = 0
+                    }
+                    
+                }
+                if(RegObjects[i].VelocityX != 0){
+                    RegObjects[i].LeaderX += RegObjects[i].VelocityX * ProgramIncrementHertz * 0.05
+                }
+                
+                // Add VelocityY
+                if(RegObjects[i].VelocityY > 0){
+                    RegObjects[i].VelocityY -= TimeFriction * ProgramIncrementHertz
+                    
+                    if(RegObjects[i].VelocityY < 0){
+                        RegObjects[i].VelocityY = 0
+                    }
+                    
+                }
+                else if(RegObjects[i].VelocityY < 0){
+                    RegObjects[i].VelocityY += TimeFriction * ProgramIncrementHertz
+                    
+                    if(RegObjects[i].VelocityY > 0){
+                        RegObjects[i].VelocityY = 0
+                    }
+                    
+                }
+                if(RegObjects[i].VelocityY != 0){
+                    RegObjects[i].LeaderY += RegObjects[i].VelocityY * ProgramIncrementHertz * 0.05
+                }
+                
+                // Add VelocityZ
+                if(RegObjects[i].VelocityZ > 0){
+                    RegObjects[i].VelocityZ -= TimeFriction * ProgramIncrementHertz
+                    
+                    if(RegObjects[i].VelocityX < 0){
+                        RegObjects[i].VelocityX = 0
+                    }
+                    
+                }
+                else if(RegObjects[i].VelocityZ < 0){
+                    RegObjects[i].VelocityZ += TimeFriction * ProgramIncrementHertz
+                    
+                    if(RegObjects[i].VelocityZ > 0){
+                        RegObjects[i].VelocityZ = 0
+                    }
+                    
+                }
+                if(RegObjects[i].VelocityZ != 0){
+                    RegObjects[i].LeaderZ += RegObjects[i].VelocityZ * ProgramIncrementHertz * 0.05
+                }
+        }
+        
+        for (let i = 0; i < RegObjects.length; i++) {
+            
+            if(RegObjects[i].ObjectType == "Physics"){
+                
+                for (let o = 0; o < RegObjects.length; o++) {
+                    
+                    const Hitbox1 = RegObjects[i].HitboxRelativeBoundraryXYZ()
+                    const NewHitbox1 = RegObjects[i].NextHitboxRelativeBoundraryXYZ()
+                    
+                    if(RegObjects[o].ObjectType == "Physics" && i != o){
+                        
+                        
+                        const Hitbox2 = RegObjects[o].HitboxRelativeBoundraryXYZ()
+                        const NewHitbox2 = RegObjects[o].NextHitboxRelativeBoundraryXYZ()
+                        
+                        if((((NewHitbox1[0] > NewHitbox2[0]) && (NewHitbox1[0] < NewHitbox2[1])) || ((NewHitbox1[1] > NewHitbox2[0]) && (NewHitbox1[1] < NewHitbox2[1]))) && (((NewHitbox1[2] > NewHitbox2[2]) && (NewHitbox1[2] < NewHitbox2[3])) || ((NewHitbox1[3] > NewHitbox2[2]) && (NewHitbox1[3] < NewHitbox2[3]))) && (((NewHitbox1[4] > NewHitbox2[4]) && (NewHitbox1[4] < NewHitbox2[5])) || ((NewHitbox1[5] > NewHitbox2[4]) && (NewHitbox1[5] < NewHitbox2[5])))){
+                            
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    // Calculate Physics Function
+    
+    
+    
+    
+    
+    // Project Shell X/Y/Z -> 2D(X, Y) Function
+    function ProjectShell2D(){
+        for (let i = 0; i < RegObjects.length; i++) {
+            
+            RegObjects[i].ShellprojectedX = []
+            RegObjects[i].ShellprojectedY = []
+            
+            for (let o = 0; o < RegObjects[i].ShellX.length; o++) {
+                // Add Animation Frame Values
+                const ShellPointX = RegObjects[i].ShellX[o] + RegObjects[i].LeaderX + Number(RegObjects[i].TotalAnimationDeviationX)
+                const ShellPointY = RegObjects[i].ShellY[o] + RegObjects[i].LeaderY + Number(RegObjects[i].TotalAnimationDeviationY)
+                const ShellPointZ = RegObjects[i].ShellZ[o] + RegObjects[i].LeaderZ + Number(RegObjects[i].TotalAnimationDeviationZ)
+                
+                const XYZArr = ApplyCameraPerspective(ShellPointX, ShellPointY, ShellPointZ)
+                
+                const X = XYZArr[0] + CameraOffsetX
+                const Y = XYZArr[1] + CameraOffsetY
+                const Z = XYZArr[2] + CameraOffsetZ
+                if(Z+FocalLength > 0){
+                    
+                    RegObjects[i].ShellprojectedX[o] = Project2D(X,Z)
+                    RegObjects[i].ShellprojectedY[o] = Project2D(Y,Z)
+                }
+            }
+        }
+    }
+    // Project Shell X/Y/Z -> 2D(X, Y) Function
+    
+    
+    
+    
+    
+    // Project per Object Animation Path X/Y/Z -> 2D(X, Y) Function
+    function ProjectAnimationPath2D(){
+        if(ShowAnimationPathing == true){
+            
+            for (let i = 0; i < RegObjects.length; i++) {
+                
+                if(RegObjects[i].ObjectType == "Animated"){
+                    
+                    
+                    RegObjects[i].AnimationPathProjectedX = []
+                    RegObjects[i].AnimationPathProjectedY = []
+                    
+                    for (let o = 0; o < RegObjects[i].AnimationInstructionsX.length; o++) {
+                        
+                        const TotalAnimationpointX = RegObjects[i].AnimationRelativePathCoordPositionX(o)
+                        const TotalAnimationpointY = RegObjects[i].AnimationRelativePathCoordPositionY(o)
+                        const TotalAnimationpointZ = RegObjects[i].AnimationRelativePathCoordPositionZ(o)
+                        
+                        const XYZArr = ApplyCameraPerspective(TotalAnimationpointX, TotalAnimationpointY, TotalAnimationpointZ)
+                        
+                        const X = XYZArr[0] + CameraOffsetX
+                        const Y = XYZArr[1] + CameraOffsetY
+                        const Z = XYZArr[2] + CameraOffsetZ
+                        
+                        if(Z+FocalLength > 0){
+                            
+                            RegObjects[i].AnimationPathProjectedX[o] = Project2D(X,Z)
+                            RegObjects[i].AnimationPathProjectedY[o] = Project2D(Y,Z)
+                        }
+                    }
+                    
+                    const TotalAnimationpointX = RegObjects[i].LeaderX
+                    const TotalAnimationpointY = RegObjects[i].LeaderY
+                    const TotalAnimationpointZ = RegObjects[i].LeaderZ
+                    
+                    const XYZArr = ApplyCameraPerspective(TotalAnimationpointX, TotalAnimationpointY, TotalAnimationpointZ)
+                    
+                    const X = XYZArr[0] + CameraOffsetX
+                    const Y = XYZArr[1] + CameraOffsetY
+                    const Z = XYZArr[2] + CameraOffsetZ
+                    
+                    if(Z+FocalLength > 0){
+                        
+                        RegObjects[i].AnimationPathProjectedX.unshift(Project2D(X,Z))
+                        RegObjects[i].AnimationPathProjectedY.unshift(Project2D(Y,Z))
+                    }
+                }
+            }
+        }
+    }
+    // Project per Object Animation Path X/Y/Z -> 2D(X, Y) Function
+    
+    
+    
+    
+    
+    
+    
+    // Project per Object Hitbox X/Y/Z -> 2D(X, Y) Function
+    function ProjectHitboxes2D(){
+        
+        for (let i = 0; i < RegObjects.length; i++) {
+                
+                const Hitbox = RegObjects[i].HitboxRelativeBoundraryXYZ()
+                
+                const HitboxWireFrameX = [Hitbox[0],Hitbox[1],Hitbox[1],Hitbox[0],Hitbox[0],Hitbox[0],Hitbox[1],Hitbox[1],Hitbox[0],Hitbox[0],Hitbox[0],Hitbox[1],Hitbox[1],Hitbox[1],Hitbox[1],Hitbox[0],Hitbox[0]]
+                const HitboxWireFrameY = [Hitbox[2],Hitbox[2],Hitbox[3],Hitbox[3],Hitbox[2],Hitbox[2],Hitbox[2],Hitbox[3],Hitbox[3],Hitbox[2],Hitbox[2],Hitbox[2],Hitbox[2],Hitbox[3],Hitbox[3],Hitbox[3],Hitbox[3]]
+                const HitboxWireFrameZ = [Hitbox[4],Hitbox[4],Hitbox[4],Hitbox[4],Hitbox[4],Hitbox[5],Hitbox[5],Hitbox[5],Hitbox[5],Hitbox[5],Hitbox[4],Hitbox[4],Hitbox[5],Hitbox[5],Hitbox[4],Hitbox[4],Hitbox[5]]
+                
+                for (let o = 0; o < HitboxWireFrameX.length; o++) {
+                    
+                    const XYZArr = ApplyCameraPerspective(HitboxWireFrameX[o], HitboxWireFrameY[o], HitboxWireFrameZ[o])
+                    
+                    const X = XYZArr[0] + CameraOffsetX
+                    const Y = XYZArr[1] + CameraOffsetY
+                    const Z = XYZArr[2] + CameraOffsetZ
+                    
+                    RegObjects[i].HitboxProjectedX[o] = Project2D(X,Z)
+                    RegObjects[i].HitboxProjectedY[o] = Project2D(Y,Z)
+                }
+            
+        }
+    }
+    // Project per Object Hitbox X/Y/Z -> 2D(X, Y) Function
+    
+    
+    
+    
+    
+    
+    
+    
+    // Canvas Draw Object Shells with Marking Function
+    function CanvasDrawObjectShells(){
+        for (let i = 0; i < RegObjects.length; i++) {
+            // Object Marked
+            if(RegObjects[i].Marked == true){
+
+                for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
+
+                    DrawLine(RegObjects[i].ShellprojectedX[o],RegObjects[i].ShellprojectedX[o+1],RegObjects[i].ShellprojectedY[o],RegObjects[i].ShellprojectedY[o+1],"orange",3)
+                }
+                // Point Marked (in Marked Object)
+                for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
+
+                    if(RegObjects[i].PointsMarked[o] == true){
+
+                        DrawLine(RegObjects[i].ShellprojectedX[o]-10,RegObjects[i].ShellprojectedX[o]+10,RegObjects[i].ShellprojectedY[o]-10,RegObjects[i].ShellprojectedY[o]+10,"red",4)
+                        DrawLine(RegObjects[i].ShellprojectedX[o]+10,RegObjects[i].ShellprojectedX[o]-10,RegObjects[i].ShellprojectedY[o]-10,RegObjects[i].ShellprojectedY[o]+10,"red",4)
+                    }
+                }
+            }
+            // Object Not Marked
+            else{
+                for (let o = 0; o < RegObjects[i].ShellprojectedX.length; o++) {
+                    DrawLine(RegObjects[i].ShellprojectedX[o],RegObjects[i].ShellprojectedX[o+1],RegObjects[i].ShellprojectedY[o],RegObjects[i].ShellprojectedY[o+1],"black",2)
+                }
+            }
+        }
+    }
+    // Canvas Draw Object Shells with Marking Function
+    
+    
+    
+    
+    
+    // Canvas draw Animation Pathing Visualisation Function
+    function CanvasDrawAnimationPathing(){
+        if(ShowAnimationPathing == true){
+            
+            for (let i = 0; i < RegObjects.length; i++) {
+                
+                if(RegObjects[i].ObjectType == "Animated"){
+                    
+                    for (let o = 0; o < RegObjects[i].AnimationPathProjectedX.length; o++) {
+                        DrawLine(RegObjects[i].AnimationPathProjectedX[o],RegObjects[i].AnimationPathProjectedX[o+1],RegObjects[i].AnimationPathProjectedY[o],RegObjects[i].AnimationPathProjectedY[o+1],"purple",3)
+                    }
+                }
+            }
+        }
+    }
+    // Canvas draw Animation Pathing Visualisation Function
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Canvas draw Animation Pathing Visualisation Function
+    function CanvasDrawHitboxes(){
+        if(ShowHitboxes == true){
+            
+            for (let i = 0; i < RegObjects.length; i++) {
+                
+                if(RegObjects[i].ShellprojectedX.length > 1) {
+                    
+                    for (let o = 0; o < RegObjects[i].HitboxProjectedX.length; o++) {
+                        DrawLine(RegObjects[i].HitboxProjectedX[o],RegObjects[i].HitboxProjectedX[o+1],RegObjects[i].HitboxProjectedY[o],RegObjects[i].HitboxProjectedY[o+1],"#FF007F",2)
+                    }
+                }
+            }
+        }
+    }
+    // Canvas draw Animation Pathing Visualisation Function
+    
+</script>
+
+</html>

@@ -597,7 +597,7 @@
     let AnimationY = []
     let AnimationZ = []
     
-    let ChosenPathStage = 1
+    let ChosenPathStage = 0
     
     let LastMouseDownX = 0
     let LastMouseDownY = 0
@@ -1021,15 +1021,7 @@
                         
                         if((((NewHitbox1[0] > NewHitbox2[0]) && (NewHitbox1[0] < NewHitbox2[1])) || ((NewHitbox1[1] > NewHitbox2[0]) && (NewHitbox1[1] < NewHitbox2[1]))) && (((NewHitbox1[2] > NewHitbox2[2]) && (NewHitbox1[2] < NewHitbox2[3])) || ((NewHitbox1[3] > NewHitbox2[2]) && (NewHitbox1[3] < NewHitbox2[3]))) && (((NewHitbox1[4] > NewHitbox2[4]) && (NewHitbox1[4] < NewHitbox2[5])) || ((NewHitbox1[5] > NewHitbox2[4]) && (NewHitbox1[5] < NewHitbox2[5])))){
                             
-                            if(RegObjects[i].DeleteOnCollision == true){
-                                DeleteObject(i)
-                                return
-                            }
-                            
-                            else if(RegObjects[o].DeleteOnCollision == true){
-                                DeleteObject(o)
-                                return
-                            }
+
                             
                             // Collision X
                             
